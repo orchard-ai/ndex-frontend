@@ -39,7 +39,7 @@ const SearchResult = ({ hit }: { hit: Hit }) => {
         className="shadow-lg p-3 text-gray-500 rounded-lg w-full"
       >
         {hit?._highlightResult?.title?.matchLevel === "none" ? (
-          <div className="flex flex-row">{hit?.title}</div>
+          <b className="flex flex-row">{hit?.title}</b>
         ) : (
           <Highlight
             attribute="title"
