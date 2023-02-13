@@ -1,20 +1,41 @@
-import { useState } from "react"
+import TypesenseInstantSearchAdapter from "typesense-instantsearch-adapter";
+import "./App.css";
+import { Hits, InstantSearch } from "react-instantsearch-dom";
+import CustomSearchBox from "./components/SearchBox";
+import SearchResult from "./components/SearchResult";
 
-import SearchBar from "./components/Search"
+const PORT: number = 8108;
 
-import "./App.css"
-import SearchIcon from "./assets/icons8-frying-pan-64.png"
+const typesenseInstantSearchAdapter = new TypesenseInstantSearchAdapter({
+  server: {
+    apiKey: "xyz",
+    nodes: [
+      {
+        host: "localhost",
+        port: PORT,
+        protocol: "http",
+      },
+    ],
+  },
+  additionalSearchParameters: {
+    query_by: "title,contents",
+    query_by_weights: "4,2",
+  },
+});
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <div className="flex flex-col items-center mt-10">
-      <h1 className="">Jasmine.ai</h1>
-      {/* <button className="border p-2 mt-2">dark</button> */}
-      <SearchBar />
+      <h1 className="">Mentat</h1>
+      <InstantSearch
+        indexName="documents"
+        searchClient={typesenseInstantSearchAdapter.searchClient}
+      >
+        <CustomSearchBox />
+        <Hits hitComponent={SearchResult} />
+      </InstantSearch>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
