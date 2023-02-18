@@ -30,7 +30,7 @@ const typesenseInstantSearchAdapter = new TypesenseInstantSearchAdapter({
 // @ts-ignore
 const Results = connectStateResults(({ searchState, children }) =>
   searchState && searchState.query ? (
-    <div className="w-[50rem]">{children}</div>
+    <div className="w-[51rem]">{children}</div>
   ) : (
     <></>
   )
@@ -50,7 +50,7 @@ function App() {
             <div className="text-right text-gray-500 pr-2">
               <Stats />
             </div>
-            <div className="flex flex-col items-center w-[50rem] max-h-[75vh] min-h-[75vh] overflow-y-auto overflow-x-hidden scrollbar">
+            <div className="flex flex-col items-center w-[51rem] max-h-[75vh] min-h-[75vh] overflow-y-auto overflow-x-hidden scrollbar">
               <Hits hitComponent={SearchResult} />
             </div>
           </Results>

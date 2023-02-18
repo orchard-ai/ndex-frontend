@@ -3,6 +3,7 @@ import NotionIcon from "../assets/notion-logo.svg"
 import GmailIcon from "../assets/test.svg"
 import NewTab from "../assets/newtab.svg"
 import { Hit } from "./types"
+import { SEARCH_COLOR } from "../util/constants"
 
 const randomIcon = () => {
   const icons = [NotionIcon, GmailIcon]
@@ -12,8 +13,10 @@ const randomIcon = () => {
 const SearchResult = ({ hit }: { hit: Hit }) => {
   const icon = randomIcon()
   return (
-    <div className="flex flex-row justify-start w-[50rem]">
-      <div className="border-2 p-3 text-gray-700 rounded-lg w-full flex flex-row justify-start">
+    <div className={`flex flex-row justify-start w-[50rem]`}>
+      <div
+        className={`border-2 p-3 text-gray-700 rounded-lg w-full flex flex-row justify-start bg-[${SEARCH_COLOR}]`}
+      >
         <img src={icon} alt="App Icon" className="w-9 h-full mt-1 mr-2" />
         <div className="flex flex-col text-left">
           {hit?._highlightResult?.title?.matchLevel === "none" ? (
