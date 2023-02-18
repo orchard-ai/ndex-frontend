@@ -19,7 +19,7 @@ const SearchBox = ({
     <span className="absolute inset-y-0 left-0 flex items-center pl-4">
       <img
         src={SearchIcon}
-        alt="search icon"
+        alt="Search icon"
         className="h-6 w-6 fill-current text-gray-500"
       />
     </span>
