@@ -1,6 +1,6 @@
 import { connectSearchBox } from "react-instantsearch-dom"
-import SearchIcon from "../assets/icons8-frying-pan-64.png"
-import { SEARCH_COLOR } from "../util/constants"
+import { SEARCH_COLOR } from "util/constants"
+import SearchIcon from "assets/icons8-frying-pan-64.png"
 
 const SearchBox = ({
   currentRefinement,
