@@ -10,7 +10,9 @@ const Title = ({hit} : {hit: Hit}) => {
     return <b className="font-bold">{hit?.title}</b>
   }    
   return (
-    <Highlight attribute="title" hit={hit} tagName="mark" />
+    <b>
+      <Highlight attribute="title" hit={hit} tagName="mark" />
+    </b>
   )
 }
 
