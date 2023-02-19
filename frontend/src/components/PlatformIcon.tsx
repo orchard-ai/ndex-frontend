@@ -18,7 +18,13 @@ const getSource = (platform : string | undefined) => {
 }
 
 const PlatformIcon = ({platform} : IconProps) => {
-    const source = getSource(platform);
+    //TODO(@fryingpan, @FL) DEMO PURPOSE SEND RANDOM PLATFORM:
+    const demo = () => {
+        const icons = ["gmail", "notion"]
+        return icons[Math.floor(Math.random() * icons.length)]
+    }
+
+    const source = getSource(demo());
 
     return (
         <div className="p-1">

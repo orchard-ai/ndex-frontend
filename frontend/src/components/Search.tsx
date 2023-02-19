@@ -1,4 +1,4 @@
-import SearchIcon from "assets/icons8-frying-pan-64.png"
+import SearchIcon from "assets/icons/icons8-frying-pan-64.png"
 import { useState, useCallback, useEffect } from "react"
 import { useDebounce } from "hooks/useDebounce"
 
