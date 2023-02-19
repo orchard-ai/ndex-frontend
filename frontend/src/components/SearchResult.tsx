@@ -1,33 +1,37 @@
+import React from "react"
+import PlatformIcon from "components/PlatformIcon"
+import NewTab from "assets/icons/newtab.svg"
 import { Highlight } from "react-instantsearch-dom"
-import NotionIcon from "../assets/notion-logo.svg"
-import GmailIcon from "../assets/test.svg"
-import NewTab from "../assets/newtab.svg"
-import { Hit } from "./types"
-import { SEARCH_COLOR } from "../util/constants"
+import { SEARCH_COLOR } from "util/constants"
+import { Hit, HightlightedResult, Contents } from "util/types"
 
-const randomIcon = () => {
-  const icons = [NotionIcon, GmailIcon]
-  return icons[Math.floor(Math.random() * icons.length)]
+const Title = ({hit} : {hit: Hit}) => {
+  if (hit?._highlightResult?.title?.matchLevel === "none") {
+    return <b className="font-bold">{hit?.title}</b>
+  }    
+  return (
+    <Highlight attribute="title" hit={hit} tagName="mark" />
+  )
 }
 
 const SearchResult = ({ hit }: { hit: Hit }) => {
-  const icon = randomIcon()
+
+  console.log(hit);
+
   return (
     <div className={`flex flex-row justify-start w-[50rem]`}>
       <div
         className={`border-2 p-3 text-gray-700 rounded-lg w-full flex flex-row justify-start bg-[${SEARCH_COLOR}]`}
       >
-        <img src={icon} alt="App Icon" className="w-9 h-full mt-1 mr-2" />
         <div className="flex flex-col text-left">
-          {hit?._highlightResult?.title?.matchLevel === "none" ? (
-            <b className="font-bold">{hit?.title}</b>
-          ) : (
-            <Highlight attribute="title" hit={hit} tagName="mark" />
-          )}
+          <div className="flex space-x-1 mb-1"> 
+            <PlatformIcon platform={hit.platform} />
+            <Title hit={hit}/>
+          </div>
           <Highlight attribute="contents" hit={hit} tagName="mark" />
         </div>
-        <div className="min-w-9 max-w-9 ml-auto">
-          <a href={hit?.url} target="_blank" className="w-9 h-full flex">
+        <div className="min-w-4 max-w-4 ml-auto">
+          <a href={hit?.url} target="_blank" className="w-4 h-full flex">
             <img src={NewTab} alt="New Tab" />
           </a>
         </div>

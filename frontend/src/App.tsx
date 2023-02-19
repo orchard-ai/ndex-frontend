@@ -5,10 +5,10 @@ import {
   InstantSearch,
   connectStateResults,
 } from "react-instantsearch-dom"
-import CustomSearchBox from "./components/SearchBox"
-import SearchResult from "./components/SearchResult"
+import CustomSearchBox from "components/SearchBox"
+import SearchResult from "components/SearchResult"
 import { Stats } from "react-instantsearch-dom"
-import { APP_NAME, PORT } from "./util/constants"
+import { APP_NAME, PORT } from "util/constants"
 
 const typesenseInstantSearchAdapter = new TypesenseInstantSearchAdapter({
   server: {
@@ -29,11 +29,15 @@ const typesenseInstantSearchAdapter = new TypesenseInstantSearchAdapter({
 
 // @ts-ignore
 const Results = connectStateResults(({ searchState, children }) =>
-  searchState && searchState.query ? (
-    <div className="w-[51rem]">{children}</div>
-  ) : (
-    <></>
-  )
+  {
+    if(searchState && searchState.query) {
+      return (
+        <div>
+          {children}
+        </div>);
+    } 
+    return <></>;
+  }
 )
 
 function App() {
