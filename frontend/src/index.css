@@ -9,6 +9,16 @@ body {
   max-height: 100vh;
 }
 
+.input-bordered {
+  border-width: 0 0 2px 0;
+  border-radius: 0;
+}
+
+.input-bordered:focus {
+  outline: none;
+  box-shadow: none;
+}
+
 @layer utilities {
   .scrollbar::-webkit-scrollbar {
     width: 8px;
