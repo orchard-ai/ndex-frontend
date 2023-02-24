@@ -1,17 +1,18 @@
-import TypesenseInstantSearchAdapter from "typesense-instantsearch-adapter";
+import TypesenseInstantSearchAdapter from "typesense-instantsearch-adapter"
 import {
   Hits,
   InstantSearch,
   connectStateResults,
-} from "react-instantsearch-dom";
-import CustomSearchBox from "components/SearchBox";
-import SearchResult from "components/SearchResult";
-import { Stats } from "react-instantsearch-dom";
-import { PORT } from "util/constants";
-import Header from "components/Header";
-import SearchCommandPalette from "components/SearchCommand";
-import { useKBar, useRegisterActions } from "kbar";
-import { useState, useEffect } from "react";
+} from "react-instantsearch-dom"
+import CustomSearchBox from "components/SearchBox"
+import SearchResult from "components/SearchResult"
+import { Stats } from "react-instantsearch-dom"
+import { PORT } from "util/constants"
+import Header from "components/Header"
+import SearchCommandPalette from "components/SearchCommand"
+import { useKBar, useRegisterActions } from "kbar"
+import { useState, useEffect } from "react"
+import { Combobox } from "@headlessui/react"
 
 const typesenseInstantSearchAdapter = new TypesenseInstantSearchAdapter({
   server: {
@@ -28,21 +29,27 @@ const typesenseInstantSearchAdapter = new TypesenseInstantSearchAdapter({
     query_by: "title,contents",
     query_by_weights: "4,2",
   },
-});
+})
 
 // @ts-ignore
 const Results = connectStateResults(({ searchState, children }) => {
   if (searchState && searchState.query) {
-    return <div>{children}</div>;
+    return <div>{children}</div>
   }
-  return <></>;
-});
+  return <></>
+})
 
 function Home() {
   return (
     <div className="flex flex-col items-center mt-10 max-h-[89vh] min-h-[89vh]">
       <Header />
-      <div className="mx-8 mt-0 flex flex-col items-center relative">
+      <Combobox
+        as="div"
+        className="mx-8 mt-4 flex flex-col items-center relative border rounded-xl bg-white shadow-2xl ring-1 ring-black/5"
+        onChange={() => {
+          // Todo: navigate to link
+        }}
+      >
         <InstantSearch
           indexName="documents"
           searchClient={typesenseInstantSearchAdapter.searchClient}
@@ -58,9 +65,9 @@ function Home() {
             </div>
           </Results>
         </InstantSearch>
-      </div>
+      </Combobox>
     </div>
-  );
+  )
 }
 
-export default Home;
+export default Home

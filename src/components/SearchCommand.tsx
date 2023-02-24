@@ -8,10 +8,12 @@ import {
   KBarResults,
   useKBar,
   useRegisterActions,
-} from "kbar";
-import { useState, useEffect } from "react";
+  ActionImpl,
+  Action,
+} from "kbar"
+import { useState, useEffect } from "react"
 
-const defaultActions = [
+const defaultActions: Action[] = [
   {
     id: "blog",
     name: "Blog",
@@ -26,22 +28,23 @@ const defaultActions = [
     keywords: "email",
     perform: () => (window.location.pathname = "contact"),
   },
-];
+]
 
 export default function SearchCommandPalette() {
   const { queryValue } = useKBar((state) => ({
     queryValue: state.searchQuery,
-  }));
-  const [actions, setActions] = useState(defaultActions);
+  }))
+  console.log(queryValue)
+  const [actions, setActions] = useState(defaultActions)
 
-  const userSearch = [
+  const userSearch: Action[] = [
     {
       id: "userSearch",
-      name: "hello world",
+      name: `ok + ${queryValue}`,
       perform: () => console.log(queryValue),
     },
-  ];
-  useRegisterActions(userSearch, [actions]);
+  ]
+  useRegisterActions(userSearch, [actions])
 
   return (
     <KBarPortal>
@@ -51,20 +54,19 @@ export default function SearchCommandPalette() {
         <KBarAnimator>
           {" "}
           <KBarSearch />
-          <PaletteResults />
-          {defaultActions.map((action) => action.name)}
+          <PaletteResults res={userSearch} />
         </KBarAnimator>
       </KBarPositioner>
     </KBarPortal>
-  );
+  )
 }
 
-function PaletteResults() {
-  const { results } = useMatches();
+function PaletteResults({ res }) {
+  const { results } = useMatches()
 
   return (
     <KBarResults
-      items={results}
+      items={res}
       onRender={({ item, active }) =>
         typeof item === "string" ? (
           <div>{item}</div>
@@ -79,5 +81,5 @@ function PaletteResults() {
         )
       }
     />
-  );
+  )
 }
