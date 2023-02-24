@@ -1,14 +1,17 @@
-import TypesenseInstantSearchAdapter from "typesense-instantsearch-adapter"
+import TypesenseInstantSearchAdapter from "typesense-instantsearch-adapter";
 import {
   Hits,
   InstantSearch,
   connectStateResults,
-} from "react-instantsearch-dom"
-import CustomSearchBox from "components/SearchBox"
-import SearchResult from "components/SearchResult"
-import { Stats } from "react-instantsearch-dom"
-import { PORT } from "util/constants"
-import Header from "components/Header"
+} from "react-instantsearch-dom";
+import CustomSearchBox from "components/SearchBox";
+import SearchResult from "components/SearchResult";
+import { Stats } from "react-instantsearch-dom";
+import { PORT } from "util/constants";
+import Header from "components/Header";
+import SearchCommandPalette from "components/SearchCommand";
+import { useKBar, useRegisterActions } from "kbar";
+import { useState, useEffect } from "react";
 
 const typesenseInstantSearchAdapter = new TypesenseInstantSearchAdapter({
   server: {
@@ -25,15 +28,15 @@ const typesenseInstantSearchAdapter = new TypesenseInstantSearchAdapter({
     query_by: "title,contents",
     query_by_weights: "4,2",
   },
-})
+});
 
 // @ts-ignore
 const Results = connectStateResults(({ searchState, children }) => {
   if (searchState && searchState.query) {
-    return <div>{children}</div>
+    return <div>{children}</div>;
   }
-  return <></>
-})
+  return <></>;
+});
 
 function Home() {
   return (
@@ -44,6 +47,7 @@ function Home() {
           indexName="documents"
           searchClient={typesenseInstantSearchAdapter.searchClient}
         >
+          <SearchCommandPalette />
           <CustomSearchBox />
           <Results>
             <div className="text-right text-gray-500 pr-2">
@@ -56,7 +60,7 @@ function Home() {
         </InstantSearch>
       </div>
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;
