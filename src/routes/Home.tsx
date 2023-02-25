@@ -9,6 +9,7 @@ import SearchResult from "components/SearchResult"
 import { Stats } from "react-instantsearch-dom"
 import { PORT } from "util/constants"
 import Header from "components/Header"
+import { Combobox } from "@headlessui/react"
 
 const typesenseInstantSearchAdapter = new TypesenseInstantSearchAdapter({
   server: {
@@ -37,24 +38,32 @@ const Results = connectStateResults(({ searchState, children }) => {
 
 function Home() {
   return (
-    <div className="flex flex-col items-center mt-10 max-h-[89vh] min-h-[89vh]">
+    <div className="flex flex-col items-center p-0 mt-10 max-h-[89vh] min-h-full">
       <Header />
-      <div className="mx-8 mt-0 flex flex-col items-center relative">
+      <Combobox
+        as="div"
+        className="min-w-[54rem] mx-8 mt-4 p-0 flex flex-col items-center border rounded-xl bg-white shadow-2xl ring-1 ring-black/5 divide-y divide-gray-250"
+        onChange={() => {
+          // Todo: navigate to link
+        }}
+      >
         <InstantSearch
           indexName="documents"
           searchClient={typesenseInstantSearchAdapter.searchClient}
         >
           <CustomSearchBox />
-          <Results>
-            <div className="text-right text-gray-500 pr-2">
-              <Stats />
-            </div>
-            <div className="flex flex-col items-center w-[51rem] max-h-[75vh] min-h-[75vh] overflow-y-auto overflow-x-hidden scrollbar">
-              <Hits hitComponent={SearchResult} />
-            </div>
-          </Results>
+          <Combobox.Options className="w-full">
+            <Results>
+              <div className="text-right text-gray-500 pr-2 w-full">
+                <Stats />
+              </div>
+              <div className="flex flex-col p-0 m-0 items-center w-full min-w-[54rem] max-w-[54rem] h-[70vh] overflow-y-auto overflow-x-hidden scrollbar">
+                <Hits hitComponent={SearchResult} />
+              </div>
+            </Results>
+          </Combobox.Options>
         </InstantSearch>
-      </div>
+      </Combobox>
     </div>
   )
 }
