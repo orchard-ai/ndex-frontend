@@ -1,9 +1,8 @@
 import { connectSearchBox } from "react-instantsearch-dom"
-import { SEARCH_COLOR } from "util/constants"
 import SearchIcon from "assets/icons/frying-pan.png"
 import { Combobox } from "@headlessui/react"
 
-const SearchBox = ({
+const SearchBar = ({
   currentRefinement,
   refine,
 }: {
@@ -28,6 +27,6 @@ const SearchBox = ({
   </div>
 )
 
-const CustomSearchBox = connectSearchBox(SearchBox)
+const SearchBox = connectSearchBox(SearchBar)
 
-export default CustomSearchBox
+export default SearchBox

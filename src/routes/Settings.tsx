@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { APP_NAME } from "util/constants"
+import { APP_NAME } from "utils/constants"
 import Button from "components/Button"
 import { Link } from "react-router-dom"
 import AccountTab from "components/AccountTab"

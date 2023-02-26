@@ -1,31 +1,31 @@
-import React from "react"
 import PlatformIcon from "components/PlatformIcon"
 import NewTabIcon from "assets/icons/newtab.svg"
 import { Highlight } from "react-instantsearch-dom"
-import { SEARCH_COLOR } from "util/constants"
-import { Hit, HightlightedResult, Contents } from "util/types"
+import { SEARCH_COLOR } from "utils/constants"
+import { Hit } from "utils/types"
 import { Combobox } from "@headlessui/react"
 
 const Title = ({ hit }: { hit: Hit }) => {
   return (
-    <div className="flex space-x-1 mb-1">
+    <div className="flex space-x-1">
       <PlatformIcon platform={hit.platform} />
-      <b>
-        <Highlight attribute="title" hit={hit} tagName="mark" />
-      </b>
+      <Highlight
+        attribute="title"
+        hit={hit}
+        tagName="mark"
+        className="font-bold"
+      />
     </div>
   )
 }
 
 const Content = ({ hit }: { hit: Hit }) => {
   return (
-    <div className="p-1">
-      <Highlight attribute="contents" hit={hit} tagName="mark" />)
-    </div>
+    <Highlight attribute="contents" hit={hit} tagName="mark" className="p-1" />
   )
 }
 
-const SearchResult = ({ hit }: { hit: Hit }) => {
+const SearchResultRow = ({ hit }: { hit: Hit }) => {
   return (
     <Combobox.Option
       key={hit?.id}
@@ -34,7 +34,7 @@ const SearchResult = ({ hit }: { hit: Hit }) => {
     >
       {({ active }) => (
         <div
-          className={`p-3 ${
+          className={`p-2 ${
             active ? "text-white" : "text-gray-700"
           } rounded-sm w-[54rem] flex flex-row justify-start ${
             active ? "bg-indigo-600" : `bg-[${SEARCH_COLOR}]`
@@ -55,4 +55,4 @@ const SearchResult = ({ hit }: { hit: Hit }) => {
   )
 }
 
-export default SearchResult
+export default SearchResultRow
