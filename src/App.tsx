@@ -1,4 +1,2 @@
-import React from "react"
-import { BrowserRouter as Router, Route, Link } from "react-router-dom"
-
+// HOME SCREEN IS IN routes/Home.tsx
 export default function App() {}
