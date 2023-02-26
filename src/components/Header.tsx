@@ -1,4 +1,4 @@
-import { APP_NAME } from "util/constants"
+import { APP_NAME } from "utils/constants"
 
 import { Link } from "react-router-dom"
 

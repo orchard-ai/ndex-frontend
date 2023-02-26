@@ -20,7 +20,7 @@ const getSource = (platform: string | undefined) => {
 const PlatformIcon = ({ platform }: IconProps) => {
   //TODO(@fryingpan, @FL) DEMO PURPOSE SEND RANDOM PLATFORM:
   const demo = () => {
-    const icons = ["notion"]
+    const icons = ["notion", "gmail"]
     return icons[Math.floor(Math.random() * icons.length)]
   }
 
