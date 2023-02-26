@@ -1,60 +1,32 @@
-import TypesenseInstantSearchAdapter from "typesense-instantsearch-adapter"
-import {
-  Hits,
-  InstantSearch,
-  connectStateResults,
-} from "react-instantsearch-dom"
-import CustomSearchBox from "components/SearchBox"
-import SearchResult from "components/SearchResult"
-import { Stats } from "react-instantsearch-dom"
-import { PORT } from "util/constants"
+import { InstantSearch } from "react-instantsearch-dom"
+
+import { Combobox } from "@headlessui/react"
+
+import SearchBox from "components/SearchBox"
+import { typesenseInstantSearchAdapter } from "utils/typesense"
 import Header from "components/Header"
-
-const typesenseInstantSearchAdapter = new TypesenseInstantSearchAdapter({
-  server: {
-    apiKey: "xyz",
-    nodes: [
-      {
-        host: "localhost",
-        port: PORT,
-        protocol: "http",
-      },
-    ],
-  },
-  additionalSearchParameters: {
-    query_by: "title,contents",
-    query_by_weights: "4,2",
-  },
-})
-
-// @ts-ignore
-const Results = connectStateResults(({ searchState, children }) => {
-  if (searchState && searchState.query) {
-    return <div>{children}</div>
-  }
-  return <></>
-})
+import SearchResults from "components/SearchResults"
 
 function Home() {
   return (
-    <div className="flex flex-col items-center mt-10 max-h-[89vh] min-h-[89vh]">
+    <div className="flex flex-col items-center p-0 mt-10 max-h-[89vh] min-h-full">
       <Header />
-      <div className="mx-8 mt-0 flex flex-col items-center relative">
+      <Combobox
+        as="div"
+        className="relative first-line:min-w-[54rem] mx-8 mt-4 p-0 flex flex-col items-center border rounded-xl bg-white shadow-2xl ring-1 ring-black/5 divide-y divide-gray-250"
+        onChange={(url: string) => {
+          // Pressing enter on result row opens new tab
+          window.open(url, "_blank", "noreferrer")
+        }}
+      >
         <InstantSearch
           indexName="documents"
           searchClient={typesenseInstantSearchAdapter.searchClient}
         >
-          <CustomSearchBox />
-          <Results>
-            <div className="text-right text-gray-500 pr-2">
-              <Stats />
-            </div>
-            <div className="flex flex-col items-center w-[51rem] max-h-[75vh] min-h-[75vh] overflow-y-auto overflow-x-hidden scrollbar">
-              <Hits hitComponent={SearchResult} />
-            </div>
-          </Results>
+          <SearchBox />
+          <SearchResults />
         </InstantSearch>
-      </div>
+      </Combobox>
     </div>
   )
 }

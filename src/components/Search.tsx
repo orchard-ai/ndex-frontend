@@ -1,9 +1,10 @@
 import SearchIcon from "assets/icons/icons8-frying-pan-64.png"
-import { useState, useCallback, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { useDebounce } from "hooks/useDebounce"
 
-import { getSearch } from "util/network"
+import { getSearch } from "utils/network"
 
+// CURRENTLY NOT USED ---------------------------------
 export default function SearchBar() {
   const [results, setResults] = useState("")
   const [text, setText] = useState("")
