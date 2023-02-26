@@ -14,7 +14,7 @@ function Home() {
       <Combobox
         as="div"
         className="relative first-line:min-w-[54rem] mx-8 mt-4 p-0 flex flex-col items-center border rounded-xl bg-white shadow-2xl ring-1 ring-black/5 divide-y divide-gray-250"
-        onChange={(url: string) => {
+        onChange={(url) => {
           // Pressing enter on result row opens new tab
           window.open(url, "_blank", "noreferrer")
         }}

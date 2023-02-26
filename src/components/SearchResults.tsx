@@ -20,7 +20,7 @@ function StateResults({ searchState, searchResults }: StateResultsProps) {
     <>
       {searchState.query !== "" && hasResults && (
         <>
-          <Combobox.Options className="w-full">
+          <Combobox.Options static className="w-full">
             <SearchStatistics />
             <div className="flex flex-col p-0 m-0 items-center w-full min-w-[54rem] max-w-[54rem] max-h-[70vh] overflow-y-auto overflow-x-hidden scrollbar">
               <Hits hitComponent={SearchResultRow} />
