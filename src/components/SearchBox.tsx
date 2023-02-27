@@ -18,10 +18,9 @@ const SearchBar = ({
       />
       <Combobox.Input
         className={`bg-transparent w-[50rem] pl-4 border-0 focus:ring-0 outline-none text-xl text-gray-800 placeholder-gray-400`}
-        type="search"
         placeholder="search for anything!"
-        value={currentRefinement}
         onChange={(event) => refine(event.currentTarget.value)}
+        displayValue={currentRefinement}
       />
     </div>
   </div>

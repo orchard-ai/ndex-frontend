@@ -13,10 +13,10 @@ import AccountTab from "components/AccountTab"
 export default function Settings() {
   return (
     <div className="flex justify-center max-h-[100vh] min-h-[100vh]">
-      <div className="flex flex-col w-[70rem]">
+      <div className="flex flex-col w-[46rem]">
         <div className="flex flex-row w-full justify-between mt-8">
           <Link to="/">
-            <h1 className="ml-6 text-black">{APP_NAME}</h1>
+            <h1 className="ml-8 text-black">{APP_NAME}</h1>
           </Link>
           <Button text="Back" routerLink="/" className="mr-6" />
         </div>

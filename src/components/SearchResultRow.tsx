@@ -10,7 +10,7 @@ export default function SearchResultRow({ hit }: { hit: Hit }) {
   return (
     <Combobox.Option
       key={hit?.id}
-      value={hit.url}
+      value={hit}
       className={`flex flex-row justify-start w-full m-0 p-0`}
     >
       {({ active }) => <MemoizedInnerRow active={active} hit={hit} />}
