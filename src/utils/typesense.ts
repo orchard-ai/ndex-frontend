@@ -3,7 +3,7 @@ import { PORT } from "utils/constants"
 
 export const typesenseInstantSearchAdapter = new TypesenseInstantSearchAdapter({
   server: {
-    apiKey: "xyz",
+    apiKey: import.meta.env.VITE_TYPESENSE_API,
     nodes: [
       {
         host: "localhost",
