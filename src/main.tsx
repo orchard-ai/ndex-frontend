@@ -3,12 +3,17 @@ import ReactDOM from "react-dom/client"
 import "./index.css"
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import Home from "./routes/Home"
+import Search from "./routes/Search"
 import Settings from "routes/Settings"
+import Home from "routes/Home"
 
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <Search />,
+  },
+  {
+    path: "/home",
     element: <Home />,
   },
   {
