@@ -1,35 +1,45 @@
-import React from "react"
-import ReactDOM from "react-dom/client"
-import "./index.css"
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import { GoogleOAuthProvider } from "@react-oauth/google"
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  RouterProvider,
+} from 'react-router-dom';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import { ProtectedRoute } from 'components/Auth/ProtectedRoute';
+import { AuthProvider } from 'components/Auth/AuthProvider';
+import { AuthLayout } from 'components/AuthLayer';
 
-import Search from "./routes/Search"
-import Settings from "routes/Settings"
-import Home from "routes/Home"
+import Search from './routes/Search';
+import Settings from 'routes/Settings';
+import Home from 'routes/Home';
+import { Route } from 'react-router-dom';
 
-const clientID = import.meta.env.VITE_CLIENT_ID
+const clientID = import.meta.env.VITE_CLIENT_ID;
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/search",
-    element: <Search />,
-  },
-  {
-    path: "/settings",
-    element: <Settings />,
-  },
-])
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route element={<AuthLayout />}>
+      <Route path='/' element={<Home />}></Route>
+      <Route
+        path='/search'
+        element={
+          <ProtectedRoute>
+            <Search />
+          </ProtectedRoute>
+        }
+      />
+      <Route element={<Settings />}></Route>
+    </Route>
+  )
+);
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <GoogleOAuthProvider clientId={clientID}>
       <RouterProvider router={router} />
     </GoogleOAuthProvider>
   </React.StrictMode>
-)
+);
