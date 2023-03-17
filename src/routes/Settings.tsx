@@ -1,5 +1,5 @@
 import { APP_NAME } from "utils/constants"
-import Button from "components/Button"
+import LinkButton from "components/LinkButton"
 import { Link } from "react-router-dom"
 import AccountTab from "components/AccountTab"
 
@@ -18,7 +18,7 @@ export default function Settings() {
           <Link to="/">
             <h1 className="ml-8 text-black">{APP_NAME}</h1>
           </Link>
-          <Button text="Back" routerLink="/" className="mr-6" />
+          <LinkButton text="Back" routerLink="/" className="mr-6" />
         </div>
 
         <div className="tabs mt-10 ml-8">

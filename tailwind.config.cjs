@@ -36,6 +36,9 @@ module.exports = {
         "ndex-input": {
           DEFAULT: "#434253"
         },
+      },
+      letterSpacing: {
+        title:  '-0.1em',
       }
     }
   },

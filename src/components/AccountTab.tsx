@@ -1,5 +1,5 @@
 import { useState } from "react"
-import Button from "./Button"
+import LinkButton from "./LinkButton"
 
 export default function AccountTab() {
   const [modifying, setModifying] = useState(false)
@@ -7,9 +7,9 @@ export default function AccountTab() {
     <>
       <div className="flex flex-col space-y-8 mx-8 mt-12">
         {modifying ? (
-          <Button text="Cancel" onClick={() => setModifying((prev) => !prev)} />
+          <LinkButton text="Cancel" onClick={() => setModifying((prev) => !prev)} />
         ) : (
-          <Button text="Modify" onClick={() => setModifying((prev) => !prev)} />
+          <LinkButton text="Modify" onClick={() => setModifying((prev) => !prev)} />
         )}
 
         <div>

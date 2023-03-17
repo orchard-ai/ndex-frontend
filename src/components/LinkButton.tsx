@@ -5,7 +5,7 @@ type PropType = {
   className?: string
   onClick?: () => void
 }
-export default function Button({
+export default function LinkButton({
   text,
   className,
   routerLink,
