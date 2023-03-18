@@ -16,3 +16,10 @@ export const AuthContext = createContext<AuthContextType>({
 export const useAuth = () => {
   return useContext(AuthContext)
 }
+
+export const useIsLoggedIn = () => {
+  const { user } = useAuth()
+  return user?.email !== "" || user?.email !== undefined || user?.email !== null
+    ? true
+    : false
+}
