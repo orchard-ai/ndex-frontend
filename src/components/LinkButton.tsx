@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom"
+
 type PropType = {
   text: string
   routerLink?: string
   className?: string
   onClick?: () => void
 }
+
 export default function LinkButton({
   text,
   className,

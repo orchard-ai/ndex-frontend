@@ -33,6 +33,11 @@ module.exports = {
           "filled-dark": "#434343",
           "filled-light": "#C3C3C3",
         },
+        "ndex-login-background": {
+          1: "#C19BDE",
+          2: "#904896",
+          3: "#0F073E"
+        },
         "ndex-input": {
           DEFAULT: "#434253"
         },
@@ -46,6 +51,7 @@ module.exports = {
   daisyui: {
     themes: [
       {
+        backgroundColor: "#615D75",
         default: {
           "primary-text": "#FFFFFF",
           "secondary-text": "#A5A5A6",

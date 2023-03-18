@@ -1,5 +1,5 @@
 import { useState } from "react"
-import LinkButton from "./LinkButton"
+import LinkButton from "components/LinkButton";
 
 export default function AccountTab() {
   const [modifying, setModifying] = useState(false)
@@ -62,7 +62,7 @@ export default function AccountTab() {
           )}
         </div>
         {modifying && (
-          <Button
+          <LinkButton
             text="Confirm"
             onClick={() => setModifying((prev) => !prev)}
           />

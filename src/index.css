@@ -2,7 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
+html {
+  margin: 0;
+  min-height: 100vh;
+  max-height: 100vh;
+  background-color: theme("colors.ndex-background.1");
+}
+
 body {
   margin: 0;
   min-height: 100vh;

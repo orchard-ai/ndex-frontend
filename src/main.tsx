@@ -31,7 +31,7 @@ const router = createBrowserRouter(
           </ProtectedRoute>
         }
       />
-      <Route path="/settings" element={<Settings />}></Route>
+      <Route path='/settings' element={<Settings />}></Route>
     </Route>
   )
 )

@@ -1,5 +1,5 @@
 import TypesenseInstantSearchAdapter from "typesense-instantsearch-adapter"
-import { PORT } from "utils/constants"
+import { TYPESENSE_PORT } from "utils/constants"
 
 export const typesenseInstantSearchAdapter = new TypesenseInstantSearchAdapter({
   server: {
@@ -7,7 +7,7 @@ export const typesenseInstantSearchAdapter = new TypesenseInstantSearchAdapter({
     nodes: [
       {
         host: "localhost",
-        port: PORT,
+        port: TYPESENSE_PORT,
         protocol: "http",
       },
     ],

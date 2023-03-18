@@ -10,7 +10,7 @@ import { Hit } from 'utils/types';
 
 function Search() {
   return (
-    <div className='flex flex-col items-center p-0 mt-10 max-h-[89vh] min-h-full bg-ndex-background-1'>
+    <div className='flex flex-col items-center p-0 max-h-[89vh] min-h-full bg-ndex-background-1'>
       <Header />
       <Combobox
         as='div'
