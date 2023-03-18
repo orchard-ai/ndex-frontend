@@ -9,10 +9,8 @@ import {
 } from "react-router-dom"
 import { GoogleOAuthProvider } from "@react-oauth/google"
 import { ProtectedRoute } from "components/Auth/ProtectedRoute"
-import { AuthProvider } from "components/Auth/AuthProvider"
 import { AuthLayout } from "components/AuthLayer"
 
-import Search from "./routes/Search"
 import Settings from "routes/Settings"
 import Home from "routes/Home"
 import { Route } from "react-router-dom"
@@ -24,14 +22,13 @@ const router = createBrowserRouter(
     <Route element={<AuthLayout />}>
       <Route path="/" element={<Home />}></Route>
       <Route
-        path="/search"
+        path="/settings"
         element={
           <ProtectedRoute>
-            <Search />
+            <Settings />
           </ProtectedRoute>
         }
-      />
-      <Route path='/settings' element={<Settings />}></Route>
+      ></Route>
     </Route>
   )
 )

@@ -1,15 +1,14 @@
-import { Navigate } from 'react-router-dom';
-import { useAuth } from 'hooks/useAuth';
+import { Navigate } from "react-router-dom"
+import { useAuth } from "hooks/useAuth"
 
 export const ProtectedRoute = ({ children }) => {
-  const { user } = useAuth();
-  console.log(user);
+  const { user } = useAuth()
   if (
     user === null ||
     (Object.keys(user).length === 0 && user.constructor === Object)
   ) {
     // user is not authenticated
-    return <Navigate to='/' />;
+    return <Navigate to="/" />
   }
-  return children;
-};
+  return children
+}
