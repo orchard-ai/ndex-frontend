@@ -3,22 +3,27 @@ import {
   SearchState,
   SearchResults as SearchResultsType,
 } from "react-instantsearch-core"
-import { connectStateResults, Hits, Stats } from "react-instantsearch-dom"
+import { connectStateResults, Hits } from "react-instantsearch-dom"
 import SearchResultRow from "./SearchResultRow"
 import SearchStatistics from "./SearchStatistics"
 
 type StateResultsProps = {
   searchState: SearchState
   searchResults: SearchResultsType
+  currentRefinement: any
 }
 
-function StateResults({ searchState, searchResults }: StateResultsProps) {
+function StateResults({
+  searchState,
+  searchResults,
+  currentRefinement,
+}: StateResultsProps) {
   const hasResults = searchResults && searchResults.nbHits !== 0
   const nbHits = searchResults && searchResults.nbHits
 
   return (
     <>
-      {searchState.query !== "" && hasResults && (
+      {currentRefinement !== "" && searchState.query !== "" && hasResults && (
         <>
           <Combobox.Options static className="w-full">
             <SearchStatistics />
