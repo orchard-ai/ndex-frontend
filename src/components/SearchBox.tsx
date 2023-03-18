@@ -15,7 +15,6 @@ const SearchBox = ({
   useEffect(() => {
     const handleKeyDown = (event: any) => {
       if (event.keyCode === 191) {
-        console.log(inputRef.current)
         event.preventDefault()
         inputRef?.current?.focus()
       }

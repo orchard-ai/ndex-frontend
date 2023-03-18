@@ -19,7 +19,9 @@ export const useAuth = () => {
 
 export const useIsLoggedIn = () => {
   const { user } = useAuth()
-  return user?.email !== "" || user?.email !== undefined || user?.email !== null
+  return user?.clientId !== "" &&
+    user?.clientId !== undefined &&
+    user?.clientId !== null
     ? true
     : false
 }

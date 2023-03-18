@@ -5,7 +5,6 @@ import Search from "routes/Search"
 
 export default function Home() {
   const isLoggedIn = useIsLoggedIn()
-
   return isLoggedIn ? (
     <Search />
   ) : (
