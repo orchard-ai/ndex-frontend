@@ -12,7 +12,7 @@ import AccountTab from "components/AccountTab"
  */
 export default function Settings() {
   return (
-    <div className="flex justify-center max-h-[100vh] min-h-[100vh]">
+    <div className="flex justify-center max-h-[100vh] min-h-[100vh] bg-ndex-background-1">
       <div className="flex flex-col w-[46rem]">
         <div className="flex flex-row w-full justify-between mt-8">
           <Link to="/">

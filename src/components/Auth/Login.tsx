@@ -16,7 +16,7 @@ export default function Login() {
 
   return (
     <div className='flex flex-col items-center justify-center w-full h-full'>
-      <div className='flex flex-col items-center justify-center w-full h-full space-y-3'>
+      <div className='flex flex-col items-center justify-center w-full h-full space-y-3 text-ndex-text-white'>
         <h1 className='text-6xl tracking-title'>Ndex</h1>
         <h2 className='text-2xl tracking-title'>Index anthing, search <b>everything</b></h2>
         <div className="font-bold">
@@ -26,8 +26,30 @@ export default function Login() {
         <div id='signInButton'>
           <GoogleLogin text="continue_with" onSuccess={handleSuccess} onError={handleFailure} />
         </div>
+        <div className="flex items-center justify-start space-x-2">
+          <hr
+              style={{
+                  color: 'black',
+                  backgroundColor: 'black',
+                  width: 100
+              }}
+          />
+          <p>
+            Or
+          </p>
+           <hr
+              style={{
+                  color: 'black',
+                  backgroundColor: 'black',
+                  width: 100
+              }}
+          />
+        </div>
         <div>
           <button> Login </button>
+        </div>
+        <div>
+          Don't have an account? <button> Sign up </button>
         </div>
       </div>
     </div>
