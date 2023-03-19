@@ -2,8 +2,8 @@ import { connectSearchBox, InstantSearch } from "react-instantsearch-dom"
 import { Combobox } from "@headlessui/react"
 
 import Header from "components/Search/Header"
-import SearchBox from "components/Search/SearchBox";
-import SearchResults from "components/Search/SearchResults";
+import SearchBox from "components/Search/SearchBox"
+import SearchResults from "components/Search/SearchResults"
 
 import { Hit } from "utils/types"
 import { typesenseInstantSearchAdapter } from "utils/typesense"

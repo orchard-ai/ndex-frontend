@@ -1,9 +1,27 @@
 import { APP_NAME } from "utils/constants"
 import LinkButton from "components/LinkButton"
-import { Link } from "react-router-dom"
 import AccountTab from "components/AccountTab"
 import Logout from "components/Auth/Logout"
 import Logo from "components/Logo"
+import axios from "axios"
+
+const handleConnectBackend = () => {
+  console.log("Starting backend connection.")
+  axios
+    .get("http://localhost:3001/notion/search_notion")
+    .then((res) => {
+      console.log("Finished notion search. Starting creating typesense schema.")
+      return axios.get("http://localhost:3001/typesense/create_schema")
+    })
+    .then((res) => {
+      console.log("Finished creating typesense schema. Starting indexing.")
+      return axios.get("http://localhost:3001/typesense/batch_index")
+    })
+    .then((res) => console.log("Finished backend connection. Successful!"))
+    .catch((err) =>
+      console.log("There was an error attemping to connect to the backend", err)
+    )
+}
 
 /**
  * TODO
@@ -18,6 +36,7 @@ export default function Settings() {
       <div className="flex flex-col w-full">
         <div className="flex flex-row w-full justify-between mt-8 items-center">
           <Logo className="text-ndex-text-white" />
+
           <LinkButton
             text="Back"
             routerLink="/"
@@ -25,7 +44,9 @@ export default function Settings() {
           />
         </div>
 
-        <div className="tabs mt-10 ml-8">
+        <LinkButton text="Connect Backend" onClick={handleConnectBackend} />
+
+        <div className="tabs mt-5 ml-8">
           <a className="tab tab-lg tab-bordered tab-active">Integrations</a>
           <a className="tab tab-lg tab-bordered">Search</a>
           <a className="tab tab-lg tab-bordered">Account</a>
