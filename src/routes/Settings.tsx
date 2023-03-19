@@ -6,6 +6,7 @@ import axios from "axios"
 import { useState } from "react"
 import { Loading } from "components/utils/LoadingIcon"
 
+// Should only appear in dev environment
 const handleConnectBackend = (setIsLoading: any) => {
   console.log("Starting backend connection.")
   setIsLoading(true)
