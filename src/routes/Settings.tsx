@@ -4,15 +4,7 @@ import Logout from "components/Auth/Logout"
 import Logo from "components/Logo"
 import axios from "axios"
 import { useState } from "react"
-
-// function to create spinning loading icon
-const Loading = () => {
-  return (
-    <div className="flex justify-center items-center">
-      <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900"></div>
-    </div>
-  )
-}
+import { Loading } from "components/utils/LoadingIcon"
 
 const handleConnectBackend = (setIsLoading: any) => {
   console.log("Starting backend connection.")
