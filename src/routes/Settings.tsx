@@ -8,19 +8,23 @@ import axios from "axios"
 const handleConnectBackend = () => {
   console.log("Starting backend connection.")
   axios
-    .get("http://localhost:3001/notion/search_notion")
-    .then((res) => {
-      console.log("Finished notion search. Starting creating typesense schema.")
-      return axios.get("http://localhost:3001/typesense/create_schema")
-    })
-    .then((res) => {
-      console.log("Finished creating typesense schema. Starting indexing.")
-      return axios.get("http://localhost:3001/typesense/batch_index")
-    })
-    .then((res) => console.log("Finished backend connection. Successful!"))
-    .catch((err) =>
-      console.log("There was an error attemping to connect to the backend", err)
-    )
+    .get("http://localhost:3001")
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err))
+  // axios
+  //   .get("http://localhost:3001/notion/search_notion")
+  //   .then((res) => {
+  //     console.log("Finished notion search. Starting creating typesense schema.")
+  //     return axios.get("http://localhost:3001/typesense/create_schema")
+  //   })
+  //   .then((res) => {
+  //     console.log("Finished creating typesense schema. Starting indexing.")
+  //     return axios.get("http://localhost:3001/typesense/batch_index")
+  //   })
+  //   .then((res) => console.log("Finished backend connection. Successful!"))
+  //   .catch((err) =>
+  //     console.log("There was an error attemping to connect to the backend", err)
+  //   )
 }
 
 /**
