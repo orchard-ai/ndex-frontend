@@ -1,4 +1,4 @@
-import PlatformIcon from "components/PlatformIcon"
+import PlatformIcon from "components/common/PlatformIcon"
 import NewTabIcon from "assets/icons/newtab.svg"
 import { Highlight } from "react-instantsearch-dom"
 import { SEARCH_COLOR } from "utils/constants"

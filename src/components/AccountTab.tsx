@@ -1,5 +1,5 @@
 import { useState } from "react"
-import LinkButton from "components/LinkButton";
+import LinkButton from "components/common/LinkButton";
 
 export default function AccountTab() {
   const [modifying, setModifying] = useState(false)

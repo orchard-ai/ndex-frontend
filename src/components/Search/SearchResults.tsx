@@ -1,11 +1,12 @@
 import { Combobox } from "@headlessui/react"
+
 import {
   SearchState,
   SearchResults as SearchResultsType,
 } from "react-instantsearch-core"
 import { connectStateResults, Hits } from "react-instantsearch-dom"
-import SearchResultRow from "./SearchResultRow"
-import SearchStatistics from "./SearchStatistics"
+import SearchResultRow from "components/search/SearchResultRow"
+import SearchStatistics from "components/search/SearchStatistics"
 
 type StateResultsProps = {
   searchState: SearchState

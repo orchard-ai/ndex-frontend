@@ -1,7 +1,7 @@
-import { AuthContext } from "hooks/useAuth"
 import { useMemo } from "react"
 import { useNavigate } from "react-router-dom"
 import { useLocalStorage } from "hooks/useLocalStorage"
+import { AuthContext } from "hooks/useAuth"
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useLocalStorage("user", null)
