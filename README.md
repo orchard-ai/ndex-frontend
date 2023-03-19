@@ -14,6 +14,7 @@
   ```
   - Get the client id by signing into orchardlabs.team@gmail.com (ask Pan for password), and going to the [Google Console](https://console.cloud.google.com/apis/credentials).
 3. `npm run dev`
+4. If Google OAuth is not working, change the URL prefix from `127.0.0.1` to `localhost`.
 
 ## Dependencies
 - Tailwindcss
