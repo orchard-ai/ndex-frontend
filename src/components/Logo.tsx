@@ -4,10 +4,10 @@ type PropType = {
     className?: string
 }
 
-const Logo = (props : PropType) => {
+const Logo = ({className}: PropType) => {
     
     return (
-        <div className={`text-6xl tracking-title ${props.className}`} >
+        <div className={`text-6xl tracking-title ${className}`} >
             {APP_NAME}
         </div>
     )

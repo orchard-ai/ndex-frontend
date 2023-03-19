@@ -1,18 +1,31 @@
-import { GoogleLogin } from "@react-oauth/google"
 import { useAuth } from "hooks/useAuth"
+import { GoogleLogin } from "@react-oauth/google"
 
-import Logo from "components/Logo"
+import Logo from "components/Logo";
+import Form from "components/Auth/Login/Form";
 
 export default function Login() {
   const { login } = useAuth()
 
-  const handleSuccess = (credentialRes: any) => {
-    console.log("success, current user: ", credentialRes)
-    login(credentialRes)
+  const handleGoogleSuccess = (credentialRes: any) => {
+    login(
+      credentialRes, 
+      () => {
+        console.log("success, current user: ", credentialRes)
+      }
+    );
   }
-  const handleFailure = () => {
-    alert("Login failed")
-    console.log("failure")
+
+  const handleGoogleFailure = () => {
+    alert("Login failed");
+  }
+
+  const handleLoginSuccess = (credentials : any) => {
+    console.log("Success");
+  }
+
+  const handleLoginFailure = () => {
+    console.log("Failure");
   }
 
   return (
@@ -26,15 +39,15 @@ export default function Login() {
       <div className="flex flex-col items-center justify-center w-full h-full space-y-3 text-ndex-text-white">
         <Logo className="text-ndex-text-white" />
         <h2 className="text-2xl tracking-title">
-          Index anthing, search <b>everything</b>
+          Index anything, search <b>everything</b>
         </h2>
         <div className="font-bold">Login with:</div>
         {/* if doesn't work, replace 127.0.0.1 with localhost in URL */}
         <div id="signInButton">
           <GoogleLogin
             text="continue_with"
-            onSuccess={handleSuccess}
-            onError={handleFailure}
+            onSuccess={handleGoogleSuccess}
+            onError={handleGoogleFailure}
           />
         </div>
         <div className="flex items-center justify-start space-x-2">
@@ -54,19 +67,10 @@ export default function Login() {
             }}
           />
         </div>
-        <div>
-          <button>
-            {" "}
-            <u> Login </u>{" "}
-          </button>
-        </div>
-        <div>
-          Don't have an account?{" "}
-          <button>
-            {" "}
-            <u> Sign up </u>{" "}
-          </button>
-        </div>
+        <Form 
+          onSuccess={handleLoginSuccess}
+          onFailure={handleLoginFailure} 
+        />
       </div>
     </div>
   )

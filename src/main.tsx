@@ -9,7 +9,7 @@ import {
 } from "react-router-dom"
 import { GoogleOAuthProvider } from "@react-oauth/google"
 import { ProtectedRoute } from "components/Auth/ProtectedRoute"
-import { AuthLayout } from "components/AuthLayer"
+import { AuthLayout } from "components/Auth/AuthLayer"
 
 import Settings from "routes/Settings"
 import Home from "routes/Home"

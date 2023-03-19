@@ -39,7 +39,8 @@ module.exports = {
           3: "#0F073E"
         },
         "ndex-input": {
-          DEFAULT: "#434253"
+          DEFAULT: "#434253",
+          border: "#82808D"
         },
       },
       letterSpacing: {

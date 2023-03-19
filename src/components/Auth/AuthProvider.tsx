@@ -8,14 +8,32 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate()
 
   // call this function when you want to authenticate the user
-  const login = async (data: any) => {
-    await setUser(data)
+  const login = async (
+      data: any,
+      onSuccess: () => void, 
+      onFailure?: (error: Error) => void) => {
+    try {
+      await setUser(data)
+      onSuccess();
+    } catch(e) {
+      if (onFailure) {
+        onFailure(e as Error);
+      }
+    }
   }
 
   // call this function to sign out logged in user
-  const logout = () => {
-    setUser(null)
-    navigate("/", { replace: true })
+  const logout = (
+      onSuccess : () => void,  
+      onFailure?: (error: Error) => void) => {
+    try {
+      setUser(null)
+      onSuccess();
+    } catch(e) {
+      if (onFailure) {
+        onFailure(e as Error);
+      }
+    }
   }
 
   const value = useMemo(
