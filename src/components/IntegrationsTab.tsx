@@ -1,4 +1,4 @@
-import { getSourceIcon } from "./PlatformIcon"
+import { getSourceIcon } from "components/common/PlatformIcon"
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ")
