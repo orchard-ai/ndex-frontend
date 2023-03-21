@@ -1,8 +1,9 @@
 import { useAuth } from "hooks/useAuth"
 import { GoogleLogin } from "@react-oauth/google"
 
-import Logo from "components/Logo";
-import Form from "components/Auth/Login/Form";
+import Form from "components/auth/Login/Form";
+
+import Logo from "components/common/Logo";
 
 export default function Login() {
   const { login } = useAuth()

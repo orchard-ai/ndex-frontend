@@ -1,11 +1,14 @@
-import LinkButton from "components/LinkButton"
 import AccountTab from "components/AccountTab"
 import Logout from "components/Auth/Logout"
-import Logo from "components/Logo"
+
+import Logo from "components/common/Logo"
+import LinkButton from "components/common/LinkButton"
+
 import axios from "axios"
 import { useState } from "react"
-import { Loading } from "components/utils/LoadingIcon"
+
 import IntegrationsTab from "components/IntegrationsTab"
+import { Loading } from "components/common/LoadingIcon"
 
 // Should only appear in dev environment
 const handleConnectBackend = (setIsLoading: any) => {

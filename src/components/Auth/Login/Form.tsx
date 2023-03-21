@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import Input from "components/Input";
+import Input from "components/common/Input";
 
 type PropType = {
     onSuccess: (credentials : string) => void
