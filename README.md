@@ -22,4 +22,4 @@
 - DaisyUI
 - HeadlessUI
 - React Router v6
-- For full list, see `package.json`
+- For full list, see [package.json](https://github.com/orchard-ai/ndex-frontend/blob/main/package.json)
