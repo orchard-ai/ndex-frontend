@@ -1,6 +1,6 @@
 # ndex-frontend
 
-- React project created using `create vite app`.
+- React project created using [create vite app](https://vitejs.dev/).
 
 # Dev Environment Setup
 
