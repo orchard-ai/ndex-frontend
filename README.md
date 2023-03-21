@@ -2,7 +2,7 @@
 
 - React project created using `create vite app`.
 
-# How to run
+# Dev Environment Setup
 
 1. Clone repo
 2. `npm install`
