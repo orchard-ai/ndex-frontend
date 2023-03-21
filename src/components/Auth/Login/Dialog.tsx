@@ -1,7 +1,7 @@
 import { useAuth } from "hooks/useAuth"
 import { GoogleLogin } from "@react-oauth/google"
 
-import Form from "components/auth/Login/Form";
+import Form from "components/auth/login/Form";
 
 import Logo from "components/common/Logo";
 
@@ -38,7 +38,7 @@ export default function Login() {
       "
     >
       <div className="flex flex-col items-center justify-center w-full h-full space-y-3 text-ndex-text-white">
-        <Logo className="text-ndex-text-white" />
+        <Logo className="text-6xl text-ndex-text-white" />
         <h2 className="text-2xl tracking-title">
           Index anything, search <b>everything</b>
         </h2>

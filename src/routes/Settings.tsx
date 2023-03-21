@@ -1,5 +1,6 @@
 import AccountTab from "components/AccountTab"
-import Logout from "components/Auth/Logout"
+import Logout from "components/auth/Logout";
+import Options from "components/settings/Options";
 
 import Logo from "components/common/Logo"
 import LinkButton from "components/common/LinkButton"
@@ -48,15 +49,16 @@ const handleConnectBackend = (setIsLoading: any) => {
  * @returns Settings route page
  */
 export default function Settings() {
-  const [isLoading, setIsLoading] = useState(false)
-  const [activeTab, setActiveTab] = useState(0)
+  const [isLoading, setIsLoading] = useState(false);
+  const [category, setCategory] = useState("account");
 
   return (
     <div className="flex justify-center max-h-[100vh] min-h-[100vh] bg-ndex-background-1 text-gray-100">
+      <Options category={category} setCategory={setCategory} />
+      
       <div className="flex flex-col w-full">
-        <div className="flex flex-row w-full justify-between mt-8 items-center">
-          <Logo className="text-ndex-text-white" />
-
+        <div className="flex flex-row w-full justify-between mt-4 items-center">
+          <Title category={category} className="ml-4" />
           <LinkButton
             text="Back"
             routerLink="/"
@@ -64,55 +66,49 @@ export default function Settings() {
           />
         </div>
 
+        <DisplayedTab category={category} />
+
+        <Logout className="mt-4" />
+
         <LinkButton
           text="Connect Backend"
           onClick={() => handleConnectBackend(setIsLoading)}
         />
         {isLoading && <Loading />}
 
-        <div className="tabs mt-5 ml-8">
-          <a
-            className={`tab tab-lg tab-bordered ${
-              activeTab === 0 ? "active-tab" : ""
-            }`}
-            onClick={() => setActiveTab(0)}
-          >
-            Integrations
-          </a>
-          <a
-            className={`tab tab-lg tab-bordered ${
-              activeTab === 1 ? "active-tab" : ""
-            }`}
-            onClick={() => setActiveTab(1)}
-          >
-            Search
-          </a>
-          <a
-            className={`tab tab-lg tab-bordered ${
-              activeTab === 2 ? "active-tab" : ""
-            }`}
-            onClick={() => setActiveTab(2)}
-          >
-            Account
-          </a>
-        </div>
-
-        <DisplayedTab activeTab={activeTab} />
-
-        <Logout className="mt-4" />
       </div>
     </div>
   )
 }
 
-const DisplayedTab = ({ activeTab }: { activeTab: number }) => {
-  switch (activeTab) {
-    case 0:
+const Title = ({category, className}: {category : string, className: string}) => {
+  
+  const titleFromCategory = (category : string) => {
+    switch (category) {
+      case "account":
+        return "Account"
+      case "connection":
+        return "Connections"
+      case "search":
+        return "Search"
+    }
+  }
+
+  return (
+    <div className={`text-2xl ${className}`}>
+      <b> {titleFromCategory(category)} </b>
+    </div>
+  );
+}
+
+const DisplayedTab = ({ category }: { category: string }) => {
+  switch (category) {
+    case "connection":
       return <IntegrationsTab />
-    case 1:
+    case "search":
       //return <Search />
       return <></>
-    case 2:
+    case "account":
       return <AccountTab />
     default:
       //return <Integrations />

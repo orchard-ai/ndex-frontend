@@ -7,7 +7,7 @@ type PropType = {
 const Logo = ({className}: PropType) => {
     
     return (
-        <div className={`text-6xl tracking-title ${className}`} >
+        <div className={`tracking-title ${className}`} >
             {APP_NAME}
         </div>
     )

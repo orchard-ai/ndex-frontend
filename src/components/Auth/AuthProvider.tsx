@@ -3,7 +3,11 @@ import { useNavigate } from "react-router-dom"
 import { useLocalStorage } from "hooks/useLocalStorage"
 import { AuthContext } from "hooks/useAuth"
 
-export const AuthProvider = ({ children }) => {
+type PropType = {
+  children: React.ReactNode
+}
+
+export const AuthProvider = ({ children } : PropType) => {
   const [user, setUser] = useLocalStorage("user", null)
   const navigate = useNavigate()
 

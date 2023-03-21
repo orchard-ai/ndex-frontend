@@ -2,11 +2,11 @@ import { googleLogout } from "@react-oauth/google"
 import { useAuth } from "hooks/useAuth"
 import { useNavigate } from "react-router-dom"
 
-type LogoutProps = {
+type PropType = {
   className?: string
 }
 
-export default function Logout({ className }: LogoutProps) {
+export default function Logout({ className }: PropType) {
   const { logout } = useAuth()
   const navigate = useNavigate()
 

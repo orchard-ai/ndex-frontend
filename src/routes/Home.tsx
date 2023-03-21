@@ -1,5 +1,4 @@
-import Login from "components/auth/Login/Dialog"
-import Logout from "components/auth/Logout"
+import Login from "components/auth/login/Dialog";
 
 import { useIsLoggedIn } from "hooks/useAuth"
 
