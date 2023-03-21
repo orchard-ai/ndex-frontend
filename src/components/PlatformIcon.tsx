@@ -6,7 +6,7 @@ type IconProps = {
   platform?: string
 }
 
-const getSource = (platform: string | undefined) => {
+export const getSourceIcon = (platform: string | undefined) => {
   switch (platform) {
     case "notion":
       return Notion
@@ -24,7 +24,7 @@ const PlatformIcon = ({ platform }: IconProps) => {
     return icons[Math.floor(Math.random() * icons.length)]
   }
 
-  const source = getSource(demo())
+  const source = getSourceIcon(demo())
 
   return (
     <div className="p-1">

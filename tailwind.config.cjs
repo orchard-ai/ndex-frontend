@@ -5,12 +5,12 @@ module.exports = {
     default: {
       "primary-text": "ndex-text-white",
       "secondary-text": "ndex-text-grey",
-      "primary": "ndex-background-1",
-      "secondary": "ndex-background-4",
+      primary: "ndex-background-1",
+      secondary: "ndex-background-4",
       "primary-variant": "ndex-background-3",
       "secondary-variant": "ndex-background-2",
-      "accent": "ndex-button-filled-dark",
-      "input": "ndex-input"
+      accent: "ndex-button-filled-dark",
+      input: "ndex-input",
     },
     extend: {
       colors: {
@@ -18,13 +18,13 @@ module.exports = {
           1: "#615D75",
           2: "#49475A",
           3: "#545068",
-          4: "#3B3A45"
+          4: "#3B3A45",
         },
         "ndex-text": {
-          "white": "#FFFFFF",
-          "column-unselected":  "#ABABAB",
-          "grey": "A5A5A6",
-          "grey-variant": "575757"
+          white: "#FFFFFF",
+          "column-unselected": "#ABABAB",
+          grey: "A5A5A6",
+          "grey-variant": "575757",
         },
         "ndex-button": {
           "bordered-green": "#4CAF50",
@@ -36,17 +36,17 @@ module.exports = {
         "ndex-login-background": {
           1: "#C19BDE",
           2: "#904896",
-          3: "#0F073E"
+          3: "#0F073E",
         },
         "ndex-input": {
           DEFAULT: "#434253",
-          border: "#82808D"
+          border: "#82808D",
         },
       },
       letterSpacing: {
-        title:  '-0.1em',
-      }
-    }
+        title: "-0.1em",
+      },
+    },
   },
   plugins: [require("daisyui")],
   daisyui: {
@@ -56,23 +56,23 @@ module.exports = {
         default: {
           "primary-text": "#FFFFFF",
           "secondary-text": "#A5A5A6",
-          "primary": "#615D75",
-          "secondary": "#3B3A45",
+          primary: "#615D75",
+          secondary: "#3B3A45",
           "primary-variant": "#545068",
           "secondary-variant": "#49475A",
-          "accent": "#434343",
+          accent: "#434343",
         },
         "ndex-background": {
           1: "#615D75",
           2: "#49475A",
           3: "#545068",
-          4: "#3B3A45"
+          4: "#3B3A45",
         },
         "ndex-text": {
-          "white": "#FFFFFF",
-          "column-unselected":  "#ABABAB",
-          "grey": "A5A5A6",
-          "grey-variant": "575757"
+          white: "#FFFFFF",
+          "column-unselected": "#ABABAB",
+          grey: "A5A5A6",
+          "grey-variant": "575757",
         },
         "ndex-button": {
           "bordered-green": "#4CAF50",
@@ -82,7 +82,7 @@ module.exports = {
           "filled-light": "#C3C3C3",
         },
         "ndex-input": {
-          DEFAULT: "#434253"
+          DEFAULT: "#434253",
         },
       },
     ],

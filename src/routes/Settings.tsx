@@ -5,6 +5,7 @@ import Logo from "components/Logo"
 import axios from "axios"
 import { useState } from "react"
 import { Loading } from "components/utils/LoadingIcon"
+import IntegrationsTab from "components/IntegrationsTab"
 
 // Should only appear in dev environment
 const handleConnectBackend = (setIsLoading: any) => {
@@ -39,13 +40,16 @@ const handleConnectBackend = (setIsLoading: any) => {
  * - Validation
  * - States for the tabs
  * - Name, email and password of user should be fetched and displayed as placeholder
+ *
+ * Uses DaisyUI's tabs
  * @returns Settings route page
  */
 export default function Settings() {
   const [isLoading, setIsLoading] = useState(false)
+  const [activeTab, setActiveTab] = useState(0)
 
   return (
-    <div className="flex justify-center max-h-[100vh] min-h-[100vh] bg-ndex-background-1">
+    <div className="flex justify-center max-h-[100vh] min-h-[100vh] bg-ndex-background-1 text-gray-100">
       <div className="flex flex-col w-full">
         <div className="flex flex-row w-full justify-between mt-8 items-center">
           <Logo className="text-ndex-text-white" />
@@ -64,15 +68,51 @@ export default function Settings() {
         {isLoading && <Loading />}
 
         <div className="tabs mt-5 ml-8">
-          <a className="tab tab-lg tab-bordered tab-active">Integrations</a>
-          <a className="tab tab-lg tab-bordered">Search</a>
-          <a className="tab tab-lg tab-bordered">Account</a>
+          <a
+            className={`tab tab-lg tab-bordered ${
+              activeTab === 0 ? "active-tab" : ""
+            }`}
+            onClick={() => setActiveTab(0)}
+          >
+            Integrations
+          </a>
+          <a
+            className={`tab tab-lg tab-bordered ${
+              activeTab === 1 ? "active-tab" : ""
+            }`}
+            onClick={() => setActiveTab(1)}
+          >
+            Search
+          </a>
+          <a
+            className={`tab tab-lg tab-bordered ${
+              activeTab === 2 ? "active-tab" : ""
+            }`}
+            onClick={() => setActiveTab(2)}
+          >
+            Account
+          </a>
         </div>
 
-        <AccountTab />
+        <DisplayedTab activeTab={activeTab} />
 
-        <Logout />
+        <Logout className="mt-4" />
       </div>
     </div>
   )
+}
+
+const DisplayedTab = ({ activeTab }: { activeTab: number }) => {
+  switch (activeTab) {
+    case 0:
+      return <IntegrationsTab />
+    case 1:
+      //return <Search />
+      return <></>
+    case 2:
+      return <AccountTab />
+    default:
+      //return <Integrations />
+      return <></>
+  }
 }
