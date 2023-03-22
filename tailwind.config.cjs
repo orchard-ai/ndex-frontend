@@ -42,10 +42,11 @@ module.exports = {
           DEFAULT: "#434253",
           border: "#82808D",
         },
+        "custom-green": "#4CAF50",
       },
       letterSpacing: {
         title: "-0.1em",
-        logo: "0em"
+        logo: "0em",
       },
     },
   },

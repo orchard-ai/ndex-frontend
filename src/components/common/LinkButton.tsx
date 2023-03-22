@@ -5,6 +5,7 @@ type PropType = {
   routerLink?: string
   className?: string
   onClick?: () => void
+  href?: string
 }
 
 export default function LinkButton({
@@ -12,17 +13,16 @@ export default function LinkButton({
   className,
   routerLink,
   onClick,
+  href = "#",
 }: PropType) {
   return (
     <>
       {routerLink === undefined ? (
-        <div>
-          <a className={`text-black ${className}`} href="#">
-            <u onClick={onClick}>{text}</u>
-          </a>
-        </div>
+        <a className={`${className}`} href={href} onClick={onClick}>
+          {text}
+        </a>
       ) : (
-        <Link to={routerLink} className={`text-black ${className}`}>
+        <Link to={routerLink} className={`${className}`}>
           <u>{text}</u>
         </Link>
       )}

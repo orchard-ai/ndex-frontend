@@ -1,19 +1,23 @@
 import { getSourceIcon } from "components/common/PlatformIcon"
+import { NOTION_AUTH_URL } from "utils/constants"
+import LinkButton from "./common/LinkButton"
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ")
 }
 
-export default function IntegrationsTab() {
-  const integrations = [
+// Notion how to oauth connect publicly
+// https://developers.notion.com/docs/authorization#step-1-navigate-the-user-to-the-integrations-authorization-url
+export default function ConnectionsTab() {
+  const connections = [
     {
       id: 1,
       name: "Notion",
       description: "All your work in one place",
-      href: "#",
+      href: NOTION_AUTH_URL,
       icon: getSourceIcon("notion"),
       alt: "Notion Icon",
-      bgColor: "bg-gray-200 text-gray-800",
+      bgColor: "bg-[#3B3A45]",
     },
     {
       id: 2,
@@ -22,7 +26,7 @@ export default function IntegrationsTab() {
       href: "#",
       icon: getSourceIcon("gmail"),
       alt: "Gmail Icon",
-      bgColor: "bg-gray-200 text-gray-800",
+      bgColor: "bg-[#3B3A45]",
     },
     // {
     //   id: 3,
@@ -48,43 +52,45 @@ export default function IntegrationsTab() {
     <div>
       <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {integrations.map((integration) => (
+          {connections.map((connection) => (
             <div
-              key={integration.id}
+              key={connection.id}
               className="flex flex-col rounded-lg shadow-lg overflow-hidden"
             >
               <div
                 className={classNames(
-                  integration.bgColor,
+                  connection.bgColor,
                   "px-4 py-5 sm:p-6 flex-grow-0"
                 )}
               >
                 <div className="flex items-center justify-between">
                   <img
                     className="h-8 w-auto"
-                    src={integration.icon}
-                    alt={integration.alt}
+                    src={connection.icon}
+                    alt={connection.alt}
                   />
                   <div className="ml-2 flex-shrink-0 flex">
-                    <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                      New
-                    </span>
+                    <LinkButton
+                      text="Add Account"
+                      className="btn text-custom-green border-custom-green capitalize no-underline"
+                      href={connection.href}
+                    />
                   </div>
                 </div>
                 <div className="mt-4">
-                  <h3 className="text-lg leading-6 font-medium text-gray-900">
-                    {integration.name}
+                  <h3 className="text-lg leading-6 font-medium text-[#FFFFFF]">
+                    {connection.name}
                   </h3>
-                  <p className="mt-2 text-sm leading-5 text-gray-500">
-                    {integration.description}
+                  <p className="mt-2 text-sm leading-5 text-[#FFFFFF]">
+                    {connection.description}
                   </p>
                 </div>
               </div>
-              <div className="flex-grow flex items-center justify-center bg-gray-500 px-4 py-4 sm:px-6">
+              {/* <div className="flex-grow flex items-center justify-center bg-gray-500 px-4 py-4 sm:px-6">
                 <button color="primary" className="sm">
                   Connect
                 </button>
-              </div>
+              </div> */}
             </div>
           ))}
         </div>
