@@ -54,9 +54,9 @@ export default function Settings() {
 
   return (
     <div className="flex justify-center max-h-[100vh] min-h-[100vh] bg-ndex-background-1 text-gray-100">
-      <Options category={category} setCategory={setCategory} />
+      <Options category={category} setCategory={setCategory} className="w-2/12" />
       
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col w-10/12">
         <div className="flex flex-row w-full justify-between mt-4 items-center">
           <Title category={category} className="ml-4" />
           <LinkButton

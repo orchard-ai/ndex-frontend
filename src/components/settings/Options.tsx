@@ -9,11 +9,16 @@ type PropType = {
 const Options = ({category, setCategory, className} : PropType) => {
   
     return (
-        <div className={`bg-ndex-background-2 pl-4 pr-4 ${className}`}>
+        <div className={`bg-ndex-background-2 pl-8 pr-4 ${className}`}>
           <Logo className="text-4xl text-ndex-text-white mt-2 mb-2" />
-          <div
+          <div>
+            <div className="text-ndex-text-grey">
+              <b> Personal Settings </b>
+            </div>
+
+            <div
             className={`w-100 ${
-              category === "account" ? "active-tab" : ""
+              category === "account" ? "text-ndex-text-grey" : ""
             }`}
             onClick={() => setCategory("account")}
           >
@@ -21,7 +26,7 @@ const Options = ({category, setCategory, className} : PropType) => {
           </div>
           <div
             className={`w-100 ${
-              category === "connection" ? "active-tab" : ""
+              category === "connection" ? "text-ndex-text-grey" : ""
             }`}
             onClick={() => setCategory("connection")}
           >
@@ -29,11 +34,12 @@ const Options = ({category, setCategory, className} : PropType) => {
           </div>
           <div
             className={`w-100  ${
-              category === "search" ? "active-tab" : ""
+              category === "search" ? "text-ndex-text-grey" : ""
             }`}
             onClick={() => setCategory("search")}
           >
             Search
+          </div>
           </div>
       </div>
     )
