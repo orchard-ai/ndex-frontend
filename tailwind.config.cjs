@@ -23,8 +23,8 @@ module.exports = {
         "ndex-text": {
           white: "#FFFFFF",
           "column-unselected": "#ABABAB",
-          grey: "A5A5A6",
-          "grey-variant": "575757",
+          grey: "#A5A5A6",
+          "grey-variant": "#575757",
         },
         "ndex-button": {
           "bordered-green": "#4CAF50",

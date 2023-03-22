@@ -1,6 +1,6 @@
 import { getSourceIcon } from "components/common/PlatformIcon"
 import { NOTION_AUTH_URL } from "utils/constants"
-import LinkButton from "./common/LinkButton"
+import LinkButton from "components/common/LinkButton"
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ")

@@ -1,14 +1,11 @@
-import AccountTab from "components/AccountTab"
-import Logout from "components/Auth/Logout"
 import Options from "components/settings/Options"
+import AccountTab from "components/settings/options/AccountTab"
 
 import LinkButton from "components/common/LinkButton"
 
-import axios from "axios"
 import { useState } from "react"
 
-import ConnectionsTab from "components/ConnectionsTab"
-import { Loading } from "components/common/LoadingIcon"
+import ConnectionsTab from "components/settings/options/ConnectionsTab"
 
 /**
  * TODO
