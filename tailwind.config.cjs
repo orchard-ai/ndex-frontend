@@ -45,6 +45,7 @@ module.exports = {
       },
       letterSpacing: {
         title: "-0.1em",
+        logo: "0em"
       },
     },
   },
