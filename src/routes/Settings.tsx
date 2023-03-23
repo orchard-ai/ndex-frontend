@@ -63,15 +63,17 @@ export default function Settings() {
   return (
     <div className="flex justify-center max-h-[100vh] min-h-[100vh] bg-ndex-background-1 text-gray-100">
       <Options category={category} onOptionClick={onOptionClick} className={`
+        fixed top-0 bottom-0 left-0 overflow-y-scroll overflow-x-hidden
         md:w-3/12 md:block  
         lg:w-2/12
         ${
           isSelecting ? 'w-full' : 'w-0 hidden'
         }`} />
       
-      <div className={`flex-col 
-        md:w-9/12 md:flex  
-        lg:w-10/12 
+      <div className={`
+        fixed top-0 bottom-0 right-0 overflow-y-scroll overflow-x-hidden
+        md:ml-3/12 md:w-9/12
+        md:-3/12 lg:w-10/12 
         ${
           isSelecting ? 'w-0 hidden' : 'w-full'
         }`}>
@@ -79,14 +81,22 @@ export default function Settings() {
           <button className="flex md:hidden" onClick={() => {
             setIsSelecting(true);
           }}>
-            <img className="w-16 h-16 p-4 block md:hidden" src={MenuIcon} />
+            <img src={MenuIcon} 
+              className="
+              w-16 h-16 p-4 block 
+              md:hidden"/>
           </button>
-          <Title category={category} className="md:ml-4" />
+          <Title category={category} className="md:ml-8" />
+          
           <LinkButton
             routerLink="/"
             className="text-ndex-text-white"
           >
-            <img className="w-16 h-16 p-4 block" src={CloseIcon} />
+            <img src={CloseIcon} 
+              className="
+              w-16 h-16 p-4
+              md:fixed md:top-0 md:right-4 
+              "/>
           </LinkButton>
         </div>
 
@@ -130,7 +140,7 @@ const Title = ({
   )
 }
 
-const DisplayedTab = ({ category }: { category: string }) => {
+const DisplayedTab = ({ category, className }: { category: string, className?: string }) => {
   switch (category) {
     case "connections":
       return <ConnectionsTab />
