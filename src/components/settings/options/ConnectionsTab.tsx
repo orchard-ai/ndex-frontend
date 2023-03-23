@@ -71,10 +71,11 @@ export default function ConnectionsTab() {
                   />
                   <div className="ml-2 flex-shrink-0 flex">
                     <LinkButton
-                      text="Add Account"
-                      className="btn text-custom-green border-custom-green capitalize no-underline"
+                      className="btn text-ndex-button-bordered-green border-ndex-button-bordered-green capitalize no-underline"
                       href={connection.href}
-                    />
+                    >
+                      Add Account
+                    </LinkButton>
                   </div>
                 </div>
                 <div className="mt-4">

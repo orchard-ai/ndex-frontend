@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 
 type PropType = {
-  text: string
+  children: React.ReactNode | String
   routerLink?: string
   className?: string
   onClick?: () => void
@@ -9,7 +9,7 @@ type PropType = {
 }
 
 export default function LinkButton({
-  text,
+  children,
   className,
   routerLink,
   onClick,
@@ -18,12 +18,14 @@ export default function LinkButton({
   return (
     <>
       {routerLink === undefined ? (
-        <a className={`${className}`} href={href} onClick={onClick}>
-          {text}
-        </a>
+        <div>
+          <a className={`text-black ${className}`} href="#">
+            <u onClick={onClick}>{children}</u>
+          </a>
+        </div>
       ) : (
-        <Link to={routerLink} className={`${className}`}>
-          <u>{text}</u>
+        <Link to={routerLink} className={`text-black ${className}`}>
+          <u>{children}</u>
         </Link>
       )}
     </>

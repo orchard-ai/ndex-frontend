@@ -1,11 +1,45 @@
-import Options from "components/settings/Options"
-import AccountTab from "components/settings/options/AccountTab"
 
-import LinkButton from "components/common/LinkButton"
+import Options from "components/settings/Options";
+import ConnectionsTab from "components/settings/options/ConnectionsTab";
+import AccountTab from "components/settings/options/AccountTab";
 
-import { useState } from "react"
+import Logo from "components/common/Logo";
+import LinkButton from "components/common/LinkButton";
+import { Loading } from "components/common/LoadingIcon";
 
-import ConnectionsTab from "components/settings/options/ConnectionsTab"
+import MenuIcon from "assets/icons/menu.svg";
+import CloseIcon from "assets/icons/close.svg";
+
+import axios from "axios";
+import { useState } from "react";
+
+// Should only appear in dev environment
+const handleConnectBackend = (setIsLoading: any) => {
+  console.log("Starting backend connection.")
+  setIsLoading(true)
+  axios
+    .get("http://localhost:3001/notion/search_notion")
+    .then((res) => {
+      console.log("Finished notion search. Starting creating typesense schema.")
+      return axios.get(
+        "http://localhost:3001/typesense/create_typesense_schema"
+      )
+    })
+    .then((res) => {
+      console.log("Finished creating typesense schema. Starting indexing.")
+      return axios.get("http://localhost:3001/typesense/batch_index")
+    })
+    .then((res) => {
+      console.log("Finished backend connection. Successful!")
+      setIsLoading(false)
+      alert("Finished backend connection. Successful!")
+    })
+    .catch((err) => {
+      alert("There was an error attemping to connect to the backend")
+      console.log(err)
+      setIsLoading(false)
+    })
+}
 
 /**
  * TODO
@@ -17,27 +51,55 @@ import ConnectionsTab from "components/settings/options/ConnectionsTab"
  * @returns Settings route page
  */
 export default function Settings() {
-  const [category, setCategory] = useState("connections")
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSelecting, setIsSelecting] = useState(false);
+  const [category, setCategory] = useState("account");
+  
+  const onOptionClick = (value : string) => {
+    setCategory(value);
+    setIsSelecting(false);
+  }
 
   return (
     <div className="flex justify-center max-h-[100vh] min-h-[100vh] bg-ndex-background-1 text-gray-100">
-      <Options
-        category={category}
-        setCategory={setCategory}
-        className="flex flex-col"
-      />
-
-      <div className="flex flex-col w-full">
+      <Options category={category} onOptionClick={onOptionClick} className={`
+        md:w-3/12 md:block  
+        lg:w-2/12
+        ${
+          isSelecting ? 'w-full' : 'w-0 hidden'
+        }`} />
+      
+      <div className={`flex-col 
+        md:w-9/12 md:flex  
+        lg:w-10/12 
+        ${
+          isSelecting ? 'w-0 hidden' : 'w-full'
+        }`}>
         <div className="flex flex-row w-full justify-between mt-4 items-center">
-          <Title category={category} className="ml-4" />
+          <button className="flex md:hidden" onClick={() => {
+            setIsSelecting(true);
+          }}>
+            <img className="w-16 h-16 p-4 block md:hidden" src={MenuIcon} />
+          </button>
+          <Title category={category} className="md:ml-4" />
           <LinkButton
-            text="Back"
             routerLink="/"
-            className="mr-6 text-ndex-text-white"
-          />
+            className="text-ndex-text-white"
+          >
+            <img className="w-16 h-16 p-4 block" src={CloseIcon} />
+          </LinkButton>
         </div>
 
         <DisplayedTab category={category} />
+
+        <LinkButton
+          onClick={() => handleConnectBackend(setIsLoading)}
+        >
+          Connect to Backend
+        </LinkButton>
+        
+        {isLoading && <Loading />}
+
       </div>
     </div>
   )

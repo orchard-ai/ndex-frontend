@@ -1,5 +1,6 @@
 import { useState } from "react"
 import LinkButton from "components/common/LinkButton";
+import Logout from "components/auth/Logout";
 
 export default function AccountTab() {
   const [modifying, setModifying] = useState(false)
@@ -7,9 +8,13 @@ export default function AccountTab() {
     <>
       <div className="flex flex-col space-y-8 mx-8 mt-12">
         {modifying ? (
-          <LinkButton text="Cancel" onClick={() => setModifying((prev) => !prev)} />
+          <LinkButton onClick={() => setModifying((prev) => !prev)}>
+            Cancel
+          </LinkButton> 
         ) : (
-          <LinkButton text="Modify" onClick={() => setModifying((prev) => !prev)} />
+          <LinkButton onClick={() => setModifying((prev) => !prev)}> 
+            Modify
+          </LinkButton>
         )}
 
         <div>
@@ -63,11 +68,14 @@ export default function AccountTab() {
         </div>
         {modifying && (
           <LinkButton
-            text="Confirm"
             onClick={() => setModifying((prev) => !prev)}
-          />
+          >
+            Confirm
+          </LinkButton>
         )}
       </div>
+
+      <Logout className="mt-4" />
     </>
   )
 }
