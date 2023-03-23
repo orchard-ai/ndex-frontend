@@ -30,7 +30,7 @@ const Options = ({category, onOptionClick, className} : PropType) => {
           </div>
           <div
             className={`w-100 ${
-              category === "connection" ? "text-ndex-text-grey" : ""
+              category === "connections" ? "text-ndex-text-grey" : ""
             }`}
             onClick={() => onOptionClick("connections")}
           >
