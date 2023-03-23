@@ -1,7 +1,11 @@
 import { Navigate } from "react-router-dom"
 import { useAuth } from "hooks/useAuth"
 
-export const ProtectedRoute = ({ children }) => {
+type PropType = {
+  children: React.ReactNode
+}
+
+export const ProtectedRoute = ({ children } : PropType) => {
   const { user } = useAuth()
   if (
     user === null ||
