@@ -1,7 +1,7 @@
 import { useAuth } from "hooks/useAuth"
 import { GoogleLogin } from "@react-oauth/google"
 
-import Form from "components/auth/login/Form";
+import Form from "components/Auth/Login/Form";
 
 import Logo from "components/common/Logo";
 
@@ -10,7 +10,7 @@ export default function Login() {
 
   const handleGoogleSuccess = (credentialRes: any) => {
     login(
-      credentialRes, 
+      credentialRes,
       () => {
         console.log("success, current user: ", credentialRes)
       }
@@ -68,9 +68,9 @@ export default function Login() {
             }}
           />
         </div>
-        <Form 
+        <Form
           onSuccess={handleLoginSuccess}
-          onFailure={handleLoginFailure} 
+          onFailure={handleLoginFailure}
         />
       </div>
     </div>

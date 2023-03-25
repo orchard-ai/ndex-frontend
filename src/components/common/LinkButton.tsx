@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 
 type PropType = {
-  children: React.ReactNode | String
+  children: React.ReactNode | string
   routerLink?: string
   className?: string
   onClick?: () => void

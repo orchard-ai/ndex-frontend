@@ -5,7 +5,7 @@ type PropType = {
 }
 
 const Logo = ({className}: PropType) => {
-    
+
     return (
         <div className={`tracking-logo font-sans ${className}`} >
             {APP_NAME}

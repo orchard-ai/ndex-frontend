@@ -1,4 +1,4 @@
-import Login from "components/auth/login/Dialog";
+import Login from "components/Auth/Login/Dialog";
 
 import { useIsLoggedIn } from "hooks/useAuth"
 
@@ -6,7 +6,7 @@ import Search from "routes/Search"
 
 export default function Home() {
   const isLoggedIn = useIsLoggedIn()
-  
+
   if(isLoggedIn) {
     return (
       <Search />
@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center w-full h-screen bg-ndex-background-1">
       {/*  Fixed background */}
-      <div className="fixed items-center justify-center w-full h-full 
+      <div className="fixed items-center justify-center w-full h-full
         sm:bg-gradient-to-br sm:from-ndex-login-background-1 sm:via-ndex-login-background-2 sm:to-ndex-login-background-3
       "/>
       {/*  Relative background screen show above the background */}
@@ -24,6 +24,6 @@ export default function Home() {
         <Login />
       </div>
     </div>
-    
+
   )
 }

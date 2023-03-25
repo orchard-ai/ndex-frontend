@@ -6,12 +6,12 @@ import { handleConnectBackend } from "utils/network"
 
 type PropType = {
     category: string
-    onOptionClick: (value : string) => void 
+    onOptionClick: (value : string) => void
     className?: string
 }
 
 const Options = ({category, onOptionClick, className} : PropType) => {
-  
+
     return (
         <div className={`bg-ndex-background-2 pl-8 pr-4 ${className}`}>
           <Logo className="text-4xl text-ndex-text-white mt-2 mb-12" />

@@ -54,7 +54,7 @@ export default function Settings() {
   const [isLoading, setIsLoading] = useState(false);
   const [isSelecting, setIsSelecting] = useState(false);
   const [category, setCategory] = useState("account");
-  
+
   const onOptionClick = (value : string) => {
     setCategory(value);
     setIsSelecting(false);
@@ -69,7 +69,7 @@ export default function Settings() {
         ${
           isSelecting ? 'w-full' : 'w-0 hidden'
         }`} />
-      
+
       <div className={`
         fixed top-0 bottom-0 right-0 overflow-y-scroll overflow-x-hidden
         md:ml-3/12 md:w-9/12
@@ -81,21 +81,21 @@ export default function Settings() {
           <button className="flex md:hidden" onClick={() => {
             setIsSelecting(true);
           }}>
-            <img src={MenuIcon} 
+            <img src={MenuIcon}
               className="
-              w-16 h-16 p-4 block 
+              w-16 h-16 p-4 block
               md:hidden"/>
           </button>
           <Title category={category} className="md:ml-8" />
-          
+
           <LinkButton
             routerLink="/"
             className="text-ndex-text-white"
           >
-            <img src={CloseIcon} 
+            <img src={CloseIcon}
               className="
               w-16 h-16 p-4
-              md:fixed md:top-0 md:right-4 
+              md:fixed md:top-0 md:right-4
               "/>
           </LinkButton>
         </div>
@@ -107,7 +107,7 @@ export default function Settings() {
         >
           Connect to Backend
         </LinkButton>
-        
+
         {isLoading && <Loading />}
 
       </div>

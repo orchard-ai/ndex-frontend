@@ -1,6 +1,6 @@
 import { useState } from "react"
 import LinkButton from "components/common/LinkButton";
-import Logout from "components/auth/Logout";
+import Logout from "components/Auth/Logout";
 
 export default function AccountTab() {
   const [modifying, setModifying] = useState(false)
@@ -10,9 +10,9 @@ export default function AccountTab() {
         {modifying ? (
           <LinkButton onClick={() => setModifying((prev) => !prev)}>
             Cancel
-          </LinkButton> 
+          </LinkButton>
         ) : (
-          <LinkButton onClick={() => setModifying((prev) => !prev)}> 
+          <LinkButton onClick={() => setModifying((prev) => !prev)}>
             Modify
           </LinkButton>
         )}

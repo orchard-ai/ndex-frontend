@@ -5,8 +5,8 @@ import {
   SearchResults as SearchResultsType,
 } from "react-instantsearch-core"
 import { connectStateResults, Hits } from "react-instantsearch-dom"
-import SearchResultRow from "components/search/SearchResultRow"
-import SearchStatistics from "components/search/SearchStatistics"
+import SearchResultRow from "components/Search/SearchResultRow"
+import SearchStatistics from "components/Search/SearchStatistics"
 
 type StateResultsProps = {
   searchState: SearchState

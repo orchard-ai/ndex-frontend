@@ -23,3 +23,10 @@
 - HeadlessUI
 - React Router v6
 - For full list, see [package.json](https://github.com/orchard-ai/ndex-frontend/blob/main/package.json)
+
+## Linter
+This project uses ESLint. In the root of this project, run
+```
+npx eslint .
+```
+to see all style warnings and errors.

@@ -14,7 +14,7 @@ export const AuthProvider = ({ children } : PropType) => {
   // call this function when you want to authenticate the user
   const login = async (
       data: any,
-      onSuccess: () => void, 
+      onSuccess: () => void,
       onFailure?: (error: Error) => void) => {
     try {
       await setUser(data)
@@ -28,7 +28,7 @@ export const AuthProvider = ({ children } : PropType) => {
 
   // call this function to sign out logged in user
   const logout = (
-      onSuccess : () => void,  
+      onSuccess : () => void,
       onFailure?: (error: Error) => void) => {
     try {
       setUser(null)
