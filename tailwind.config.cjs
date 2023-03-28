@@ -33,6 +33,9 @@ module.exports = {
           "filled-dark": "#434343",
           "filled-light": "#C3C3C3",
         },
+        "ndex-search": {
+          "default":"#f3f3ef"
+        },
         "ndex-login-background": {
           1: "#C19BDE",
           2: "#904896",

@@ -1,4 +1,4 @@
-import Login from "components/Auth/Login/Dialog";
+import Login from "components/auth/login/Dialog";
 
 import { useIsLoggedIn } from "hooks/useAuth"
 
@@ -14,15 +14,13 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center w-full h-screen bg-ndex-background-1">
+    <div className="flex flex-col items-center justify-center w-full h-screen bg-ndex-background-1 min-h-[600px]">
       {/*  Fixed background */}
-      <div className="fixed items-center justify-center w-full h-full
+      <div className="fixed items-center justify-center w-full h-full  min-h-[600px]
         sm:bg-gradient-to-br sm:from-ndex-login-background-1 sm:via-ndex-login-background-2 sm:to-ndex-login-background-3
       "/>
       {/*  Relative background screen show above the background */}
-      <div className="relative z-10">
-        <Login />
-      </div>
+      <Login className="z-10 relative" />
     </div>
 
   )

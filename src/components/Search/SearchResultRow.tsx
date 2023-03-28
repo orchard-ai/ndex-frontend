@@ -11,7 +11,7 @@ export default function SearchResultRow({ hit }: { hit: Hit }) {
     <Combobox.Option
       key={hit?.id}
       value={hit}
-      className={`flex flex-row justify-start w-full m-0 p-0`}
+      className={`flex flex-row w-full m-0 p-0`}
     >
       {({ active }) => <MemoizedInnerRow active={active} hit={hit} />}
     </Combobox.Option>
@@ -22,10 +22,12 @@ const MemoizedInnerRow = memo(
   ({ hit, active }: { hit: Hit; active: boolean }) => {
     return (
       <div
-        className={`p-2 ${
+        className={`flex w-full
+        ${
           active ? "text-white" : "text-gray-700"
-        } rounded-sm w-[54rem] flex flex-row justify-start ${
-          active ? "bg-indigo-600" : `bg-[${SEARCH_COLOR}]`
+        }
+        ${
+          active ? "bg-indigo-600" : `bg-ndex-search-default`
         }`}
       >
         <div className="flex flex-col text-left w-full">

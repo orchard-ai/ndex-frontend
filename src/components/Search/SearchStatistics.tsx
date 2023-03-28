@@ -3,14 +3,15 @@ import { connectStats } from "react-instantsearch-dom"
 type CustomStatsProps = {
   nbHits: number
   processingTimeMS: number
+  className: string
 }
 
-function CustomStats({ nbHits, processingTimeMS }: CustomStatsProps) {
+function CustomStats({ nbHits, processingTimeMS, className }: CustomStatsProps) {
   return (
     <>
       {nbHits !== 0 && (
-        <p className="absolute right-4 top-14 text-right text-gray-500">
-          {nbHits} results found in {processingTimeMS}ms
+        <p className={`text-right text-black ${className}`}>
+          <b>{nbHits}</b> results found in {processingTimeMS}ms
         </p>
       )}
     </>

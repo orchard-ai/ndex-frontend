@@ -1,11 +1,15 @@
 import { useAuth } from "hooks/useAuth"
 import { GoogleLogin } from "@react-oauth/google"
 
-import Form from "components/Auth/Login/Form";
+import Form from "components/auth/login/Form";
 
 import Logo from "components/common/Logo";
 
-export default function Login() {
+type PropType = {
+  className?: string
+}
+
+export default function Login({className} : PropType) {
   const { login } = useAuth()
 
   const handleGoogleSuccess = (credentialRes: any) => {
@@ -31,11 +35,12 @@ export default function Login() {
 
   return (
     <div
-      className="
+      className={`
       flex flex-col items-center justify-center rounded-lg bg-ndex-background-1
        sm:pr-24  sm:pl-24  sm:pt-16  sm:pb-16
        md:pr-32  md:pl-32  md:pt-24  md:pb-24
-      "
+       ${className}
+      `}
     >
       <div className="flex flex-col items-center justify-center w-full h-full space-y-3 text-ndex-text-white">
         <Logo className="text-6xl text-ndex-text-white" />

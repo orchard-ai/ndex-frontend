@@ -2,13 +2,17 @@ import Logo from "components/common/Logo"
 
 import { Link } from "react-router-dom"
 
-export default function Header() {
+type PropType = {
+  className?: string
+}
+
+export default function Header({className} : PropType) {
   return (
-    <div className="flex flex-row space-x-96 items-center">
+    <div className={`flex flex-row items-center justify-between ${className}`}>
       {/* Empty Div to fix centering */}
-      <div></div>
-      <Logo className="text-6xl text-ndex-text-white" />
-      <Link to="/settings" className="text-ndex-text-white">
+      <div className="w-16"></div>
+      <Logo className="text-6xl text-ndex-text-white text-center" />
+      <Link to="/settings" className="text-ndex-text-white w-16 mr-4 text-right">
         <u>Settings</u>
       </Link>
     </div>

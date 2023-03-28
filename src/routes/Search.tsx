@@ -1,9 +1,9 @@
 import { connectSearchBox, InstantSearch } from "react-instantsearch-dom"
 import { Combobox } from "@headlessui/react"
 
-import Header from "components/Search/Header"
-import SearchBox from "components/Search/SearchBox"
-import SearchResults from "components/Search/SearchResults"
+import Header from "components/search/Header"
+import SearchBox from "components/search/SearchBox"
+import SearchResults from "components/search/SearchResults"
 
 import { Hit } from "utils/types"
 import { typesenseInstantSearchAdapter } from "utils/typesense"
@@ -16,11 +16,11 @@ function InstantCustomSearch({
   refine: any
 }) {
   return (
-    <div className="flex flex-col items-center p-0 max-h-[89vh] min-h-full bg-ndex-background-1">
-      <Header />
+    <div className="flex flex-col items-center p-0 w-full h-full bg-ndex-background-1">
+      <Header className="w-full" />
       <Combobox
         as="div"
-        className="relative first-line:min-w-[54rem] mx-8 mt-4 p-0 flex flex-col items-center border rounded-xl bg-white shadow-2xl ring-1 ring-black/5 divide-y divide-gray-250"
+        className="flex flex-col w-full max-w-[54rem] items-center mt-4 border rounded-xl bg-white shadow-2xl ring-1 ring-black/5 divide-y divide-gray-250"
         onChange={(hit: Hit) => {
           // Pressing enter on result row opens new tab
           if (hit?.url === undefined || hit?.url === null || hit?.url === "") {
