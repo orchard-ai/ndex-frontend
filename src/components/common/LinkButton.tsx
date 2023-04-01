@@ -13,13 +13,13 @@ export default function LinkButton({
   className,
   routerLink,
   onClick,
-  href = "#",
+  href,
 }: PropType) {
   return (
     <>
       {routerLink === undefined ? (
         <div>
-          <a className={`text-black ${className}`} href="#">
+          <a className={`text-black ${className}`} href={href}>
             <u onClick={onClick}>{children}</u>
           </a>
         </div>
