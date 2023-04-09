@@ -1,13 +1,47 @@
 import { useState } from "react"
 import LinkButton from "components/common/LinkButton";
-import Logout from "components/Auth/Logout";
+import Logout from "components/auth/Logout";
 
 export default function AccountTab() {
-  const [modifying, setModifying] = useState(false)
+  const [modifying, setModifying] = useState(false);
+  
+  // const [] = useState();
+  //SHOW REAL USER INFORMATION
+
+  const [user, setUser] = useState({});
+
   return (
     <>
-      <div className="flex flex-col space-y-8 mx-8 mt-12">
-        {modifying ? (
+      <div className="flex flex-col w-full items-center space-y-8 mt-4 bg-ndex-background-1">
+        <div className="flex flex-col w-[80%] p-12 space-y-4 justify-center rounded-lg bg-ndex-background-2">
+          <div className="space-y-2 font-bold">
+            <div className=""> Edit Profile </div>
+            <div className="text-ndex-text-grey text-sm">
+                Display Name
+            </div>
+            <div className="text-md">
+                {"John Smith"}
+            </div>
+          </div>
+          <div className="space-y-2 font-bold">
+            <div className="text-ndex-text-grey">
+              Email
+            </div>
+            <div>
+              {"johnsmith@orchid.ai"}
+            </div>
+          </div>
+          <div className="space-y-2 font-bold">
+            <div className="text-ndex-text-grey">
+              Password
+            </div>
+            <div>
+              •••••••••••••••
+            </div>
+          </div>
+        </div>
+
+        {/* {modifying ? (
           <LinkButton onClick={() => setModifying((prev) => !prev)}>
             Cancel
           </LinkButton>
@@ -72,7 +106,7 @@ export default function AccountTab() {
           >
             Confirm
           </LinkButton>
-        )}
+        )} */}
       </div>
 
       <Logout className="mt-4" />

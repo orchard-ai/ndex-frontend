@@ -86,7 +86,7 @@ export default function Settings() {
               w-16 h-16 p-4 block
               md:hidden"/>
           </button>
-          <Title category={category} className="md:ml-8" />
+          <Title category={category} className="pt-4 pb-4 md:ml-8" />
 
           <LinkButton
             routerLink="/"

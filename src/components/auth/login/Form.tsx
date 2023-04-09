@@ -11,11 +11,14 @@ const Form = ({onSuccess, onFailure} : PropType) => {
     const [showSignUp, setShowSignUp] : [boolean, (value: boolean) => void]  = useState(false);
     const [email, setEmail] : [string, (value: string) => void]  = useState("");
     const [password, setPassword] : [string, (value: string) => void]  = useState("");
+    const [showPassword, setShowPassword] : [boolean, (value: boolean) => void]  = useState(true);
+
+    // TODO(philiptam): Do login
 
     return (
         <div className="flex flex-col items-center justify-center w-full h-full space-y-3 text-ndex-text-white">
             <Input placeholder={"Email"} value={email} onChange={setEmail} />
-            <Input placeholder={"Password"} value={password} onChange={setPassword} />
+            <Input placeholder={"Password"} value={password} onChange={setPassword} password={showPassword} />
             <div>
                 <button>
                     {" "}
