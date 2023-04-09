@@ -1,7 +1,7 @@
 
 import Options from "components/settings/Options";
-import ConnectionsTab from "components/settings/options/ConnectionsTab";
-import AccountTab from "components/settings/options/AccountTab";
+import ConnectionsTab from "components/settings/options/connections/Tab";
+import AccountTab from "components/settings/options/account/Tab";
 
 import Logo from "components/common/Logo";
 import LinkButton from "components/common/LinkButton";
