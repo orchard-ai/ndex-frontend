@@ -4,17 +4,17 @@ import Input from "components/common/Input";
 
 type PropType = {
     user: {email: string, name: string}
-    setModifying: (value: boolean) => void
+    setEditing: (value: boolean) => void
 }
 
-const EditingCard = ({user, setModifying} : PropType) => {
+const EditingCard = ({user, setEditing} : PropType) => {
     const [name, setName]  = useState(user.name);
     const [email, setEmail]  = useState(user.email);
   
     const updateUser = () => {
         user.name = name
         user.email = email
-        setModifying(false);
+        setEditing(false);
     }
 
     return (

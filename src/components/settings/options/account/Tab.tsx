@@ -5,7 +5,7 @@ import EditingCard from "components/settings/options/account/EditingCard";
 import DefaultCard from "components/settings/options/account//DefaultCard";
 
 export default function AccountTab() {
-  const [modifying, setModifying] = useState(false);
+  const [editing, setEditing] = useState(false);
   // const [] = useState();
   //SHOW REAL USER INFORMATION
 
@@ -15,12 +15,11 @@ export default function AccountTab() {
     <>
       <div className="flex flex-col w-full items-center space-y-8 mt-4 bg-ndex-background-1">
         {
-          modifying 
-          ? <EditingCard user={user} setModifying={setModifying} />
-          : <DefaultCard user={user} setModifying={setModifying} />
+          editing 
+          ? <EditingCard user={user} setEditing={setEditing} />
+          : <DefaultCard user={user} setEditing={setEditing} />
         } 
       </div>
-
     </>
   )
 }
