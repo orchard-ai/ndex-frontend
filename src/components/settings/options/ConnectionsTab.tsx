@@ -1,5 +1,4 @@
-import { getSourceIcon } from "components/common/PlatformIcon"
-import { NOTION_AUTH_URL } from "utils/constants"
+import { connections } from "utils/constants"
 import LinkButton from "components/common/LinkButton"
 
 function classNames(...classes: string[]) {
@@ -9,44 +8,20 @@ function classNames(...classes: string[]) {
 // Notion how to oauth connect publicly
 // https://developers.notion.com/docs/authorization#step-1-navigate-the-user-to-the-integrations-authorization-url
 export default function ConnectionsTab() {
-  const connections = [
-    {
-      id: 1,
-      name: "Notion",
-      description: "All your work in one place",
-      href: NOTION_AUTH_URL,
-      icon: getSourceIcon("notion"),
-      alt: "Notion Icon",
-      bgColor: "bg-[#3B3A45]",
-    },
-    {
-      id: 2,
-      name: "Gmail",
-      description: "Team communication",
-      href: "#",
-      icon: getSourceIcon("gmail"),
-      alt: "Gmail Icon",
-      bgColor: "bg-[#3B3A45]",
-    },
-    // {
-    //   id: 3,
-    //   name: "GitHub",
-    //   description: "Code and collaboration",
-    //   href: "#",
-    //   icon: "https://tailwindui.com/img/logos/github-logo.svg",
-    //   alt: "GitHub Icon",
-    //   bgColor: "bg-gray-100 text-gray-800",
-    // },
-    // {
-    //   id: 4,
-    //   name: "Twitter",
-    //   description: "Social media",
-    //   href: "#",
-    //   icon: "https://tailwindui.com/img/logos/twitter-logo.svg",
-    //   alt: "Twitter Icon",
-    //   bgColor: "bg-gray-100 text-gray-800",
-    // },
-  ]
+  const handleAddConnection = (oauth_url: string, token_url: string) => {
+    // call oauth_url to receive code in URL param. Get the code and call token_url
+    // with the code + secret key as POST request to get access token. Also handle errors
+    // and refresh token
+    const authWindow = window.open(
+      oauth_url,
+      "authWindow",
+      "width=800,height=600"
+    )
+    if (!authWindow) {
+      console.error("Failed to open the auth window")
+      return
+    }
+  }
 
   return (
     <div>
