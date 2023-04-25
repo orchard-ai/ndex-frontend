@@ -1,5 +1,6 @@
 import { connections } from "utils/constants"
 import LinkButton from "components/common/LinkButton"
+import BaseDialog from "components/common/dialogs/Dialog"
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ")
@@ -46,11 +47,12 @@ export default function ConnectionsTab() {
                   />
                   <div className="ml-2 flex-shrink-0 flex">
                     <LinkButton
-                      className="btn text-ndex-button-bordered-green border-ndex-button-bordered-green capitalize no-underline"
+                      className="text-ndex-button-bordered-green border-ndex-button-bordered-green capitalize no-underline"
                       href={connection.href}
                     >
                       Add Account
                     </LinkButton>
+                    <BaseDialog />
                   </div>
                 </div>
                 <div className="mt-4">
@@ -71,6 +73,7 @@ export default function ConnectionsTab() {
           ))}
         </div>
       </div>
+      
     </div>
   )
 }

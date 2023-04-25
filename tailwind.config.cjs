@@ -53,43 +53,4 @@ module.exports = {
       },
     },
   },
-  plugins: [require("daisyui")],
-  daisyui: {
-    themes: [
-      {
-        backgroundColor: "#615D75",
-        default: {
-          "primary-text": "#FFFFFF",
-          "secondary-text": "#A5A5A6",
-          primary: "#615D75",
-          secondary: "#3B3A45",
-          "primary-variant": "#545068",
-          "secondary-variant": "#49475A",
-          accent: "#434343",
-        },
-        "ndex-background": {
-          1: "#615D75",
-          2: "#49475A",
-          3: "#545068",
-          4: "#3B3A45",
-        },
-        "ndex-text": {
-          white: "#FFFFFF",
-          "column-unselected": "#ABABAB",
-          grey: "A5A5A6",
-          "grey-variant": "575757",
-        },
-        "ndex-button": {
-          "bordered-green": "#4CAF50",
-          "bordered-red": "#C52F00",
-          "bordered-grey": "#808086",
-          "filled-dark": "#434343",
-          "filled-light": "#C3C3C3",
-        },
-        "ndex-input": {
-          DEFAULT: "#434253",
-        },
-      },
-    ],
-  },
 }
