@@ -102,11 +102,11 @@ export default function Settings() {
 
         <DisplayedTab category={category} />
 
-        <LinkButton
+        {/* <LinkButton
           onClick={() => handleConnectBackend(setIsLoading)}
         >
           Connect to Backend
-        </LinkButton>
+        </LinkButton> */}
 
         {isLoading && <Loading />}
 

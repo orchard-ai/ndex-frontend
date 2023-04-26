@@ -52,7 +52,7 @@ export default function ConnectionsTab() {
                     >
                       Add Account
                     </LinkButton> */}
-                    <BaseDialog />
+                    <BaseDialog button={"Add Account"} title={"Add Account"} />
                   </div>
                 </div>
                 <div className="mt-4">
