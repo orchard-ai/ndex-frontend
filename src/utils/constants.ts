@@ -17,6 +17,7 @@ export const connections = [
     icon: getSourceIcon("notion"),
     alt: "Notion Icon",
     bgColor: "bg-[#3B3A45]",
+    detailedDescription: "Index all your notions notes, tasks, etc."
   },
   {
     id: 2,
@@ -26,6 +27,7 @@ export const connections = [
     icon: getSourceIcon("gmail"),
     alt: "Gmail Icon",
     bgColor: "bg-[#3B3A45]",
+    detailedDescription: "Index your events (Google Calendar), your emails (Gmail), or all your documents (Google Drive)."
   },
   // {
   //   id: 3,

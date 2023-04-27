@@ -27,7 +27,7 @@ export default function ConnectionsTab() {
   return (
     <div>
       <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4">
           {connections.map((connection) => (
             <div
               key={connection.id}
@@ -46,13 +46,34 @@ export default function ConnectionsTab() {
                     alt={connection.alt}
                   />
                   <div className="ml-2 flex-shrink-0 flex">
-                    {/* <LinkButton
-                      className="text-ndex-button-bordered-green border-ndex-button-bordered-green capitalize no-underline"
-                      href={connection.href}
-                    >
-                      Add Account
-                    </LinkButton> */}
-                    <BaseDialog button={"Add Account"} title={"Add Account"} />
+                    <BaseDialog
+                      buttonContent={"Add Account"}
+                      buttonClassName="
+                        rounded-md bg-opacity-20 p-2 text-sm text-ndex-button-bordered-green border-ndex-button-bordered-green border-2
+                        hover:bg-opacity-30
+                        focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                      buttonContainerClassName="ml-2"
+                      content={(
+                      <div className="block">
+                        <div className="text-ndex-text-grey font-bold text-sm my-2">
+                            ABOUT
+                        </div>
+                        <div className="text-white py-4">
+                          <p>
+                            {connection.detailedDescription}
+                          </p>
+                        </div>
+                        <div className="flex justify-center align-middle my-4">
+                          <LinkButton
+                            className="text-ndex-button-bordered-green border-ndex-button-bordered-green rounded-md p-2 border-2 capitalize no-underline"
+                            href={connection.href}
+                          >
+                            Add Account
+                          </LinkButton>
+                        </div> 
+                      </div>)}
+                      title={"Add Account"}
+                    />
                   </div>
                 </div>
                 <div className="mt-4">
