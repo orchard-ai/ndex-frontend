@@ -1,7 +1,7 @@
-import Notion from "assets/icons/notion.svg"
-import Unknown from "assets/icons/unknown.svg"
-import Gmail from "assets/icons/gmail.svg"
-import GCalendar from "assets/icons/g-calendar.svg"
+import Notion from "assets/icons/svg/notion.svg"
+import Unknown from "assets/icons/svg/unknown.svg"
+import Gmail from "assets/icons/svg/gmail.svg"
+import GCalendar from "assets/icons/svg/g-calendar.svg"
 
 type IconProps = {
   platform?: string

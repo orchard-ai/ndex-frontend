@@ -1,4 +1,4 @@
-import SearchIcon from "assets/icons/frying-pan.png"
+import SearchIcon from "assets/icons/svg/frying-pan.png"
 import { Combobox } from "@headlessui/react"
 import { useEffect, useRef } from "react"
 
