@@ -27,7 +27,7 @@ export const connections = [
     icon: getSourceIcon("gmail"),
     alt: "Gmail Icon",
     bgColor: "bg-[#3B3A45]",
-    detailedDescription: "Index your events your emails from Google Gmail!"
+    detailedDescription: "Index your emails, messages, and important documents from Google Gmail!"
   },
   {
     id: 2,
