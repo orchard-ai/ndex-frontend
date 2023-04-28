@@ -33,9 +33,9 @@ export default function Logout({ className }: PropType) {
     <button
       id="signOutButton"
       onClick={handleLogout}
-      className={`border-2 p-2 ${className}`}
+      className={`${className}`}
     >
-      Logout
+      Log Out
     </button>
   )
 }

@@ -3,12 +3,11 @@ import Options from "components/settings/Options";
 import ConnectionsTab from "components/settings/options/connections/Tab";
 import AccountTab from "components/settings/options/account/Tab";
 
-import Logo from "components/common/Logo";
 import LinkButton from "components/common/LinkButton";
 import { Loading } from "components/common/LoadingIcon";
 
-import MenuIcon from "assets/icons/menu.svg";
-import CloseIcon from "assets/icons/close.svg";
+import MenuIcon from "assets/icons/tsx/MenuIcon";
+import CloseIcon from "assets/icons/tsx/CloseIcon";
 
 import axios from "axios";
 import { useState } from "react";
@@ -81,22 +80,26 @@ export default function Settings() {
           <button className="flex md:hidden" onClick={() => {
             setIsSelecting(true);
           }}>
-            <img src={MenuIcon}
-              className="
-              w-16 h-16 p-4 block
-              md:hidden"/>
+            <MenuIcon className="
+            w-12 h-12 p-2 block
+            stroke-ndex-text-white
+            hover:stroke-ndex-text-grey
+            active:stroke-ndex-text-grey-variant
+            md:hidden
+            " 
+            />
           </button>
           <Title category={category} className="pt-4 pb-4 md:ml-8" />
 
           <LinkButton
             routerLink="/"
-            className="text-ndex-text-white"
           >
-            <img src={CloseIcon}
-              className="
-              w-16 h-16 p-4
-              md:fixed md:top-0 md:right-4
-              "/>
+            <CloseIcon  className="
+              w-10 h-10 p-1
+              md:fixed md:top-4 md:right-4
+              stroke-ndex-text-white
+              hover:stroke-ndex-text-grey
+              active:stroke-ndex-text-grey-variant" />
           </LinkButton>
         </div>
 

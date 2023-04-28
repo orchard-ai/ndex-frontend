@@ -12,8 +12,8 @@ export default function Header({className} : PropType) {
       {/* Empty Div to fix centering */}
       <div className="w-16"></div>
       <Logo className="text-6xl text-ndex-text-white text-center" />
-      <Link to="/settings" className="text-ndex-text-white w-16 mr-4 text-right">
-        <u>Settings</u>
+      <Link to="/settings" className="text-ndex-text-white w-16 mr-4 text-right underline underline-offset-4 hover:text-ndex-text-grey active:text-ndex-text-grey-variant">
+        Settings
       </Link>
     </div>
   )

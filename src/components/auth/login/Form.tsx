@@ -13,25 +13,54 @@ const Form = ({onSuccess, onFailure} : PropType) => {
     const [password, setPassword] : [string, (value: string) => void]  = useState("");
     const [showPassword, setShowPassword] : [boolean, (value: boolean) => void]  = useState(true);
 
-    // TODO(philiptam): Do login
+    // TODO(philiptam): Remove Signup Form and instead use another page for this
+    if(showSignUp) {
+        return (
+            <div className="flex flex-col items-center justify-center w-full h-full space-y-3 text-ndex-text-white">
+            <Input placeholder={"Email"} value={email} onChange={setEmail} type="email" />
+            <Input placeholder={"Password"} value={password} onChange={setPassword} type="password" />
+            <div>
+                <button className="text-ndex-text-white underline underline-offset-4 hover:text-ndex-text-column-hover">
+                    {" "}
+                        Sign Up
+                    {" "}
+                </button>
+            </div>
+            <div>
+                Have an account?
+                {" "}
+                <button
+                className="text-ndex-text-white underline underline-offset-4 hover:text-ndex-text-column-hover"
+                onClick={() => {
+                    setShowSignUp(false);
+                }}>
+                    {" "}
+                        Login
+                    {" "}
+                </button>
+            </div>
+        </div>
+        )
+    }
 
     return (
         <div className="flex flex-col items-center justify-center w-full h-full space-y-3 text-ndex-text-white">
-            <Input placeholder={"Email"} value={email} onChange={setEmail} />
-            <Input placeholder={"Password"} value={password} onChange={setPassword} password={showPassword} />
+            <Input placeholder={"Email"} value={email} onChange={setEmail} type="email" />
+            <Input placeholder={"Password"} value={password} onChange={setPassword} type="password" />
             <div>
-                <button>
-                    {" "}
-                    <u> Login </u>
-                    {" "}
+                <button className="text-ndex-text-white underline underline-offset-4 hover:text-ndex-text-column-hover">
+                    Login
                 </button>
             </div>
             <div>
                 Don't have an account?
                 {" "}
-                <button>
+                <button className="text-ndex-text-white underline underline-offset-4 hover:text-ndex-text-column-hover"
+                 onClick={() => {
+                    setShowSignUp(true);
+                }}>
                     {" "}
-                    <u> Sign up </u>
+                    Sign up
                     {" "}
                 </button>
             </div>

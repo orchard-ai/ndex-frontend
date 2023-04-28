@@ -3,16 +3,16 @@ type PropType = {
     placeholder: string
     onChange: (value: string) => void
     className?: string
-    password?: boolean
+    type?: string
     form?: string
 }
 
-const Input = ({value, placeholder, onChange, className, password, form} : PropType) => {
+const Input = ({value, placeholder, onChange, className, type = "text", form} : PropType) => {
 
     return (
         <input
             className="bg-ndex-input w-full pr-2 pl-2 pt-1 pb-1 border-ndex-input-border"
-            type={ password ? "password" : "text"}
+            type={type}
             placeholder={placeholder}
             value={value}
             onChange={(e) => onChange(e.target.value)}

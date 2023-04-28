@@ -24,6 +24,48 @@ export default function ConnectionsTab() {
     }
   }
 
+  const addAccountDialog = (connection : { 
+    id: number,
+    name: string,
+    description: string,
+    href: string,
+    icon: string,
+    alt: string,
+    bgColor: string,
+    detailedDescription: string}) => {
+      return <BaseDialog
+        buttonContent={"Add Account"}
+        buttonClassName="
+          rounded-md bg-opacity-20 p-2 text-sm text-ndex-button-bordered-green border-ndex-button-bordered-green border-2
+          hover:bg-opacity-30 hover:text-ndex-button-bordered-green-hover hover:border-ndex-button-bordered-green-hover
+          focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+        buttonContainerClassName="ml-2"
+        content={(
+        <div className="block">
+          <div className="text-ndex-text-grey font-bold text-sm my-2">
+              ABOUT
+          </div>
+          <div className="text-white py-4">
+            <p>
+              {connection.detailedDescription}
+            </p>
+          </div>
+          <div className="flex justify-center align-middle my-4">
+            <LinkButton
+              className="text-ndex-button-bordered-green border-ndex-button-bordered-green rounded-md p-2 border-2
+               hover:text-ndex-button-bordered-green-hover hover:border-ndex-button-bordered-green-hover
+               "
+              href={connection.href}
+            >
+              Authenticate
+            </LinkButton>
+          </div>
+        </div>)}
+        title={"Add Account"}
+      />
+  }
+
+
   return (
     <div>
       <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
@@ -46,34 +88,7 @@ export default function ConnectionsTab() {
                     alt={connection.alt}
                   />
                   <div className="ml-2 flex-shrink-0 flex">
-                    <BaseDialog
-                      buttonContent={"Add Account"}
-                      buttonClassName="
-                        rounded-md bg-opacity-20 p-2 text-sm text-ndex-button-bordered-green border-ndex-button-bordered-green border-2
-                        hover:bg-opacity-30
-                        focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-                      buttonContainerClassName="ml-2"
-                      content={(
-                      <div className="block">
-                        <div className="text-ndex-text-grey font-bold text-sm my-2">
-                            ABOUT
-                        </div>
-                        <div className="text-white py-4">
-                          <p>
-                            {connection.detailedDescription}
-                          </p>
-                        </div>
-                        <div className="flex justify-center align-middle my-4">
-                          <LinkButton
-                            className="text-ndex-button-bordered-green border-ndex-button-bordered-green rounded-md p-2 border-2 capitalize no-underline"
-                            href={connection.href}
-                          >
-                            Add Account
-                          </LinkButton>
-                        </div> 
-                      </div>)}
-                      title={"Add Account"}
-                    />
+                    {addAccountDialog(connection)}
                   </div>
                 </div>
                 <div className="mt-4">

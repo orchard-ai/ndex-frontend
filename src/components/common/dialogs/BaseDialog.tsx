@@ -1,13 +1,13 @@
 import { Dialog, Transition } from '@headlessui/react'
 import React, { Fragment, useState } from 'react'
-
-import CloseIcon from "assets/icons/close.svg";
+import CloseIcon from 'assets/icons/tsx/CloseIcon';
 
 type PropType =  {
   title?: string
   buttonContent?: React.ReactNode
   buttonClassName?: React.ComponentProps<'div'>['className']
   buttonContainerClassName?: React.ComponentProps<'div'>['className']
+  
   content?: React.ReactNode
 }
 
@@ -73,18 +73,22 @@ export default function BaseDialog({
                   >
                     {title }
 
+                    <div>
+                      
+                    </div>
+
                     <button
                       onClick={closeModal}
                     >
-                      <img src={CloseIcon}
-                        className="
-                        w-16 h-16 p-4 absolute top-1.5 right-0
-                        "/>
+                      <CloseIcon className="
+                        absolute top-4 right-4 w-8 h-8
+                       stroke-ndex-text-white
+                       hover:stroke-ndex-text-grey
+                       active:stroke-ndex-text-grey-variant
+                       " />
                     </button>
                   </Dialog.Title>
-                  
                   {content}
-
                 </Dialog.Panel>
               </Transition.Child>
             </div>

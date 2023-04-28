@@ -1,6 +1,7 @@
 import Notion from "assets/icons/notion.svg"
 import Unknown from "assets/icons/unknown.svg"
 import Gmail from "assets/icons/gmail.svg"
+import GCalendar from "assets/icons/g-calendar.svg"
 
 type IconProps = {
   platform?: string
@@ -12,6 +13,8 @@ export const getSourceIcon = (platform: string | undefined) => {
       return Notion
     case "gmail":
       return Gmail
+    case "g-calendar":
+      return GCalendar
     default:
       return Unknown
   }

@@ -18,29 +18,29 @@ const EditingCard = ({user, setEditing} : PropType) => {
     }
 
     return (
-      <div className="flex flex-col w-[80%] p-12 space-y-4 justify-center rounded-lg bg-ndex-background-2">
-        <div className="space-y-2 font-bold">
-          <div className="text-ndex-text-grey text-sm">
-              Display Name
+      <div className="relative flex flex-col w-[90%] p-12 space-y-4 justify-center rounded-lg bg-ndex-background-2">
+        <div className="absolute top-8 right-8">
+          <button className="pt-2 pb-2 pr-4 pl-4 rounded-sm text-ndex-text-white underline underline-offset-4 hover:text-ndex-text-grey active:text-ndex-text-grey-variant" onClick={updateUser}> Confirm Edit </button>
+        </div>
+        <div className="space-y-4">
+          <div className="text-ndex-text-grey font-bold text-sm">
+              DISPLAY NAME
           </div>
           <Input value={name} onChange={setName} placeholder={"Name"} />
         </div>
-        <div className="space-y-2 font-bold">
-          <div className="text-ndex-text-grey">
-            Email
+        <div className="space-y-2 ">
+          <div className="text-ndex-text-grey font-bold text-sm">
+            EMAIL
           </div>
           <Input value={email} onChange={setEmail} placeholder={"Email"} />
         </div>
-        <hr></hr>
-        <div className="space-y-4 font-bold">
-          <div className="text-ndex-text-grey">
-            Account Actions
+        <div className="space-y-4">
+          <div className="text-ndex-text-grey  font-bold text-sm">
+            PASSWORD
           </div>
-          <div className="flex space-x-4">
-            <button className="pt-2 pb-2 pr-4 pl-4 rounded-sm text-ndex-text-white border-ndex-button-bordered-grey bg-ndex-button-bordered-grey" onClick={updateUser}> Comfirm Edit </button>
-            <button className="pt-2 pb-2 pr-4 pl-4 rounded-sm text-ndex-text-white border-ndex-button-bordered-grey bg-ndex-button-bordered-grey">  Change Password </button>
-            <Logout className="pt-2 pb-2 pr-4 pl-4 rounded-sm text-ndex-text-white border-ndex-button-bordered-red bg-ndex-button-bordered-red" />
-          </div>
+          <button className="py-1 px-4 font-bold text-sm rounded-sm text-ndex-text-white border-ndex-button-bordered-red border-spacing-4 border-2 hover:bg-ndex-button-bordered-red"> 
+            Change Password
+          </button>
         </div>
       </div>
     );

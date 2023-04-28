@@ -27,7 +27,17 @@ export const connections = [
     icon: getSourceIcon("gmail"),
     alt: "Gmail Icon",
     bgColor: "bg-[#3B3A45]",
-    detailedDescription: "Index your events (Google Calendar), your emails (Gmail), or all your documents (Google Drive)."
+    detailedDescription: "Index your events your emails from Google Gmail!"
+  },
+  {
+    id: 2,
+    name: "Google Calendar",
+    description: "Your timely events!",
+    href: "#",
+    icon: getSourceIcon("g-calendar"),
+    alt: "Google Calendar Icon",
+    bgColor: "bg-[#3B3A45]",
+    detailedDescription: "Index your events your calendar events from Google Calendar!"
   },
   // {
   //   id: 3,

@@ -20,12 +20,12 @@ export default function LinkButton({
       {routerLink === undefined ? (
         <div>
           <a className={`text-black ${className}`} href={href}>
-            <u onClick={onClick}>{children}</u>
+           <button onClick={onClick}> {children} </button>
           </a>
         </div>
       ) : (
         <Link to={routerLink} className={`text-black ${className}`}>
-          <u>{children}</u>
+          {children}
         </Link>
       )}
     </>
