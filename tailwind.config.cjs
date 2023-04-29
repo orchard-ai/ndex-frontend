@@ -37,7 +37,9 @@ module.exports = {
           "filled-light": "#C3C3C3",
         },
         "ndex-search": {
-          "default":"#f3f3ef"
+          "default":"#f3f3ef",
+          "toolbar-icon-hover": "#F8F8F8",
+          "toolbar-icon-selected": "#EBEBEB"
         },
         "ndex-login-background": {
           1: "#C19BDE",
