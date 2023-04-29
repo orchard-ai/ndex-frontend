@@ -11,7 +11,7 @@ type ConnectionFilter = {
 
 const SearchToolbar = () => {
     const defaultConnectionFilter : ConnectionFilter[] = connections.map((connection, index) => {
-        return {id: index, name: connection.name, icon: connection.icon, selected: false};
+        return {id: index, name: connection.name, icon: connection.icon, selected: true};
     })
 
     const [connectionFilters, setConnectionFilter] : [ConnectionFilter[], (value: ConnectionFilter[]) => void] = useState(

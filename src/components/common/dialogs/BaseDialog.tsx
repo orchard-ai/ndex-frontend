@@ -3,11 +3,12 @@ import React, { Fragment, useState, useEffect } from 'react'
 import CloseIcon from 'assets/icons/tsx/CloseIcon';
 
 type PropType =  {
-  title?: string
+  title?:  React.ReactNode
   buttonContent?: React.ReactNode
   buttonClassName?: React.ComponentProps<'div'>['className']
   buttonContainerClassName?: React.ComponentProps<'div'>['className']
   content?: React.ReactNode
+  headerContent? : React.ReactNode
 }
 
 export default function BaseDialog({
@@ -15,7 +16,9 @@ export default function BaseDialog({
   buttonContent,
   buttonClassName,
   buttonContainerClassName,
-  content} : PropType) {
+  content,
+  headerContent,
+  } : PropType) {
   const [isOpen, setIsOpen] = useState(false)
 
   function closeModal() {
@@ -25,12 +28,6 @@ export default function BaseDialog({
   function openModal() {
     setIsOpen(true);
   }
-
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     console.log(isOpen);
-  //   }, 2000);
-  // }, []);
 
   return (
     <>
@@ -74,19 +71,19 @@ export default function BaseDialog({
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-ndex-background-4  p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
-                    className="flex w-full text-lg font-medium text-ndex-text-white mb-4"
+                    className="flex w-full text-lg font-medium justify-between text-ndex-text-white mb-4"
                   >
                     {title}
-
+                    {headerContent}
                     <button
                       onClick={closeModal}
                     >
                       <CloseIcon className="
-                        absolute top-4 right-4 w-8 h-8
-                       stroke-ndex-text-white
-                       hover:stroke-ndex-text-grey
-                       active:stroke-ndex-text-grey-variant
-                       " />
+                        absolute top-6 right-4 w-8 h-8
+                      stroke-ndex-text-white
+                      hover:stroke-ndex-text-grey
+                      active:stroke-ndex-text-grey-variant
+                      " />
                     </button>
                   </Dialog.Title>
                   {content}

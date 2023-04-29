@@ -12,7 +12,11 @@ export default function Header({className} : PropType) {
       {/* Empty Div to fix centering */}
       <div className="w-16"></div>
       <Logo className="text-6xl text-ndex-text-white text-center" />
-      <Link to="/settings" className="relative flex items-center justify-center text-ndex-text-white w-20 h-10 mr-10 text-center z-10 hover:bg-ndex-background-3 rounded-lg">
+      <Link to="/settings" className="
+          relative flex items-center justify-center  rounded-lg text-ndex-text-white w-20 h-10 mr-4 text-center z-10
+          hover:bg-ndex-background-3
+          active:bg-ndex-background-4
+          ">
         settings
       </Link>
 

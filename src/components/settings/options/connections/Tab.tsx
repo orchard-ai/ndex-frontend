@@ -61,7 +61,25 @@ export default function ConnectionsTab() {
             </LinkButton>
           </div>
         </div>)}
-        title={"Add Account"}
+        headerContent={
+          <div className="
+            flex absolute space-x-2 top-6 right-16
+            sm:right-20
+          ">
+              <img
+              className="h-8 w-8 p-1"
+              src={connection.icon}
+              />
+              <div className="align-middle text-sm my-auto hidden sm:block">
+                {connection.name}
+              </div>
+          </div>
+        }
+        title={
+          <div>
+            Add Account
+          </div>
+        }
       />
   }
 
