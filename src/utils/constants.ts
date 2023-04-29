@@ -5,8 +5,9 @@ export const TYPESENSE_PORT = 8108
 export const SEARCH_COLOR = "#f3f3ef"
 // Notion OAuth Docs: https://developers.notion.com/docs/authorization#step-1-navigate-the-user-to-the-integrations-authorization-url
 const NOTION_OAUTH_URL = import.meta.env.VITE_NOTION_OAUTH_URL
-const NOTION_CLIENT_ID = import.meta.env.VITE_NOTION_CLIENT_ID
 const NOTION_REDIRECT_URI = import.meta.env.VITE_NOTION_REDIRECT_URI
+export const NOTION_CLIENT_ID = import.meta.env.VITE_NOTION_CLIENT_ID
+export const NOTION_SECRET = import.meta.env.VITE_NOTION_CLIENT_SECRET
 export const NOTION_FULL_OAUTH_URL = `${NOTION_OAUTH_URL}?owner=user&client_id=${NOTION_CLIENT_ID}&redirect_uri=${NOTION_REDIRECT_URI}&response_type=code`
 export const connections = [
   {

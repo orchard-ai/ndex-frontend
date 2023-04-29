@@ -8,12 +8,16 @@ import {
   RouterProvider,
 } from "react-router-dom"
 import { GoogleOAuthProvider } from "@react-oauth/google"
-import { ProtectedRoute } from "components/Auth/ProtectedRoute"
-import { AuthLayout } from "components/Auth/AuthLayer"
+import { ProtectedRoute } from "components/auth/ProtectedRoute"
+import { AuthLayout } from "components/auth/AuthLayer"
 
-import Settings from "routes/Settings"
-import Home from "routes/Home"
+import { store } from './store';
+import { Provider } from 'react-redux';
+
+import Settings from "routes/settings/Settings"
+import Home from "routes/home/Home"
 import { Route } from "react-router-dom"
+import NotionRedirect from "routes/redirects/NotionRedirect"
 
 const clientID = import.meta.env.VITE_CLIENT_ID
 
@@ -29,6 +33,7 @@ const router = createBrowserRouter(
           </ProtectedRoute>
         }
       ></Route>
+      <Route path='/notion-access-redirect' element={<NotionRedirect/>}></Route>
     </Route>
   )
 )
@@ -36,7 +41,9 @@ const router = createBrowserRouter(
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <GoogleOAuthProvider clientId={clientID}>
-      <RouterProvider router={router} />
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
     </GoogleOAuthProvider>
   </React.StrictMode>
 )

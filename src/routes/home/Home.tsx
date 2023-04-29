@@ -2,7 +2,7 @@ import Login from "components/auth/login/Dialog";
 
 import { useIsLoggedIn } from "hooks/useAuth"
 
-import Search from "routes/Search"
+import Search from "routes/search/Search"
 
 export default function Home() {
   const isLoggedIn = useIsLoggedIn()
