@@ -1,9 +1,11 @@
 import { NOTION_CLIENT_ID, NOTION_SECRET } from "utils/constants";
+import { NotionAuthRequest, UserSignupRequest } from "./models";
 
 const baseUrl = 'http://localhost:3001';
 
 enum apiRoutes {
-    notionAccessToken = '/notion/obtain_access_token'
+    userSignup = '/user/signup',
+    notionAccessToken = '/notion/obtain_access_token',
 }
 
 const method = {
@@ -16,13 +18,22 @@ const getRoute = (api: apiRoutes) => {
     return baseUrl + api;
 };
 
-// NOTION ACCESS TOKEN
-interface NotionAuthRequest {
-    temp_code: string
-    notion_client_id: string
-    notion_secret: string
-}
+// USER SIGNUP
+const signupUser = async(signupRequest: UserSignupRequest) => {
+    const response = await fetch(getRoute(apiRoutes.userSignup), {
+        method: method.POST,
+        body: JSON.stringify(signupRequest),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+        .then(response => response.json())
+        .catch(err => { throw new Error('Error creating user'); }); // gonna need to handle this
 
+    return response;
+};
+
+// NOTION ACCESS TOKEN
 const fetchNotionAccessToken = async(tempCode: string) => {
     const requestBody = {
         temp_code: tempCode,
@@ -44,5 +55,6 @@ const fetchNotionAccessToken = async(tempCode: string) => {
 };
 
 export {
+    signupUser,
     fetchNotionAccessToken
 };

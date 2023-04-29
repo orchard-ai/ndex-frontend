@@ -2,10 +2,12 @@ import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
 import notionReducer from './notion/notionSlice';
+import userAuthReducer from './user/userAuthSlice';
 
 export const store = configureStore({
   reducer: {
-    notion: notionReducer
+    notion: notionReducer,
+    userAuth: userAuthReducer
   },
 });
 
