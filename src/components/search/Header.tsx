@@ -8,13 +8,14 @@ type PropType = {
 
 export default function Header({className} : PropType) {
   return (
-    <div className={`flex flex-row items-center justify-between ${className}`}>
+    <div className={`flex flex-row items-center justify-between ${className} my-5`}>
       {/* Empty Div to fix centering */}
       <div className="w-16"></div>
       <Logo className="text-6xl text-ndex-text-white text-center" />
-      <Link to="/settings" className="text-ndex-text-white w-16 mr-4 text-right underline underline-offset-4 hover:text-ndex-text-grey active:text-ndex-text-grey-variant">
-        Settings
+      <Link to="/settings" className="relative flex items-center justify-center text-ndex-text-white w-20 h-10 mr-10 text-center z-10 hover:bg-ndex-background-3 rounded-lg">
+        settings
       </Link>
+
     </div>
   )
 }

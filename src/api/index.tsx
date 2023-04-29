@@ -40,8 +40,6 @@ const fetchNotionAccessToken = async(tempCode: string) => {
         .then(response => response.json())
         .catch(err => { throw new Error('Error fetching availability'); }); // gonna need to handle this
 
-    console.log(response);
-
     return response;
 };
 
