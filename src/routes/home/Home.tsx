@@ -8,6 +8,7 @@ export default function Home() {
   const isLoggedIn = useIsLoggedIn()
 
   if(isLoggedIn) {
+    // MAYBE DO FIRST CONNECTION CTO HERE
     return (
       <Search />
     );

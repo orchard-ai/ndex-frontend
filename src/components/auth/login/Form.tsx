@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import { useNavigate } from "react-router-dom"
+
 import Input from "components/common/Input";
 
 type PropType = {
@@ -12,6 +14,18 @@ const Form = ({onSuccess, onFailure} : PropType) => {
     const [email, setEmail] : [string, (value: string) => void]  = useState("");
     const [password, setPassword] : [string, (value: string) => void]  = useState("");
     const [showPassword, setShowPassword] : [boolean, (value: boolean) => void]  = useState(true);
+    const navigate = useNavigate()
+
+    const handleSignUp = () => {
+        console.log("SIGN UP");
+
+        // ON SUCCESS OF SIGN UP
+        navigate("/addconnection", { replace: true })
+    }
+
+    const handleLogin = () => {
+        console.log("Login");
+    }
 
     // TODO(philiptam): Remove Signup Form and instead use another page for this
     if(showSignUp) {
@@ -20,7 +34,11 @@ const Form = ({onSuccess, onFailure} : PropType) => {
             <Input placeholder={"Email"} value={email} onChange={setEmail} type="email" />
             <Input placeholder={"Password"} value={password} onChange={setPassword} type="password" />
             <div>
-                <button className="text-ndex-text-white underline underline-offset-4 hover:text-ndex-text-column-hover">
+                <button className="
+                text-ndex-text-white underline underline-offset-4
+                hover:text-ndex-text-column-hover"
+                    onClick={handleSignUp}
+                >
                     {" "}
                         Sign Up
                     {" "}
@@ -48,7 +66,11 @@ const Form = ({onSuccess, onFailure} : PropType) => {
             <Input placeholder={"Email"} value={email} onChange={setEmail} type="email" />
             <Input placeholder={"Password"} value={password} onChange={setPassword} type="password" />
             <div>
-                <button className="text-ndex-text-white underline underline-offset-4 hover:text-ndex-text-column-hover">
+                <button className="
+                    text-ndex-text-white underline underline-offset-4
+                    hover:text-ndex-text-column-hover"
+                    onClick={handleLogin}
+                    >
                     Login
                 </button>
             </div>

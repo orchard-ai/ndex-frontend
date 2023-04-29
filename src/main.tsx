@@ -18,6 +18,7 @@ import Settings from "routes/settings/Settings"
 import Home from "routes/home/Home"
 import { Route } from "react-router-dom"
 import NotionRedirect from "routes/redirects/NotionRedirect"
+import AddFirstConnection from "routes/cta/AddFirstConnection"
 
 const clientID = import.meta.env.VITE_CLIENT_ID
 
@@ -25,6 +26,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<AuthLayout />}>
       <Route path="/" element={<Home />}></Route>
+      <Route path="/addconnection" element={<AddFirstConnection/>}></Route>
       <Route
         path="/settings"
         element={
