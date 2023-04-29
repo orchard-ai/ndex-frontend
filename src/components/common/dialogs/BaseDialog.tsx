@@ -1,5 +1,5 @@
 import { Dialog, Transition } from '@headlessui/react'
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import CloseIcon from 'assets/icons/tsx/CloseIcon';
 
 type PropType =  {
@@ -7,7 +7,6 @@ type PropType =  {
   buttonContent?: React.ReactNode
   buttonClassName?: React.ComponentProps<'div'>['className']
   buttonContainerClassName?: React.ComponentProps<'div'>['className']
-  
   content?: React.ReactNode
 }
 
@@ -20,12 +19,18 @@ export default function BaseDialog({
   const [isOpen, setIsOpen] = useState(false)
 
   function closeModal() {
-    setIsOpen(false)
+    setIsOpen(false);
   }
 
   function openModal() {
-    setIsOpen(true)
+    setIsOpen(true);
   }
+
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     console.log(isOpen);
+  //   }, 2000);
+  // }, []);
 
   return (
     <>
@@ -39,7 +44,7 @@ export default function BaseDialog({
         </button>
       </div>
 
-      <Transition appear show={isOpen} as={Fragment}>
+      <Transition show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
           <Transition.Child
             as={Fragment}
@@ -50,10 +55,10 @@ export default function BaseDialog({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0  bg-black opacity-50 bg-opacity-25" />
+            <div className="fixed inset-0  bg-black opacity-100 bg-opacity-25" />
           </Transition.Child>
 
-          <div className="absolute z-10 top-0 bottom-0 right-0 left-0 w-screen h-screen bg-opacity-50 bg-black opacity-50"/>  
+          <div className="absolute z-10 top-0 bottom-0 right-0 left-0 w-screen h-screen bg-opacity-50 bg-black opacity-50"/>
 
           <div className="fixed inset-0 overflow-y-auto">
             <div className="flex min-h-full items-center justify-center p-4 text-center">
@@ -71,11 +76,7 @@ export default function BaseDialog({
                     as="h3"
                     className="flex w-full text-lg font-medium text-ndex-text-white mb-4"
                   >
-                    {title }
-
-                    <div>
-                      
-                    </div>
+                    {title}
 
                     <button
                       onClick={closeModal}

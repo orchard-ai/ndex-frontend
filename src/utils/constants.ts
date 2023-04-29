@@ -31,7 +31,7 @@ export const connections = [
     detailedDescription: "Index your emails, messages, and important documents from Google Gmail!"
   },
   {
-    id: 2,
+    id: 3,
     name: "Google Calendar",
     description: "Your timely events!",
     href: "#",

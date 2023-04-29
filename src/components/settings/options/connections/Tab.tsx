@@ -24,7 +24,7 @@ export default function ConnectionsTab() {
     }
   }
 
-  const addAccountDialog = (connection : { 
+  const addAccountDialog = (connection : {
     id: number,
     name: string,
     description: string,
@@ -100,16 +100,10 @@ export default function ConnectionsTab() {
                   </p>
                 </div>
               </div>
-              {/* <div className="flex-grow flex items-center justify-center bg-gray-500 px-4 py-4 sm:px-6">
-                <button color="primary" className="sm">
-                  Connect
-                </button>
-              </div> */}
             </div>
           ))}
         </div>
       </div>
-      
     </div>
   )
 }
