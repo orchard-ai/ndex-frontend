@@ -7,6 +7,7 @@ import SearchResults from "components/search/SearchResults"
 
 import { Hit } from "utils/types"
 import { typesenseInstantSearchAdapter } from "utils/typesense"
+import SearchToolbar from "components/search/SearchToolbar"
 
 function InstantCustomSearch({
   currentRefinement,
@@ -20,7 +21,7 @@ function InstantCustomSearch({
       <Header className="w-full" />
       <Combobox
         as="div"
-        className="flex flex-col w-full max-w-[54rem] items-center mt-4 border rounded-xl bg-white shadow-2xl ring-1 ring-black/5 divide-y divide-gray-250"
+        className="flex flex-col w-full max-w-[54rem] items-center mt-4 border rounded-xl bg-white shadow-2xl ring-1 ring-black/5"
         onChange={(hit: Hit) => {
           // Pressing enter on result row opens new tab
           if (hit?.url === undefined || hit?.url === null || hit?.url === "") {
@@ -31,7 +32,8 @@ function InstantCustomSearch({
           refine("") // close combobox
         }}
         nullable
-      >
+      > 
+        <SearchToolbar />
         <SearchBox currentRefinement={currentRefinement} refine={refine} />
         <SearchResults currentRefinement={currentRefinement} />
       </Combobox>

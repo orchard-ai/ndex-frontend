@@ -22,12 +22,12 @@ export const getSourceIcon = (platform: string | undefined) => {
 
 const PlatformIcon = ({ platform }: IconProps) => {
   //TODO(@fryingpan, @FL) DEMO PURPOSE SEND RANDOM PLATFORM:
-  const demo = () => {
-    const icons = ["notion", "gmail"]
-    return icons[Math.floor(Math.random() * icons.length)]
-  }
+  // const demo = () => {
+  //   const icons = ["notion", "gmail"]
+  //   return icons[Math.floor(Math.random() * icons.length)]
+  // }
 
-  const source = getSourceIcon(demo())
+  const source = getSourceIcon(platform)
 
   return (
     <div className="p-1">

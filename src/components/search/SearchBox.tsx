@@ -27,7 +27,7 @@ const SearchBox = ({
   }, [])
 
   return (
-    <div className="flex flex-col w-full full mx-4 my-6 p-0">
+    <div className="flex flex-col w-full full mx-4 mb-6 p-0">
       <div className="px-4 flex items-center">
         <img
           src={SearchIcon}
