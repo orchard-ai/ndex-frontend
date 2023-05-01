@@ -11,6 +11,7 @@ import CloseIcon from "assets/icons/tsx/CloseIcon";
 
 import axios from "axios";
 import { useState } from "react";
+import { ROUTES } from "utils/constants";
 
 // Should only appear in dev environment
 const handleConnectBackend = (setIsLoading: any) => {
@@ -86,13 +87,13 @@ export default function Settings() {
             hover:stroke-ndex-text-grey
             active:stroke-ndex-text-grey-variant
             md:hidden
-            " 
+            "
             />
           </button>
           <Title category={category} className="pt-4 pb-4 md:ml-8" />
 
           <LinkButton
-            routerLink="/"
+            routerLink={ROUTES.SEARCH}
           >
             <CloseIcon  className="
               w-10 h-10 p-1

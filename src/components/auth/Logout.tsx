@@ -1,26 +1,28 @@
 import { googleLogout } from "@react-oauth/google"
-import { useAuth } from "hooks/useAuth"
 import { useNavigate } from "react-router-dom"
+import { useAppDispatch } from "store"
+import { clearUserAuth } from "store/user/userAuthSlice"
+import { ROUTES } from "utils/constants"
 
 type PropType = {
   className?: string
 }
 
 export default function Logout({ className }: PropType) {
-  const { logout } = useAuth()
   const navigate = useNavigate()
+  const dispatch = useAppDispatch();
 
-  const handleLogout = () => {
+  const handleLogout = async() => {
     try {
       googleLogout()
-      logout(onSuccess, onFailure)
+      await dispatch(clearUserAuth());
     } catch (e) {
       onFailure(e as Error)
     }
   }
 
   const onSuccess = () => {
-    navigate("/", { replace: true })
+    navigate(ROUTES.AUTHENTICATE, { replace: true })
     console.log("Logged out successfully")
   }
 

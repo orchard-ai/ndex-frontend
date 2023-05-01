@@ -6,14 +6,14 @@ export interface NotionAuthRequest {
 
 export interface UserSignupRequest {
     email: string
-    oauthProviderId: string
-    oauthAccessToken: string
-    password: string
-    accountType: AccountType
+    oauth_provider_id: string | undefined
+    oauth_access_token: string | undefined
+    password: string | undefined
+    account_type: AccountType
 }
 
 export enum AccountType {
-    Credentials,
-    Google,
-    Apple,
+    Credentials = 0,
+    Google = 1,
+    Apple = 2,
 }

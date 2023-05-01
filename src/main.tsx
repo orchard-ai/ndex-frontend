@@ -6,45 +6,50 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
   RouterProvider,
+  Route
 } from "react-router-dom"
 import { GoogleOAuthProvider } from "@react-oauth/google"
-import { ProtectedRoute } from "components/auth/ProtectedRoute"
-import { AuthLayout } from "components/auth/AuthLayer"
 
-import { store } from './store';
+import { store, persistor } from './store';
 import { Provider } from 'react-redux';
 
+import { PersistGate } from 'redux-persist/integration/react';
+
 import Settings from "routes/settings/Settings"
-import Home from "routes/home/Home"
-import { Route } from "react-router-dom"
+import Search from "routes/search/Search"
 import NotionRedirect from "routes/redirects/NotionRedirect"
 import AddFirstConnection from "routes/cta/AddFirstConnection"
+import AuthScreen from "routes/authScreen"
 
-const clientID = import.meta.env.VITE_CLIENT_ID
+import PrivateRoute from "components/auth/PrivateRoute"
+import { ROUTES } from "utils/constants"
+
+const clientID = import.meta.env.VITE_CLIENT_ID;
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route element={<AuthLayout />}>
-      <Route path="/" element={<Home />}></Route>
-      <Route path="/addconnection" element={<AddFirstConnection/>}></Route>
-      <Route
-        path="/settings"
-        element={
-          <ProtectedRoute>
-            <Settings />
-          </ProtectedRoute>
-        }
-      ></Route>
-      <Route path='/notion-access-redirect' element={<NotionRedirect/>}></Route>
-    </Route>
+    <>
+      {/* public routes */}
+      <Route path={ROUTES.AUTHENTICATE} element={<AuthScreen/>} />
+
+      {/* private routes */}
+      <Route element={<PrivateRoute/>}>
+        <Route path={ROUTES.SEARCH} element={<Search/>} />
+        <Route path={ROUTES.ADD_CONNECTION} element={<AddFirstConnection/>} />
+        <Route path={ROUTES.SETTINGS} element={<Settings/>} />
+        <Route path={ROUTES.NOTION_REDIRECT} element={<NotionRedirect/>} />
+      </Route>
+    </>
   )
-)
+);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <GoogleOAuthProvider clientId={clientID}>
       <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
         <RouterProvider router={router} />
+        </PersistGate>
       </Provider>
     </GoogleOAuthProvider>
   </React.StrictMode>

@@ -1,15 +1,38 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
 import notionReducer from './notion/notionSlice';
 import userAuthReducer from './user/userAuthSlice';
 
-export const store = configureStore({
-  reducer: {
-    notion: notionReducer,
-    userAuth: userAuthReducer
-  },
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+
+const rootPersistConfig = {
+	key: 'root',
+	storage,
+};
+
+const userPersistConfig = {
+  key: 'userAuth',
+  storage,
+  whitelist: ['ndexToken', 'userId']
+};
+
+const rootReducer = combineReducers({
+  userAuth: persistReducer(userPersistConfig, userAuthReducer),
+  notion: notionReducer
 });
+
+const persistedReducer = persistReducer(
+	rootPersistConfig,
+	rootReducer
+);
+
+const store = configureStore({
+  reducer: persistedReducer
+});
+
+const persistor = persistStore(store);
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;
@@ -19,3 +42,5 @@ export type AppDispatch = typeof store.dispatch;
 // Use throughout your app instead of plain `useDispatch` and `useSelector`
 export const useAppDispatch: () => AppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+
+export { store, persistor };

@@ -32,7 +32,7 @@ function InstantCustomSearch({
           refine("") // close combobox
         }}
         nullable
-      > 
+      >
         <SearchToolbar />
         <SearchBox currentRefinement={currentRefinement} refine={refine} />
         <SearchResults currentRefinement={currentRefinement} />

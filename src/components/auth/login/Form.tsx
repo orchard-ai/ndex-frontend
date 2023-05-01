@@ -3,6 +3,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom"
 
 import Input from "components/common/Input";
+import { AccountType, UserSignupRequest } from "api/models";
+import { useAppDispatch } from "store";
+import { createUser } from "store/user/userAuthSlice";
+import { ROUTES } from "utils/constants";
 
 type PropType = {
     onSuccess: (credentials : string) => void
@@ -14,13 +18,24 @@ const Form = ({onSuccess, onFailure} : PropType) => {
     const [email, setEmail] : [string, (value: string) => void]  = useState("");
     const [password, setPassword] : [string, (value: string) => void]  = useState("");
     const [showPassword, setShowPassword] : [boolean, (value: boolean) => void]  = useState(true);
-    const navigate = useNavigate()
 
-    const handleSignUp = () => {
-        console.log("SIGN UP");
+    const navigate = useNavigate();
+
+    const dispatch = useAppDispatch();
+
+    const handleCredentialSignUp = async() => {
+        const form: UserSignupRequest = {
+            email: email,
+            oauth_provider_id: undefined,
+            oauth_access_token: undefined,
+            password: password,
+            account_type: AccountType.Credentials
+        };
+
+        await dispatch(createUser(form));
 
         // ON SUCCESS OF SIGN UP
-        navigate("/addconnection", { replace: true })
+        navigate(ROUTES.ADD_CONNECTION, { replace: true })
     }
 
     const handleLogin = () => {
@@ -37,7 +52,7 @@ const Form = ({onSuccess, onFailure} : PropType) => {
                 <button className="
                 text-ndex-text-white underline underline-offset-4
                 hover:text-ndex-text-column-hover"
-                    onClick={handleSignUp}
+                    onClick={handleCredentialSignUp}
                 >
                     {" "}
                         Sign Up

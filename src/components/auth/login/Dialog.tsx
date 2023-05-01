@@ -1,24 +1,39 @@
-import { useAuth } from "hooks/useAuth"
-import { GoogleLogin } from "@react-oauth/google"
+import { CredentialResponse, GoogleLogin } from "@react-oauth/google"
 
 import Form from "components/auth/login/Form";
 
 import Logo from "components/common/Logo";
+import { useAppDispatch } from "store";
+import { AccountType, UserSignupRequest } from "api/models";
+import { createUser } from "store/user/userAuthSlice";
+import { ROUTES } from "utils/constants";
+import { useNavigate } from "react-router-dom";
+import { decodeGoogleCredential } from "utils/googleAuth";
 
 type PropType = {
   className?: string
 }
 
-export default function Login({className} : PropType) {
-  const { login } = useAuth()
+export default function Login({ className } : PropType) {
+  const dispatch = useAppDispatch();
 
-  const handleGoogleSuccess = (credentialRes: any) => {
-    login(
-      credentialRes,
-      () => {
-        console.log("success, current user: ", credentialRes)
-      }
-    );
+  const navigate = useNavigate();
+
+  const handleGoogleSuccess = async(credentialRes: CredentialResponse) => {
+    const ticket: any = decodeGoogleCredential(credentialRes);
+
+    const form: UserSignupRequest = {
+      email: ticket.email,
+      oauth_provider_id: credentialRes.clientId,
+      oauth_access_token: credentialRes.clientId,
+      password: undefined,
+      account_type: AccountType.Google
+    };
+
+    await dispatch(createUser(form));
+
+    // ON SUCCESS OF SIGN UP
+    navigate(ROUTES.ADD_CONNECTION, { replace: true });
   }
 
   const handleGoogleFailure = () => {
