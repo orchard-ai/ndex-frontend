@@ -1,6 +1,8 @@
 import { connections } from "utils/constants"
 import LinkButton from "components/common/LinkButton"
-import BaseDialog from "components/common/dialogs/BaseDialog"
+import Dialog from "components/common/dialog/Dialog"
+import AccountTable from "components/settings/options/connections/AccountTable";
+
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ")
@@ -33,7 +35,7 @@ export default function ConnectionsTab() {
     alt: string,
     bgColor: string,
     detailedDescription: string}) => {
-      return <BaseDialog
+      return <Dialog
         buttonContent={"Add Account"}
         buttonClassName="
           rounded-md bg-opacity-20 p-2 text-sm text-ndex-button-bordered-green border-ndex-button-bordered-green border-2
@@ -100,22 +102,33 @@ export default function ConnectionsTab() {
                 )}
               >
                 <div className="flex items-center justify-between">
-                  <img
-                    className="h-8 w-auto"
-                    src={connection.icon}
-                    alt={connection.alt}
-                  />
+                  <div className="flex justify-center">
+                    <img
+                      className="h-8 w-8"
+                      src={connection.icon}
+                      alt={connection.alt}
+                    />
+                    <h3 className="text-lg m-auto mx-2 leading-6 font-medium text-[#FFFFFF]">
+                      {connection.name}
+                    </h3>
+                  </div>
                   <div className="ml-2 flex-shrink-0 flex">
                     {addAccountDialog(connection)}
                   </div>
                 </div>
                 <div className="mt-4">
-                  <h3 className="text-lg leading-6 font-medium text-[#FFFFFF]">
-                    {connection.name}
-                  </h3>
+                  <div className="text-ndex-text-grey font-bold text-sm my-2">
+                      ABOUT
+                  </div>
                   <p className="mt-2 text-sm leading-5 text-[#FFFFFF]">
                     {connection.description}
                   </p>
+                </div>
+                <div className="mt-4">
+                  <div className="text-ndex-text-grey font-bold text-sm my-2">
+                      CONNECTIONS
+                  </div>
+                  <AccountTable className="mt-4" />
                 </div>
               </div>
             </div>

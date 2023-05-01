@@ -1,4 +1,4 @@
-import { Dialog, Transition } from '@headlessui/react'
+import { Dialog as HeadlessDialog, Transition } from '@headlessui/react'
 import React, { Fragment, useState, useEffect } from 'react'
 import CloseIcon from 'assets/icons/tsx/CloseIcon';
 
@@ -11,7 +11,7 @@ type PropType =  {
   headerContent? : React.ReactNode
 }
 
-export default function BaseDialog({
+export default function Dialog({
   title,
   buttonContent,
   buttonClassName,
@@ -42,7 +42,7 @@ export default function BaseDialog({
       </div>
 
       <Transition show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={closeModal}>
+        <HeadlessDialog as="div" className="relative z-10" onClose={closeModal}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -68,8 +68,8 @@ export default function BaseDialog({
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-ndex-background-4  p-6 text-left align-middle shadow-xl transition-all">
-                  <Dialog.Title
+                <HeadlessDialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-ndex-background-4  p-6 text-left align-middle shadow-xl transition-all">
+                  <HeadlessDialog.Title
                     as="h3"
                     className="flex w-full text-lg font-medium justify-between text-ndex-text-white mb-4"
                   >
@@ -85,13 +85,13 @@ export default function BaseDialog({
                       active:stroke-ndex-text-grey-variant
                       " />
                     </button>
-                  </Dialog.Title>
+                  </HeadlessDialog.Title>
                   {content}
-                </Dialog.Panel>
+                </HeadlessDialog.Panel>
               </Transition.Child>
             </div>
           </div>
-        </Dialog>
+        </HeadlessDialog>
       </Transition>
     </>
   )

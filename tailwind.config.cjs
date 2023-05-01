@@ -20,6 +20,11 @@ module.exports = {
           3: "#545068",
           4: "#3B3A45",
         },
+        "ndex-table": {
+          "default": "#49475A",
+          "header": "#545068",
+          "row": "#615D75"
+        },
         "ndex-text": {
           white: "#FFFFFF",
           "column-selected": "#ABABAB",
