@@ -20,6 +20,7 @@ import Search from "routes/search/Search"
 import NotionRedirect from "routes/redirects/NotionRedirect"
 import AddFirstConnection from "routes/cta/AddFirstConnection"
 import AuthScreen from "routes/authScreen"
+import NotFound from "routes/notFound"
 
 import PrivateRoute from "components/auth/PrivateRoute"
 import { ROUTES } from "utils/constants"
@@ -39,6 +40,9 @@ const router = createBrowserRouter(
         <Route path={ROUTES.SETTINGS} element={<Settings/>} />
         <Route path={ROUTES.NOTION_REDIRECT} element={<NotionRedirect/>} />
       </Route>
+
+      {/* catch-all route */}
+      <Route path="*" element={<NotFound/>} />
     </>
   )
 );

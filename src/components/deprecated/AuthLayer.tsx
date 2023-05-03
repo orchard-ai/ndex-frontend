@@ -1,5 +1,5 @@
 import { useOutlet } from 'react-router-dom';
-import { AuthProvider } from 'components/auth/AuthProvider';
+import { AuthProvider } from 'components/deprecated/AuthProvider';
 export const AuthLayout = () => {
   const outlet = useOutlet();
 
