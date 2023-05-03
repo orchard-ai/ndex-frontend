@@ -15,7 +15,7 @@ const rootPersistConfig = {
 const userPersistConfig = {
   key: 'userAuth',
   storage,
-  whitelist: ['ndexToken', 'userId']
+  whitelist: ['token']
 };
 
 const rootReducer = combineReducers({
@@ -29,7 +29,8 @@ const persistedReducer = persistReducer(
 );
 
 const store = configureStore({
-  reducer: persistedReducer
+  reducer: persistedReducer,
+  devTools: true,
 });
 
 const persistor = persistStore(store);

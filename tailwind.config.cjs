@@ -44,6 +44,7 @@ module.exports = {
         "ndex-search": {
           "default":"#f3f3ef",
           "toolbar-icon-hover": "#F8F8F8",
+          "toolbar-icon-active": "#d0d0d0",
           "toolbar-icon-selected": "#EBEBEB"
         },
         "ndex-login-background": {

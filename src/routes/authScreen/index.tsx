@@ -1,14 +1,13 @@
 import Login from "components/auth/login/Dialog";
 import { Navigate } from "react-router-dom";
 import { useAppSelector } from "store";
-import { userIdSelector, userNdexTokenSelector } from "store/user/userAuthSlice";
+import { usertokenSelector } from "store/user/userAuthSlice";
 import { ROUTES } from "utils/constants";
 
 export default function AuthScreen() {
-  // const ndexToken = useAppSelector(userNdexTokenSelector);
-  const userId = useAppSelector(userIdSelector);
+  const token = useAppSelector(usertokenSelector);
 
-  if(userId !== null) {
+  if(token !== null) {
     return <Navigate to={ROUTES.SEARCH}/>
   }
 

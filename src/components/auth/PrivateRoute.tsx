@@ -1,13 +1,12 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useAppSelector } from "store";
-import { userIdSelector, userNdexTokenSelector } from "store/user/userAuthSlice";
+import { usertokenSelector } from "store/user/userAuthSlice";
 import { ROUTES } from "utils/constants";
 
 const PrivateRoute = () => {
-    // const ndexToken = useAppSelector(userNdexTokenSelector);
-    const userId = useAppSelector(userIdSelector);
+    const token = useAppSelector(usertokenSelector);
 
-    return userId !== null ? (
+    return token !== null ? (
         <Outlet />
     ) : (
         <Navigate to={ROUTES.AUTHENTICATE} />

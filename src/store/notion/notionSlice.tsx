@@ -12,7 +12,7 @@ export const obtainAccessToken = createAsyncThunk(
             throw new Error(error);
         }
 
-        return response.access_token;
+        return response;
     }
 );
 
@@ -34,7 +34,7 @@ export const notionSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(obtainAccessToken.fulfilled, (state, action) => {
-            state.accessToken = action.payload;
+            state.accessToken = action.payload.access_token;
         })
     }
 });

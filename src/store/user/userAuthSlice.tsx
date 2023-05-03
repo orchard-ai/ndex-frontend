@@ -6,43 +6,22 @@ import { RootState } from 'store';
 
 export const createUser = createAsyncThunk(
     'user/createUser',
-    async (form: UserSignupRequest, { rejectWithValue }) => {
+    async (form: UserSignupRequest) => {
 
         const response = await signupUser(form);
-
-        if (!response.ok) {
-            const error = await response.text();
-            return rejectWithValue(error);
-        }
 
         return response;
     }
 );
 
-interface GoogleAuthState {
-    clientId: string | null;
-    credential: string | null;
-}
-
-const initialGoogleAuthState: GoogleAuthState = {
-    clientId: null,
-    credential: null
-}
-
 interface UserAuthState {
-    userId: string | null;
-    email: string | null;
-    ndexToken: string | null;
+    token: string | null;
     error: string | null;
-    googleAuth: GoogleAuthState;
 }
 
 const initialState: UserAuthState = {
-    userId: "TEMPID",
-    email: null,
-    ndexToken: "TEMPTOKEN",
+    token: null,
     error: null,
-    googleAuth: initialGoogleAuthState
 };
 
 export const userAuthSlice = createSlice({
@@ -50,17 +29,16 @@ export const userAuthSlice = createSlice({
     initialState,
     reducers: {
         clearUserAuth: (state) => {
-            state.userId = null;
             state.error = null;
-            state.ndexToken = null;
-            state.googleAuth = initialGoogleAuthState;
+            state.token = null;
         }
     },
     extraReducers: (builder) => {
         builder.addCase(createUser.fulfilled, (state, action) => {
-            state.userId = action.payload.userId;
-            state.email = action.payload.email;
-            state.ndexToken = action.payload.ndexToken;
+            state.token = action.payload.token;
+            state.error = null;
+
+            localStorage.setItem('userAuth.token', action.payload.token);
         }),
         builder.addCase(createUser.rejected, (state) => {
             state.error = 'Something went wrong';
@@ -74,8 +52,7 @@ export const {
 } = userAuthSlice.actions;
 
 // SELECTORS
-export const userIdSelector = (state: RootState) => state.userAuth.userId;
-export const userNdexTokenSelector = (state: RootState) => state.userAuth.ndexToken;
+export const usertokenSelector = (state: RootState) => state.userAuth.token;
 export const userErrorSelector = (state: RootState) => state.userAuth.error;
 
 export default userAuthSlice.reducer;

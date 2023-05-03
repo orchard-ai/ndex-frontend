@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "store";
 import { notionAccessTokenSelector, obtainAccessToken } from "store/notion/notionSlice";
+import { ROUTES } from "utils/constants";
 
 export default function NotionRedirect () {
     const dispatch = useAppDispatch();
@@ -17,7 +18,7 @@ export default function NotionRedirect () {
     useEffect(() => {
       if(tempCode) {
         dispatch(obtainAccessToken(tempCode));
-        navigate('/settings');
+        navigate(ROUTES.SETTINGS);
       } else {
         // handle showing error page
       }
