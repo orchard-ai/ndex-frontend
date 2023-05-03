@@ -32,6 +32,9 @@ module.exports = {
           grey: "#A5A5A6",
           "grey-variant": "#575757",
         },
+        "ndex-button-text": {
+          "filled-light": "#6A6A6A",
+        },
         "ndex-button": {
           "bordered-green": "#4CAF50",
           "bordered-green-hover" : "#3E7E41",
@@ -39,7 +42,8 @@ module.exports = {
           "bordered-red-hover": "#AE4C2E",
           "bordered-grey": "#808086",
           "filled-dark": "#434343",
-          "filled-light": "#C3C3C3",
+          "filled-light": "#D9D9D9",
+          "active-light": "#C9C9C9",
         },
         "ndex-search": {
           "default":"#f3f3ef",

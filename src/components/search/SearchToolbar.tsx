@@ -31,7 +31,7 @@ const SearchToolbar = () => {
 
     return (
         <div className="flex w-full p-4 space-x-4 ">
-            <p className="align-middle my-auto"> searching in: </p>
+            <p className="align-middle my-auto text-ndex-text-grey"> searching in: </p>
             <button className="flex space-x-4 p-1">
                 {connectionFilters.map((connection, index) => {
                     return (

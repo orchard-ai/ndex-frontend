@@ -59,14 +59,16 @@ export default function Login({ className } : PropType) {
     >
       <div className="flex flex-col items-center justify-center w-full h-full space-y-3 text-ndex-text-white">
         <Logo className="text-6xl text-ndex-text-white" />
-        <h2 className="text-2xl tracking-title">
+        <h2 className="text-2xl tracking-title p-5">
           Index anything, search <b>everything</b>
         </h2>
-        <div className="font-bold">Login with:</div>
         {/* if doesn't work, replace 127.0.0.1 with localhost in URL */}
         <div id="signInButton">
           <GoogleLogin
             text="continue_with"
+            theme="outline"
+            size="medium"
+            ux_mode="popup"
             onSuccess={handleGoogleSuccess}
             onError={handleGoogleFailure}
           />
@@ -79,7 +81,7 @@ export default function Login({ className } : PropType) {
               width: 100,
             }}
           />
-          <p>Or</p>
+          <p>or</p>
           <hr
             style={{
               color: "black",

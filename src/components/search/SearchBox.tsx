@@ -35,7 +35,7 @@ const SearchBox = ({
           className="h-8 w-8 text-gray-500"
         />
         <Combobox.Input
-          className={`bg-transparent w-full pl-4 border-0 focus:ring-0 outline-none text-xl text-gray-800 placeholder-gray-400`}
+          className={`bg-transparent w-full pl-4 border-0 focus:ring-0 outline-none text-xl text-gray-800 placeholder-ndex-text-grey`}
           placeholder="press / to jump here!"
           onChange={(event) => refine(event.currentTarget.value)}
           displayValue={currentRefinement}

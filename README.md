@@ -23,6 +23,9 @@
 4. If Google OAuth is not working, change the URL prefix from `127.0.0.1` to `localhost`.
 5. If this is your first time running it, navigate to the Settings page and click on "Connect Backend" to index the integrations' data. You will need the backend and the Typesense docker running for this.
 
+## Dev testing
+- To avoid having to create an account (and obtaining a token to access private routes), you can set the `initial state` in `src/store/user/userAuthSlice.tsx` for `token` to be non-null. This will grant you access to all private routes.
+
 ## Dependencies
 - Tailwindcss
 - DaisyUI

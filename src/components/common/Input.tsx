@@ -11,7 +11,7 @@ const Input = ({value, placeholder, onChange, className, type = "text", form} : 
 
     return (
         <input
-            className="bg-ndex-input w-full pr-2 pl-2 pt-1 pb-1 border-ndex-input-border"
+            className="bg-ndex-input w-full h-10 pr-2 pl-2 pt-1 pb-1 border-ndex-input-border rounded-lg"
             type={type}
             placeholder={placeholder}
             value={value}

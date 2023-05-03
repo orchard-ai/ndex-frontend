@@ -60,9 +60,8 @@ const Form = ({onSuccess, onFailure} : PropType) => {
             <Input placeholder={"Email"} value={email} onChange={setEmail} type="email" />
             <Input placeholder={"Password"} value={password} onChange={setPassword} type="password" />
             <div>
-                <button className="
-                text-ndex-text-white underline underline-offset-4
-                hover:text-ndex-text-column-hover"
+                <button className="text-ndex-button-text-filled-light border-2 rounded-lg w-40 h-8 shadow-md bg-ndex-button-filled-light
+                    active:bg-ndex-button-active-light"
                     onClick={handleCredentialSignUp}
                 >
                     {" "}
@@ -79,7 +78,7 @@ const Form = ({onSuccess, onFailure} : PropType) => {
                     setShowSignUp(false);
                 }}>
                     {" "}
-                        Login
+                        Log in
                     {" "}
                 </button>
             </div>
@@ -92,12 +91,11 @@ const Form = ({onSuccess, onFailure} : PropType) => {
             <Input placeholder={"Email"} value={email} onChange={setEmail} type="email" />
             <Input placeholder={"Password"} value={password} onChange={setPassword} type="password" />
             <div>
-                <button className="
-                    text-ndex-text-white underline underline-offset-4
-                    hover:text-ndex-text-column-hover"
+                <button className="text-ndex-button-text-filled-light border-2 rounded-lg w-40 h-8 shadow-md bg-ndex-button-filled-light
+                    active:bg-ndex-button-active-light"
                     onClick={handleLogin}
-                    >
-                    Login
+                >
+                    Log In
                 </button>
             </div>
             <div>

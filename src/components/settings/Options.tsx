@@ -11,17 +11,20 @@ type PropType = {
 }
 
 const Options = ({ category, onOptionClick, className }: PropType) => {
+  const selectedStyle = " bg-ndex-background-3"; // Don't take out the leading space
+  const baseCategoryStyle = "flex text-ndex-text-white rounded-lg h-8 items-center p-5";
+
   return (
     <div className={`bg-ndex-background-2 pl-8 pr-4 space-y-4 ${className}`}>
       <Logo className="text-4xl text-ndex-text-white mt-2 mb-12" />
       <div className="space-y-4">
-        <div className="text-ndex-text-grey text-xs mb-4 font-bold">
+        <div className="text-ndex-text-grey text-xs mb-4 font-bold p-5">
           PERSONAL SETTINGS
         </div>
 
         <div
           className={`w-100 cursor-pointer ${
-            category === "account" ? "text-ndex-text-column-selected" : "text-ndex-text-white  hover:text-ndex-text-column-hover"
+            category === "account" ? baseCategoryStyle + selectedStyle : baseCategoryStyle
           }`}
           onClick={() => onOptionClick("account")}
         >
@@ -29,7 +32,7 @@ const Options = ({ category, onOptionClick, className }: PropType) => {
         </div>
         <div
           className={`w-100 cursor-pointer ${
-            category === "connections" ? "text-ndex-text-column-selected" : "text-ndex-text-white  hover:text-ndex-text-column-hover"
+            category === "connections" ? baseCategoryStyle + selectedStyle : baseCategoryStyle
           }`}
           onClick={() => onOptionClick("connections")}
         >
@@ -47,7 +50,7 @@ const Options = ({ category, onOptionClick, className }: PropType) => {
       </div>
       <div className="space-y-4">
         <hr className="border-ndex-text-grey" />
-        <Logout className="text-ndex-text-white  hover:text-ndex-text-column-hover" />
+        <Logout className={`${baseCategoryStyle}`} />
       </div>
     </div>
   )
