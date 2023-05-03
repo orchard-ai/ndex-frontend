@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import { connections } from "utils/constants"
+import PlusIcon from "assets/icons/svg/plus-icon.svg";
+
+import { ROUTES, connections } from "utils/constants"
 
 type ConnectionFilter = {
     id: number
@@ -10,6 +13,8 @@ type ConnectionFilter = {
 }
 
 const SearchToolbar = () => {
+    const navigate = useNavigate();
+
     const defaultConnectionFilter : ConnectionFilter[] = connections.map((connection, index) => {
         return {id: index, name: connection.name, icon: connection.icon, selected: true};
     })
@@ -48,6 +53,14 @@ const SearchToolbar = () => {
                     )
                 })
                 }
+                <div className={`rounded-md p-1 bg-ndex-search-toolbar-icon-selected active:bg-ndex-search-toolbar-icon-active`}
+                    onClick={() => navigate(ROUTES.SETTINGS)}
+                >
+                    <img
+                        className="h-6 w-6"
+                        src={PlusIcon}
+                    />
+                </div>
             </button>
         </div>
     )

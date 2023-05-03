@@ -10,7 +10,7 @@ type PropType = {
 const EditingCard = ({user, setEditing} : PropType) => {
     const [name, setName]  = useState(user.name);
     const [email, setEmail]  = useState(user.email);
-  
+
     const updateUser = () => {
         user.name = name
         user.email = email
@@ -38,7 +38,7 @@ const EditingCard = ({user, setEditing} : PropType) => {
           <div className="text-ndex-text-grey  font-bold text-sm">
             PASSWORD
           </div>
-          <button className="py-1 px-4 font-bold text-sm rounded-sm text-ndex-text-white border-ndex-button-bordered-red border-spacing-4 border-2 hover:bg-ndex-button-bordered-red"> 
+          <button className="py-1 px-4 font-bold text-sm rounded-sm text-ndex-text-white border-ndex-button-bordered-red border-spacing-4 border-2 hover:bg-ndex-button-bordered-red">
             Change Password
           </button>
         </div>
@@ -46,5 +46,5 @@ const EditingCard = ({user, setEditing} : PropType) => {
     );
   }
 
-  
+
 export default EditingCard;

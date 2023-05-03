@@ -3,6 +3,8 @@ import Logo from "components/common/Logo"
 import { useState } from "react"
 import { handleConnectBackend } from "utils/network"
 import Logout from "components/auth/Logout";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "utils/constants";
 
 type PropType = {
   category: string
@@ -14,9 +16,15 @@ const Options = ({ category, onOptionClick, className }: PropType) => {
   const selectedStyle = " bg-ndex-background-3"; // Don't take out the leading space
   const baseCategoryStyle = "flex text-ndex-text-white rounded-lg h-8 items-center p-5";
 
+  const navigate = useNavigate();
+
+  const logoOnPress = () => {
+    navigate(ROUTES.SEARCH);
+  };
+
   return (
     <div className={`bg-ndex-background-2 pl-8 pr-4 space-y-4 ${className}`}>
-      <Logo className="text-4xl text-ndex-text-white mt-2 mb-12" />
+      <Logo className="text-4xl text-ndex-text-white mt-2 mb-12" onPress={logoOnPress}/>
       <div className="space-y-4">
         <div className="text-ndex-text-grey text-xs mb-4 font-bold p-5">
           PERSONAL SETTINGS
@@ -50,7 +58,7 @@ const Options = ({ category, onOptionClick, className }: PropType) => {
       </div>
       <div className="space-y-4">
         <hr className="border-ndex-text-grey" />
-        <Logout className={`${baseCategoryStyle}`} />
+        <Logout className={`${baseCategoryStyle} hover:hover:bg-ndex-button-bordered-red`} />
       </div>
     </div>
   )
