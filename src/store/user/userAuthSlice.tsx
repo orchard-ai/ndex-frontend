@@ -1,14 +1,24 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { signupUser } from 'api';
-import { UserSignupRequest } from 'api/models';
+import { signupUser, signinUser } from 'api';
+import { UserAuthRequest } from 'api/models';
 import { RootState } from 'store';
 
 export const createUser = createAsyncThunk(
     'user/createUser',
-    async (form: UserSignupRequest) => {
+    async (form: UserAuthRequest) => {
 
         const response = await signupUser(form);
+
+        return response;
+    }
+);
+
+export const loginUser = createAsyncThunk(
+    'user/loginUser',
+    async (form: UserAuthRequest) => {
+
+        const response = await signinUser(form);
 
         return response;
     }
@@ -37,10 +47,17 @@ export const userAuthSlice = createSlice({
         builder.addCase(createUser.fulfilled, (state, action) => {
             state.token = action.payload.token;
             state.error = null;
-
-            localStorage.setItem('userAuth.token', action.payload.token);
         }),
         builder.addCase(createUser.rejected, (state) => {
+            state.token = null;
+            state.error = 'Something went wrong';
+        });
+        builder.addCase(loginUser.fulfilled, (state, action) => {
+            state.token = action.payload.token;
+            state.error = null;
+        }),
+        builder.addCase(loginUser.rejected, (state) => {
+            state.token = null;
             state.error = 'Something went wrong';
         });
     }

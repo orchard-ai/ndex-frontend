@@ -1,10 +1,11 @@
 import { NOTION_CLIENT_ID, NOTION_SECRET } from "utils/constants";
-import { NotionAuthRequest, UserSignupRequest } from "./models";
+import { NotionAuthRequest, UserAuthRequest } from "./models";
 
 const baseUrl = 'http://localhost:3001';
 
 enum apiRoutes {
     userSignup = '/user/signup',
+    userLogin = '/user/login',
     notionAccessToken = '/notion/obtain_access_token',
 }
 
@@ -19,7 +20,7 @@ const getRoute = (api: apiRoutes) => {
 };
 
 // USER SIGNUP
-const signupUser = async(signupRequest: UserSignupRequest) => {
+const signupUser = async(signupRequest: UserAuthRequest) => {
     const response = await fetch(getRoute(apiRoutes.userSignup), {
         method: method.POST,
         body: JSON.stringify(signupRequest),
@@ -29,6 +30,21 @@ const signupUser = async(signupRequest: UserSignupRequest) => {
     })
         .then(response => response.json())
         .catch(err => { throw new Error('Error creating user'); }); // gonna need to handle this
+
+    return response;
+};
+
+// USER LOGIN
+const signinUser = async(loginRequest: UserAuthRequest) => {
+    const response = await fetch(getRoute(apiRoutes.userLogin), {
+        method: method.POST,
+        body: JSON.stringify(loginRequest),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+        .then(response => response.json())
+        .catch(err => { throw new Error('Error logging in user'); }); // gonna need to handle this
 
     return response;
 };
@@ -56,5 +72,6 @@ const fetchNotionAccessToken = async(tempCode: string) => {
 
 export {
     signupUser,
+    signinUser,
     fetchNotionAccessToken
 };

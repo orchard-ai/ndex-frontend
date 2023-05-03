@@ -4,7 +4,7 @@ export interface NotionAuthRequest {
     notion_secret: string
 }
 
-export interface UserSignupRequest {
+export interface UserAuthRequest {
     email: string
     oauth_provider_id: string | undefined
     oauth_access_token: string | undefined

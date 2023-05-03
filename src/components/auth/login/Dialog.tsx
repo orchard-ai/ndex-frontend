@@ -4,7 +4,7 @@ import Form from "components/auth/login/Form";
 
 import Logo from "components/common/Logo";
 import { useAppDispatch } from "store";
-import { AccountType, UserSignupRequest } from "api/models";
+import { AccountType, UserAuthRequest } from "api/models";
 import { createUser } from "store/user/userAuthSlice";
 import { ROUTES } from "utils/constants";
 import { useNavigate } from "react-router-dom";
@@ -22,7 +22,7 @@ export default function Login({ className } : PropType) {
   const handleGoogleSuccess = async(credentialRes: CredentialResponse) => {
     const ticket: any = decodeGoogleCredential(credentialRes);
 
-    const form: UserSignupRequest = {
+    const form: UserAuthRequest = {
       email: ticket.email,
       oauth_provider_id: credentialRes.clientId,
       oauth_access_token: credentialRes.clientId,
