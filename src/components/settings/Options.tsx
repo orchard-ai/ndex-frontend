@@ -13,8 +13,8 @@ type PropType = {
 }
 
 const Options = ({ category, onOptionClick, className }: PropType) => {
-  const selectedStyle = " bg-ndex-dark-background-grey-selected bg-opacity-50 text-ndex-dark-text-grey-selected"; // Don't take out the leading space
-  const notSelectStyle = " hover:bg-ndex-dark-background-default-selected text-ndex-dark-text-default-selected"; // Don't take out the leading space
+  const selectedStyle = " bg-ndex-light-background-2 dark:bg-ndex-dark-background-default-selected"; // Don't take out the leading space
+  const notSelectStyle = " hover:bg-ndex-light-background-2 dark:hover:bg-ndex-dark-background-default-selected text-ndex-dark-text-default-selected"; // Don't take out the leading space
 
   const navigate = useNavigate();
 
@@ -23,15 +23,15 @@ const Options = ({ category, onOptionClick, className }: PropType) => {
   };
 
   return (
-    <div className={`bg-ndex-dark-background-grey pl-8 pr-4 space-y-4 ${className}`}>
+    <div className={`bg-ndex-light-background-1 border-r dark:bg-ndex-dark-background-grey pl-8 pr-4 space-y-4 ${className}`}>
       <Logo className="text-4xl text-ndex-dark-text-default mt-2 mb-12" onPress={logoOnPress}/>
       <div className="space-y-4">
-        <div className="text-ndex-text-grey text-xs font-bold p-2">
+        <div className="text-ndex-light-text-secondary dark:text-ndex-text-grey text-xs font-bold p-2">
           PERSONAL SETTINGS
         </div>
 
         <div
-          className={`w-100 cursor-pointer flex text-ndex-dark-text-default rounded-lg h-8 items-center p-5 transition duration-200 ease-in-out ${
+          className={`w-100 cursor-pointer flex text-ndex-light-text-primary dark:text-ndex-dark-text-default rounded-lg h-8 items-center p-5 transition duration-200 ease-in-out ${
             category === "account" ?  selectedStyle : notSelectStyle
           }`}
           onClick={() => onOptionClick("account")}
@@ -39,7 +39,7 @@ const Options = ({ category, onOptionClick, className }: PropType) => {
           Account
         </div>
         <div
-          className={`w-100 cursor-pointer flex text-ndex-dark-text-default rounded-lg h-8 items-center p-5 transition duration-200 ease-in-out ${
+          className={`w-100 cursor-pointer flex text-ndex-light-text-primary dark:text-ndex-dark-text-default rounded-lg h-8 items-center p-5 transition duration-200 ease-in-out ${
             category === "connections" ?  selectedStyle : notSelectStyle
           }`}
           onClick={() => onOptionClick("connections")}
@@ -58,7 +58,7 @@ const Options = ({ category, onOptionClick, className }: PropType) => {
       </div>
       <div className="space-y-4">
         <hr className="border-ndex-text-grey" />
-        <Logout className={`flex text-ndex-dark-text-default rounded-lg h-8 items-center p-5 transition duration-200 ease-in-out hover:bg-ndex-button-bordered-red transition duration-200 ease-in-out`} />
+        <Logout className={`flex text-ndex-light-text-primary dark:text-ndex-dark-text-default rounded-lg h-8 items-center p-5 hover:bg-ndex-button-bordered-red hover:text-ndex-dark-text-default transition duration-200 ease-in-out`} />
       </div>
     </div>
   )

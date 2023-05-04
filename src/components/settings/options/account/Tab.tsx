@@ -13,12 +13,12 @@ export default function AccountTab() {
 
   return (
     <>
-      <div className="flex flex-col w-full items-center space-y-8 mt-4 bg-ndex-dark-background-default">
+      <div className="flex flex-col w-full items-center space-y-8 mt-4 bg-ndex-light-background-primary dark:bg-ndex-dark-background-default">
         {
-          editing 
+          editing
           ? <EditingCard user={user} setEditing={setEditing} />
           : <DefaultCard user={user} setEditing={setEditing} />
-        } 
+        }
       </div>
     </>
   )

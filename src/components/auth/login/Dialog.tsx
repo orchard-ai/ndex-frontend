@@ -65,10 +65,10 @@ export default function Login({ className } : PropType) {
        ${className}
       `}
     >
-      <div className="flex flex-col items-center justify-center w-full h-full space-y-3 text-ndex-dark-text-default">
-        <Logo className="text-6xl text-ndex-dark-text-default" onPress={handleLogoPress}/>
-        <h2 className="text-2xl tracking-normal p-5 text-ndex-light-text-primary dark:text-ndex-dark-text-default">
-          Index anything, search <b>everything</b>
+      <div className="flex flex-col items-center justify-center w-full h-full space-y-3 text-ndex-text-white">
+        <Logo className="text-6xl text-ndex-text-white" onPress={handleLogoPress}/>
+        <h2 className="text-2xl tracking-normal p-5 text-ndex-light-text-primary dark:text-ndex-text-white">
+          Search your things, in <b>one place</b>
         </h2>
         {/* if doesn't work, replace 127.0.0.1 with localhost in URL */}
         <div id="signInButton">

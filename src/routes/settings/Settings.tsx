@@ -61,7 +61,7 @@ export default function Settings() {
   }
 
   return (
-    <div className="flex justify-center max-h-[100vh] min-h-[100vh] bg-ndex-dark-background-default text-gray-100">
+    <div className="flex justify-center max-h-[100vh] min-h-[100vh] bg-ndex-light-background-1 dark:bg-ndex-dark-background-default text-gray-100">
       <Options category={category} onOptionClick={onOptionClick} className={`
         fixed top-0 bottom-0 left-0 overflow-y-scroll overflow-x-hidden
         md:w-3/12 md:block  
@@ -132,7 +132,7 @@ const Title = ({
   }
 
   return (
-    <div className={`text-2xl ${className}`}>
+    <div className={`text-2xl text-ndex-light-text-primary dark:text-ndex-dark-text-default ${className}`}>
       <b> {titleFromCategory(category)} </b>
     </div>
   )

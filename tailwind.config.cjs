@@ -17,7 +17,8 @@ module.exports = {
       colors: {
         "ndex-light-background": {
           1: "#FFFFFF",
-          2: "#EDEDED"
+          2: "#EDEDED",
+          3: "#D2D2D2"
         },
         "ndex-light-text": {
           "primary": "#000000",
@@ -26,7 +27,7 @@ module.exports = {
         "ndex-dark-background": {
           "default": "#2F3437",
           "grey": "#454B4E",
-          "default-selected": "#505558",
+          "default-selected": "#5d6366",
           "grey-selected": "#979A9B",
         },
         "ndex-dark-text": {
