@@ -32,6 +32,7 @@ const router = createBrowserRouter(
     <>
       {/* public routes */}
       <Route path={ROUTES.AUTHENTICATE} element={<AuthScreen/>} />
+      <Route path={"/"} element={<AuthScreen/>} />
 
       {/* private routes */}
       <Route element={<PrivateRoute/>}>

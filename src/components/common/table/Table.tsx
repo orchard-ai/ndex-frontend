@@ -1,7 +1,7 @@
 export interface TableProps  {
     children?: React.ReactNode
     className?: string
- } 
+ }
 
 const Header = ({children, className} : TableProps) => {
     return (
@@ -13,7 +13,7 @@ const Header = ({children, className} : TableProps) => {
 
 const HeaderRow = ({children, className} : TableProps) => {
     return (
-        <tr className={`${className} bg-ndex-table-header`} >
+        <tr className={`${className} bg-ndex-light-table-header dark:bg-ndex-dark-table-header`} >
             {children}
         </tr>
     )
@@ -21,7 +21,7 @@ const HeaderRow = ({children, className} : TableProps) => {
 
 const HeaderCell = ({children, className} : TableProps) => {
     return (
-        <th className={`${className}`} > 
+        <th className={`${className}`} >
             {children}
         </th>
     )
@@ -29,7 +29,7 @@ const HeaderCell = ({children, className} : TableProps) => {
 
 const Row = ({children, className} : TableProps) => {
     return (
-        <tr className={`${className} bg-ndex-table-row`} >
+        <tr className={`${className} bg-ndex-light-table-row dark:bg-ndex-dark-table-row`} >
             {children}
         </tr>
     )
@@ -53,7 +53,7 @@ const Body = ({children, className} : TableProps) => {
 
 const Table = ({children, className} : TableProps) => {
     return (
-        <table className={`table-fixed bg-ndex-table-default ${className}`}>
+        <table className={`table-fixed bg-ndex-light-table-default dark:bg-ndex-dark-table-default ${className}`}>
             {children}
         </table>
     )

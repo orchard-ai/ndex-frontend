@@ -34,10 +34,15 @@ module.exports = {
           "default": "#FFFFFF",
           "grey": "#8D8F91",
         },
-        "ndex-table": {
+        "ndex-dark-table": {
           "default": "#2F3437",
           "header": "#454B4E",
           "row": "#505558"
+        },
+        "ndex-light-table": {
+          "default": "#F1F5F8",
+          "row": "#E5E7EB",
+          "header": "#D1D5DB"
         },
         "ndex-text": {
           white: "#FFFFFF",

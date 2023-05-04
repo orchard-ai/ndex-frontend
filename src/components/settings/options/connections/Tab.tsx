@@ -90,7 +90,9 @@ export default function ConnectionsTab() {
               className="flex flex-col rounded-lg shadow-2xl ring-1 ring-black/5 overflow-hidden"
             >
               <div
-                className="px-4 py-5 sm:p-6 flex-grow-0 bg-ndex-dark-background-grey"
+                className="px-4 py-5 sm:p-6 flex-grow-0
+                bg-ndex-light-background-2
+                dark:bg-ndex-dark-background-grey"
               >
                 <div className="flex items-center justify-between">
                   <div className="flex justify-center">
@@ -99,7 +101,7 @@ export default function ConnectionsTab() {
                       src={connection.icon}
                       alt={connection.alt}
                     />
-                    <h3 className="text-lg m-auto mx-2 leading-6 font-medium text-[#FFFFFF]">
+                    <h3 className="text-lg m-auto mx-2 leading-6 font-medium text-ndex-light-text-primary dark:text-ndex-dark-text-default">
                       {connection.name}
                     </h3>
                   </div>
@@ -108,15 +110,15 @@ export default function ConnectionsTab() {
                   </div>
                 </div>
                 <div className="mt-4">
-                  <div className="text-ndex-text-grey font-bold text-sm my-2">
+                  <div className="text-ndex-light-text-secondary dark:text-ndex-text-grey font-bold text-sm my-2">
                       ABOUT
                   </div>
-                  <p className="mt-2 text-sm leading-5 text-white">
+                  <p className="mt-2 text-sm leading-5 text-ndex-light-text-primary dark:text-ndex-dark-text-default">
                     {connection.description}
                   </p>
                 </div>
                 <div className="mt-4">
-                  <div className="text-ndex-text-grey font-bold text-sm my-2">
+                  <div className="text-ndex-light-text-secondary dark:text-ndex-text-grey font-bold text-sm my-2">
                       CONNECTIONS
                   </div>
                   <AccountTable className="mt-1" />

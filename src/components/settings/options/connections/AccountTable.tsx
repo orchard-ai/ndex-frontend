@@ -3,12 +3,8 @@ import { Menu } from "@headlessui/react";
 import { Fragment } from "react";
 import { Transition } from "@headlessui/react";
 import KebabIcon from "assets/icons/tsx/KebabIcon";
-import { isUsingDarkModeSelector } from "store/local/localSettingsSlice";
-import { useAppSelector } from "store";
 
 const AccountTable = ({className} : {className: string}) => {
-    const darkMode = useAppSelector(isUsingDarkModeSelector);
-
     const handleEdit = () => {
         console.log("EDIT")
     }
@@ -21,7 +17,7 @@ const AccountTable = ({className} : {className: string}) => {
       <Table className={`w-full p-4 border-spacing-0 text-left ${className}`}>
         <Table.Header>
             <Table.HeaderRow>
-                <Table.HeaderCell className="w-[50%] md:w-[30%] p-4">
+                <Table.HeaderCell className="w-[50%] md:w-[30%] p-4 text-ndex-light-text-secondary">
                     Email
                 </Table.HeaderCell>
                 <Table.HeaderCell className="w-[50%] md:w-[70%] p-4" />
@@ -30,7 +26,7 @@ const AccountTable = ({className} : {className: string}) => {
         </Table.Header>
         <Table.Body>
             <Table.Row>
-                <Table.Cell className="p-4 overflow-auto">
+                <Table.Cell className="p-4 overflow-auto text-ndex-light-text-primary dark:text-ndex-dark-text-default">
                     johnsmith@orchid.ai
                 </Table.Cell>
                 <Table.Cell className="p-4"/>

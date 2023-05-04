@@ -98,9 +98,13 @@ export default function Settings() {
             <CloseIcon  className="
               w-10 h-10 p-1
               md:fixed md:top-4 md:right-4
-              stroke-ndex-text-white
-              hover:stroke-ndex-text-grey
-              active:stroke-ndex-text-grey-variant" />
+              stroke-ndex-light-text-primary
+              hover:bg-ndex-light-background-2
+              rounded-lg
+              dark:hover:bg-ndex-dark-background-default-selected
+              dark:stroke-ndex-text-white
+              active:stroke-ndex-text-grey-variant
+              transition duration-200 ease-in-out" />
           </LinkButton>
         </div>
 
