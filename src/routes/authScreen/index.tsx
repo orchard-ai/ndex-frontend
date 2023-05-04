@@ -12,14 +12,11 @@ export default function AuthScreen() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center w-full h-screen bg-ndex-background-1 min-h-[600px]">
+    <div className={`flex flex-col items-center justify-center w-full h-screen min-h-[600px] bg-ndex-light-background-1 dark:bg-ndex-background-1`}>
       {/*  Fixed background */}
-      <div className="fixed items-center justify-center w-full h-full  min-h-[600px]
-        sm:bg-gradient-to-br sm:from-ndex-login-background-1 sm:via-ndex-login-background-2 sm:to-ndex-login-background-3
-      "/>
+      <div className={`fixed items-center justify-center w-full h-full min-h-[600px]`}/>
       {/*  Relative background screen show above the background */}
       <Login className="z-10 relative" />
     </div>
-
   )
 }

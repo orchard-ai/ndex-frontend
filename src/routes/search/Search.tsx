@@ -17,7 +17,7 @@ function InstantCustomSearch({
   refine: any
 }) {
   return (
-    <div className="flex flex-col items-center p-0 w-full h-full bg-ndex-background-1">
+    <div className="flex flex-col items-center p-0 w-full h-screen bg-ndex-light-background-1 dark:bg-ndex-background-1">
       <Header className="w-full" />
       <Combobox
         as="div"

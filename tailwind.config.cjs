@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class',
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     default: {
@@ -14,6 +15,14 @@ module.exports = {
     },
     extend: {
       colors: {
+        "ndex-light-background": {
+          1: "#FFFFFF",
+          2: "#EDEDED"
+        },
+        "ndex-light-text": {
+          "primary": "#000000",
+          "secondary": "#A5A5A5"
+        },
         "ndex-background": {
           1: "#615D75",
           2: "#49475A",

@@ -1,5 +1,7 @@
 import ndex from "assets/icons/svg/ndex.svg";
 import ndexDark from "assets/icons/svg/ndex-dark.svg";
+import { useAppSelector } from "store";
+import { isUsingDarkModeSelector } from "store/local/localSettingsSlice";
 
 
 type PropType = {
@@ -8,20 +10,27 @@ type PropType = {
 }
 
 const Logo = ({className, onPress}: PropType) => {
+    const darkMode = useAppSelector(isUsingDarkModeSelector);
+
+    const logoImage = () => {
+        return darkMode ? <img src={ndex} /> : <img src={ndexDark} />;
+    };
+
     if(onPress) {
         return (
             <div className={`tracking-logo w-40 ${className} rounded-lg
-                hover:bg-ndex-background-3
+                hover:bg-ndex-light-background-2
+                dark:hover:bg-ndex-background-3
                 hover:cursor-pointer
-                active:bg-ndex-background-4 transition duration-200 ease-in-out`} onClick={onPress} >
-                <img src={ndex}/>
+                transition duration-200 ease-in-out`} onClick={onPress} >
+                {logoImage()}
             </div>
         );
     }
 
     return (
         <div className={`tracking-logo w-40 ${className}`} >
-            <img src={ndex}/>
+            {logoImage()}
         </div>
     )
 }

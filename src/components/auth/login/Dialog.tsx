@@ -9,6 +9,7 @@ import { createUser } from "store/user/userAuthSlice";
 import { ROUTES } from "utils/constants";
 import { useNavigate } from "react-router-dom";
 import { decodeGoogleCredential } from "utils/googleAuth";
+import { toggleTheme } from "store/local/localSettingsSlice";
 
 type PropType = {
   className?: string
@@ -48,25 +49,29 @@ export default function Login({ className } : PropType) {
     console.log("Failure");
   }
 
+  const handleLogoPress = () => {
+    dispatch(toggleTheme());
+  }
+
   return (
     <div
       className={`
-      flex flex-col items-center justify-center rounded-lg bg-ndex-background-1
+      flex flex-col items-center justify-center rounded-lg
        sm:pr-24  sm:pl-24  sm:pt-16  sm:pb-16
        md:pr-32  md:pl-32  md:pt-24  md:pb-24
        ${className}
       `}
     >
       <div className="flex flex-col items-center justify-center w-full h-full space-y-3 text-ndex-text-white">
-        <Logo className="text-6xl text-ndex-text-white" />
-        <h2 className="text-2xl tracking-normal p-5">
+        <Logo className="text-6xl text-ndex-text-white" onPress={handleLogoPress}/>
+        <h2 className="text-2xl tracking-normal p-5 text-ndex-light-text-primary dark:text-ndex-text-white">
           Index anything, search <b>everything</b>
         </h2>
         {/* if doesn't work, replace 127.0.0.1 with localhost in URL */}
         <div id="signInButton">
           <GoogleLogin
             text="continue_with"
-            theme="outline"
+            theme="filled_black"
             size="medium"
             ux_mode="popup"
             onSuccess={handleGoogleSuccess}
@@ -81,7 +86,7 @@ export default function Login({ className } : PropType) {
               width: 100,
             }}
           />
-          <p>or</p>
+          <p className="text-ndex-light-text-primary dark:text-ndex-text-white">or</p>
           <hr
             style={{
               color: "black",
