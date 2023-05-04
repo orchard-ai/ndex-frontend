@@ -56,7 +56,7 @@ const Form = ({onSuccess, onFailure} : PropType) => {
     // TODO(philiptam): Remove Signup Form and instead use another page for this
     if(showSignUp) {
         return (
-            <div className="flex flex-col items-center justify-center w-full h-full space-y-3 text-ndex-text-white">
+        <div className="flex flex-col items-center justify-center w-full h-full space-y-3 text-ndex-text-white">
             <Input placeholder={"Email"} value={email} onChange={setEmail} type="email" />
             <Input placeholder={"Password"} value={password} onChange={setPassword} type="password" />
             <div>

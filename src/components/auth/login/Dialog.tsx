@@ -59,7 +59,7 @@ export default function Login({ className } : PropType) {
     >
       <div className="flex flex-col items-center justify-center w-full h-full space-y-3 text-ndex-text-white">
         <Logo className="text-6xl text-ndex-text-white" />
-        <h2 className="text-2xl tracking-title p-5">
+        <h2 className="text-2xl tracking-normal p-5">
           Index anything, search <b>everything</b>
         </h2>
         {/* if doesn't work, replace 127.0.0.1 with localhost in URL */}

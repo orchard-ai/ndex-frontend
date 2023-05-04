@@ -17,3 +17,10 @@ export enum AccountType {
     Google = 1,
     Apple = 2,
 }
+
+export enum FetchState {
+    Idle,
+    Pending,
+    Complete,
+    Failed,
+}

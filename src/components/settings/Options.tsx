@@ -13,8 +13,9 @@ type PropType = {
 }
 
 const Options = ({ category, onOptionClick, className }: PropType) => {
-  const selectedStyle = " bg-ndex-background-3"; // Don't take out the leading space
-  const baseCategoryStyle = "flex text-ndex-text-white rounded-lg h-8 items-center p-5";
+  const selectedStyle = " bg-ndex-background-1"; // Don't take out the leading space
+  const notSelectStyle = " hover:bg-ndex-background-3"; // Don't take out the leading space
+  const baseCategoryStyle = "flex text-ndex-text-white rounded-lg h-8 items-center p-5 transition duration-200 ease-in-out";
 
   const navigate = useNavigate();
 
@@ -32,7 +33,7 @@ const Options = ({ category, onOptionClick, className }: PropType) => {
 
         <div
           className={`w-100 cursor-pointer ${
-            category === "account" ? baseCategoryStyle + selectedStyle : baseCategoryStyle
+            category === "account" ? baseCategoryStyle + selectedStyle : baseCategoryStyle + notSelectStyle
           }`}
           onClick={() => onOptionClick("account")}
         >
@@ -40,7 +41,7 @@ const Options = ({ category, onOptionClick, className }: PropType) => {
         </div>
         <div
           className={`w-100 cursor-pointer ${
-            category === "connections" ? baseCategoryStyle + selectedStyle : baseCategoryStyle
+            category === "connections" ? baseCategoryStyle + selectedStyle : baseCategoryStyle + notSelectStyle
           }`}
           onClick={() => onOptionClick("connections")}
         >
@@ -58,7 +59,7 @@ const Options = ({ category, onOptionClick, className }: PropType) => {
       </div>
       <div className="space-y-4">
         <hr className="border-ndex-text-grey" />
-        <Logout className={`${baseCategoryStyle} hover:hover:bg-ndex-button-bordered-red`} />
+        <Logout className={`${baseCategoryStyle} hover:bg-ndex-button-bordered-red transition duration-200 ease-in-out`} />
       </div>
     </div>
   )
