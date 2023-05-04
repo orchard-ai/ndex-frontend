@@ -25,7 +25,7 @@ export default function NotionRedirect () {
     }, [dispatch])
 
     return (
-        <div className="flex flex-col items-center p-0 w-full h-full bg-ndex-background-1">
+        <div className="flex flex-col items-center p-0 w-full h-full bg-ndex-dark-background-default">
           Loading
         </div>
     );

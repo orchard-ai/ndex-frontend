@@ -35,24 +35,23 @@ export default function Header({className} : PropType) {
       {/* Empty Div to fix centering */}
       <div className="w-10 m-10 p-1 rounded-lg
         hover:bg-ndex-light-background-2
-        dark:hover:bg-ndex-background-3
+        dark:hover:bg-ndex-dark-background-default-selected
         hover:cursor-pointer
         transition duration-200 ease-in-out"
         onClick={() => dispatch(toggleTheme())}
       >
         {toggleThemeIcon()}
       </div>
-      <Logo className="text-6xl text-ndex-text-white text-center" onPress={logoOnClick}/>
+      <Logo className="text-6xl text-ndex-dark-text-default text-center" onPress={logoOnClick}/>
       <Link to={ROUTES.SETTINGS} className="
-        relative flex items-center justify-center rounded-lg w-20 h-10 mr-4 text-center z-10 dark:text-ndex-text-white
+        relative flex items-center justify-center rounded-lg w-20 h-10 mr-4 text-center z-10 dark:text-ndex-dark-text-default
         hover:bg-ndex-light-background-2
-        dark:hover:bg-ndex-background-3
-        active:bg-ndex-background-4
+        dark:hover:bg-ndex-dark-background-default-selected
+        active:bg-ndex-dark-background-4
         transition duration-200 ease-in-out"
       >
         settings
       </Link>
-
     </div>
   )
 }

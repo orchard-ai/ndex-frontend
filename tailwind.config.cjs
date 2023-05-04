@@ -6,10 +6,10 @@ module.exports = {
     default: {
       "primary-text": "ndex-text-white",
       "secondary-text": "ndex-text-grey",
-      primary: "ndex-background-1",
-      secondary: "ndex-background-4",
-      "primary-variant": "ndex-background-3",
-      "secondary-variant": "ndex-background-2",
+      primary: "ndex-dark-background-default",
+      secondary: "ndex-dark-background-4",
+      "primary-variant": "ndex-dark-background-default-selected",
+      "secondary-variant": "ndex-dark-background-grey",
       accent: "ndex-button-filled-dark",
       input: "ndex-input",
     },
@@ -23,16 +23,20 @@ module.exports = {
           "primary": "#000000",
           "secondary": "#A5A5A5"
         },
-        "ndex-background": {
-          1: "#615D75",
-          2: "#49475A",
-          3: "#545068",
-          4: "#3B3A45",
+        "ndex-dark-background": {
+          "default": "#2F3437",
+          "grey": "#454B4E",
+          "default-selected": "#505558",
+          "grey-selected": "#979A9B",
+        },
+        "ndex-dark-text": {
+          "default": "#FFFFFF",
+          "grey": "#8D8F91",
         },
         "ndex-table": {
-          "default": "#49475A",
-          "header": "#545068",
-          "row": "#615D75"
+          "default": "#2F3437",
+          "header": "#454B4E",
+          "row": "#505558"
         },
         "ndex-text": {
           white: "#FFFFFF",

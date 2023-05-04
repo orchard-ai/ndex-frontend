@@ -26,7 +26,6 @@ export const connections = [
     href: NOTION_FULL_OAUTH_URL,
     icon: getSourceIcon("notion"),
     alt: "Notion Icon",
-    bgColor: "bg-[#3B3A45]",
     detailedDescription: "Index all your notions notes, tasks, etc."
   },
   {
@@ -36,7 +35,6 @@ export const connections = [
     href: "#",
     icon: getSourceIcon("gmail"),
     alt: "Gmail Icon",
-    bgColor: "bg-[#3B3A45]",
     detailedDescription: "Index your emails, messages, and important documents from Google Gmail!"
   },
   {
@@ -46,7 +44,6 @@ export const connections = [
     href: "#",
     icon: getSourceIcon("g-calendar"),
     alt: "Google Calendar Icon",
-    bgColor: "bg-[#3B3A45]",
     detailedDescription: "Index your events your calendar events from Google Calendar!"
   },
   // {

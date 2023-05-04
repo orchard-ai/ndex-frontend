@@ -3,8 +3,11 @@ import { Menu } from "@headlessui/react";
 import { Fragment } from "react";
 import { Transition } from "@headlessui/react";
 import KebabIcon from "assets/icons/tsx/KebabIcon";
+import { isUsingDarkModeSelector } from "store/local/localSettingsSlice";
+import { useAppSelector } from "store";
 
 const AccountTable = ({className} : {className: string}) => {
+    const darkMode = useAppSelector(isUsingDarkModeSelector);
 
     const handleEdit = () => {
         console.log("EDIT")
@@ -15,7 +18,7 @@ const AccountTable = ({className} : {className: string}) => {
     }
 
     return (
-      <Table className={`w-full p-4 border-separate border-spacing-0 text-left ${className}`}>
+      <Table className={`w-full p-4 border-spacing-0 text-left ${className}`}>
         <Table.Header>
             <Table.HeaderRow>
                 <Table.HeaderCell className="w-[50%] md:w-[30%] p-4">
@@ -47,14 +50,14 @@ const AccountTable = ({className} : {className: string}) => {
                         leaveFrom="transform opacity-100 scale-100"
                         leaveTo="transform opacity-0 scale-95"
                         >
-                            <Menu.Items className="absolute z-50 right-0 mt-2 w-32 origin-top-left divide-y divide-ndex-background-1 rounded-md bg-ndex-background-4 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                            <Menu.Items className="absolute z-50 right-0 mt-2 w-32 origin-top-left divide-y bg-ndex-dark-background-default divide-ndex-dark-background-grey rounded-md bg-ndex-dark-background-4 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                                 <div className="px-1 py-1 ">
                                     <Menu.Item>
                                         {({ active }) => (
                                         <button
                                             onClick={handleEdit}
-                                            className={`${
-                                            active ? 'bg-ndex-background-2 text-ndex-text-grey' : 'text-white'
+                                            className={`bg-ndex-dark-background-default
+                                            ${active ? 'bg-ndex-dark-background-default-selected' : 'text-white'
                                             } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                                         >
                                             Edit
@@ -67,8 +70,9 @@ const AccountTable = ({className} : {className: string}) => {
                                         {({ active }) => (
                                         <button
                                             onClick={handleDelete}
-                                            className={`${
-                                            active ? 'bg-ndex-background-2 text-ndex-text-grey' : 'text-white'
+                                            className={`
+                                            bg-ndex-dark-background-default
+                                            ${active ? 'bg-ndex-dark-background-default-selected text-ndex-text-grey' : 'text-white'
                                             } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                                         >
                                             Delete

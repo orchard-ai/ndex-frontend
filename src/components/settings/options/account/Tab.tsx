@@ -13,7 +13,7 @@ export default function AccountTab() {
 
   return (
     <>
-      <div className="flex flex-col w-full items-center space-y-8 mt-4 bg-ndex-background-1">
+      <div className="flex flex-col w-full items-center space-y-8 mt-4 bg-ndex-dark-background-default">
         {
           editing 
           ? <EditingCard user={user} setEditing={setEditing} />

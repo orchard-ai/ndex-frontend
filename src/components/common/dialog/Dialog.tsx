@@ -68,10 +68,10 @@ export default function Dialog({
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <HeadlessDialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-ndex-background-4  p-6 text-left align-middle shadow-xl transition-all">
+                <HeadlessDialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-ndex-dark-background-default  p-6 text-left align-middle shadow-xl transition-all">
                   <HeadlessDialog.Title
                     as="h3"
-                    className="flex w-full text-lg font-medium justify-between text-ndex-text-white mb-4"
+                    className="flex w-full text-lg font-medium justify-between text-ndex-dark-text-default mb-4"
                   >
                     {title}
                     {headerContent}

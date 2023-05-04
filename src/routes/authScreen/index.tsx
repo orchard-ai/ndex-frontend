@@ -12,7 +12,7 @@ export default function AuthScreen() {
   }
 
   return (
-    <div className={`flex flex-col items-center justify-center w-full h-screen min-h-[600px] bg-ndex-light-background-1 dark:bg-ndex-background-1`}>
+    <div className={`flex flex-col items-center justify-center w-full h-screen min-h-[600px] bg-ndex-light-background-1 dark:bg-ndex-dark-background-default`}>
       {/*  Fixed background */}
       <div className={`fixed items-center justify-center w-full h-full min-h-[600px]`}/>
       {/*  Relative background screen show above the background */}

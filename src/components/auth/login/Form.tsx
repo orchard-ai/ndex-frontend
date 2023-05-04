@@ -56,7 +56,7 @@ const Form = ({onSuccess, onFailure} : PropType) => {
     // TODO(philiptam): Remove Signup Form and instead use another page for this
     if(showSignUp) {
         return (
-        <div className="flex flex-col items-center justify-center w-full h-full space-y-3 text-ndex-light-text-primary dark:text-ndex-text-white">
+        <div className="flex flex-col items-center justify-center w-full h-full space-y-3 text-ndex-light-text-primary dark:text-ndex-dark-text-default">
             <Input placeholder={"Email"} value={email} onChange={setEmail} type="email" />
             <Input placeholder={"Password"} value={password} onChange={setPassword} type="password" />
             <div>
@@ -73,7 +73,7 @@ const Form = ({onSuccess, onFailure} : PropType) => {
                 Have an account?
                 {" "}
                 <button
-                className="underline underline-offset-4 hover:text-ndex-text-column-hover text-ndex-light-text-primary dark:text-ndex-text-white"
+                className="underline underline-offset-4 hover:text-ndex-text-column-hover text-ndex-light-text-primary dark:text-ndex-dark-text-default"
                 onClick={() => {
                     setShowSignUp(false);
                 }}>
@@ -87,7 +87,7 @@ const Form = ({onSuccess, onFailure} : PropType) => {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center w-full h-full space-y-3 text-ndex-light-text-primary dark:text-ndex-text-white">
+        <div className="flex flex-col items-center justify-center w-full h-full space-y-3 text-ndex-light-text-primary dark:text-ndex-dark-text-default">
             <Input placeholder={"Email"} value={email} onChange={setEmail} type="email" />
             <Input placeholder={"Password"} value={password} onChange={setPassword} type="password" />
             <div>
@@ -101,7 +101,7 @@ const Form = ({onSuccess, onFailure} : PropType) => {
             <div>
                 Don't have an account?
                 {" "}
-                <button className="underline underline-offset-4 text-ndex-light-text-primary dark:text-ndex-text-white hover:text-ndex-text-column-hover"
+                <button className="underline underline-offset-4 text-ndex-light-text-primary dark:text-ndex-dark-text-default hover:text-ndex-text-column-hover"
                  onClick={() => {
                     setShowSignUp(true);
                 }}>

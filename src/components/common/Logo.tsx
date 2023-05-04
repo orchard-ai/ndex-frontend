@@ -20,7 +20,7 @@ const Logo = ({className, onPress}: PropType) => {
         return (
             <div className={`tracking-logo w-40 ${className} rounded-lg
                 hover:bg-ndex-light-background-2
-                dark:hover:bg-ndex-background-3
+                dark:hover:bg-ndex-dark-background-default-selected
                 hover:cursor-pointer
                 transition duration-200 ease-in-out`} onClick={onPress} >
                 {logoImage()}

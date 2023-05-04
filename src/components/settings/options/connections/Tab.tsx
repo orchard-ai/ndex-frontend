@@ -3,11 +3,6 @@ import LinkButton from "components/common/LinkButton"
 import Dialog from "components/common/dialog/Dialog"
 import AccountTable from "components/settings/options/connections/AccountTable";
 
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ")
-}
-
 // Notion how to oauth connect publicly
 // https://developers.notion.com/docs/authorization#step-1-navigate-the-user-to-the-integrations-authorization-url
 export default function ConnectionsTab() {
@@ -33,7 +28,6 @@ export default function ConnectionsTab() {
     href: string,
     icon: string,
     alt: string,
-    bgColor: string,
     detailedDescription: string}) => {
       return <Dialog
         buttonContent={"Add Account"}
@@ -89,17 +83,14 @@ export default function ConnectionsTab() {
   return (
     <div>
       <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-16">
-        <div className="grid grid-cols-1 gap-4">
+        <div className="grid grid-cols-1 gap-4 space-y-4">
           {connections.map((connection) => (
             <div
               key={connection.id}
-              className="flex flex-col rounded-lg shadow-lg overflow-hidden"
+              className="flex flex-col rounded-lg shadow-2xl ring-1 ring-black/5 overflow-hidden"
             >
               <div
-                className={classNames(
-                  connection.bgColor,
-                  "px-4 py-5 sm:p-6 flex-grow-0"
-                )}
+                className="px-4 py-5 sm:p-6 flex-grow-0 bg-ndex-dark-background-grey"
               >
                 <div className="flex items-center justify-between">
                   <div className="flex justify-center">
@@ -120,7 +111,7 @@ export default function ConnectionsTab() {
                   <div className="text-ndex-text-grey font-bold text-sm my-2">
                       ABOUT
                   </div>
-                  <p className="mt-2 text-sm leading-5 text-[#FFFFFF]">
+                  <p className="mt-2 text-sm leading-5 text-white">
                     {connection.description}
                   </p>
                 </div>
@@ -128,7 +119,7 @@ export default function ConnectionsTab() {
                   <div className="text-ndex-text-grey font-bold text-sm my-2">
                       CONNECTIONS
                   </div>
-                  <AccountTable className="mt-4" />
+                  <AccountTable className="mt-1" />
                 </div>
               </div>
             </div>

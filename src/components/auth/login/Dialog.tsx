@@ -9,14 +9,17 @@ import { createUser } from "store/user/userAuthSlice";
 import { ROUTES } from "utils/constants";
 import { useNavigate } from "react-router-dom";
 import { decodeGoogleCredential } from "utils/googleAuth";
-import { toggleTheme } from "store/local/localSettingsSlice";
+import { isUsingDarkModeSelector, toggleTheme } from "store/local/localSettingsSlice";
+import { useAppSelector } from "store";
 
 type PropType = {
   className?: string
 }
 
 export default function Login({ className } : PropType) {
-  const dispatch = useAppDispatch();
+  const darkMode = useAppSelector(isUsingDarkModeSelector);
+
+  const dispatch = useAppDispatch(); 
 
   const navigate = useNavigate();
 
@@ -62,16 +65,16 @@ export default function Login({ className } : PropType) {
        ${className}
       `}
     >
-      <div className="flex flex-col items-center justify-center w-full h-full space-y-3 text-ndex-text-white">
-        <Logo className="text-6xl text-ndex-text-white" onPress={handleLogoPress}/>
-        <h2 className="text-2xl tracking-normal p-5 text-ndex-light-text-primary dark:text-ndex-text-white">
+      <div className="flex flex-col items-center justify-center w-full h-full space-y-3 text-ndex-dark-text-default">
+        <Logo className="text-6xl text-ndex-dark-text-default" onPress={handleLogoPress}/>
+        <h2 className="text-2xl tracking-normal p-5 text-ndex-light-text-primary dark:text-ndex-dark-text-default">
           Index anything, search <b>everything</b>
         </h2>
         {/* if doesn't work, replace 127.0.0.1 with localhost in URL */}
         <div id="signInButton">
           <GoogleLogin
             text="continue_with"
-            theme="filled_black"
+            theme={`${darkMode ? "outline" : "filled_black"}`}
             size="medium"
             ux_mode="popup"
             onSuccess={handleGoogleSuccess}
@@ -86,7 +89,7 @@ export default function Login({ className } : PropType) {
               width: 100,
             }}
           />
-          <p className="text-ndex-light-text-primary dark:text-ndex-text-white">or</p>
+          <p className="text-ndex-light-text-primary dark:text-ndex-dark-text-default">or</p>
           <hr
             style={{
               color: "black",
