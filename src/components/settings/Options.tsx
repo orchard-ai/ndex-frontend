@@ -23,7 +23,7 @@ const Options = ({ category, onOptionClick, className }: PropType) => {
   };
 
   return (
-    <div className={`bg-ndex-light-background-1 border-r dark:bg-ndex-dark-background-grey pl-8 pr-4 space-y-4 ${className}`}>
+    <div className={`bg-ndex-light-background-1 border-r dark:border-none dark:bg-ndex-dark-background-grey pl-8 pr-4 space-y-4 ${className}`}>
       <Logo className="text-4xl text-ndex-dark-text-default mt-2 mb-12" onPress={logoOnPress}/>
       <div className="space-y-4">
         <div className="text-ndex-light-text-secondary dark:text-ndex-text-grey text-xs font-bold p-2">

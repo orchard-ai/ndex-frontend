@@ -80,9 +80,11 @@ export default function Dialog({
                     >
                       <CloseIcon className="
                         absolute top-6 right-4 w-8 h-8
-                      stroke-ndex-text-white
-                      hover:stroke-ndex-text-grey
-                      active:stroke-ndex-text-grey-variant
+                        rounded-lg
+                        hover:bg-ndex-dark-background-default-selected
+                        stroke-ndex-text-white
+                        active:stroke-ndex-text-grey-variant
+                        transition duration-200 ease-in-out
                       " />
                     </button>
                   </HeadlessDialog.Title>

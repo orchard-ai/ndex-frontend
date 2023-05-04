@@ -56,7 +56,7 @@ module.exports = {
         },
         "ndex-button": {
           "bordered-green": "#4CAF50",
-          "bordered-green-hover" : "#3E7E41",
+          "bordered-green-hover" : "#3E8D42",
           "bordered-red": "#C52F00",
           "bordered-red-hover": "#AE4C2E",
           "bordered-grey": "#808086",

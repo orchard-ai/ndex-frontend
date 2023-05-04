@@ -4,9 +4,10 @@ import { useNavigate } from "react-router-dom"
 
 import Input from "components/common/Input";
 import { AccountType, UserAuthRequest } from "api/models";
-import { useAppDispatch } from "store";
-import { createUser, loginUser } from "store/user/userAuthSlice";
+import { useAppDispatch, useAppSelector } from "store";
+import { createUser, loginUser, userFetchStatusSelector } from "store/user/userAuthSlice";
 import { ROUTES } from "utils/constants";
+import { isFetchStatePending } from "utils/helpers";
 
 type PropType = {
     onSuccess: (credentials : string) => void
@@ -22,6 +23,30 @@ const Form = ({onSuccess, onFailure} : PropType) => {
     const navigate = useNavigate();
 
     const dispatch = useAppDispatch();
+
+    const userFetchState = useAppSelector(userFetchStatusSelector);
+
+    const renderButton = (buttonText: string, onClickFunc: () => void) => {
+        if(isFetchStatePending(userFetchState)) {
+            return (
+                <button className="
+                    flex text-ndex-button-text-filled-light border-2 rounded-lg w-40 h-8 shadow-md bg-ndex-button-filled-light
+                    active:bg-ndex-button-active-light justify-center items-center"
+                >
+                    <div className="animate-spin border-b-2 border-gray-400 h-4 w-4 rounded-full items-center"/>
+                </button>
+            );
+        } else {
+            return (
+                <button className="flex text-ndex-button-text-filled-light border-2 rounded-lg w-40 h-8 shadow-md bg-ndex-button-filled-light
+                    active:bg-ndex-button-active-light justify-center items-center"
+                    onClick={onClickFunc}
+                >
+                    {buttonText}
+                </button>
+            );
+        }
+    };
 
     const handleCredentialSignUp = async() => {
         const form: UserAuthRequest = {
@@ -59,16 +84,7 @@ const Form = ({onSuccess, onFailure} : PropType) => {
         <div className="flex flex-col items-center justify-center w-full h-full space-y-3 text-ndex-light-text-primary dark:text-ndex-dark-text-default">
             <Input placeholder={"Email"} value={email} onChange={setEmail} type="email" />
             <Input placeholder={"Password"} value={password} onChange={setPassword} type="password" />
-            <div>
-                <button className="text-ndex-button-text-filled-light border-2 rounded-lg w-40 h-8 shadow-md bg-ndex-button-filled-light
-                    active:bg-ndex-button-active-light"
-                    onClick={handleCredentialSignUp}
-                >
-                    {" "}
-                        Sign Up
-                    {" "}
-                </button>
-            </div>
+            {renderButton("Sign up", handleCredentialSignUp)}
             <div>
                 Have an account?
                 {" "}
@@ -90,14 +106,7 @@ const Form = ({onSuccess, onFailure} : PropType) => {
         <div className="flex flex-col items-center justify-center w-full h-full space-y-3 text-ndex-light-text-primary dark:text-ndex-dark-text-default">
             <Input placeholder={"Email"} value={email} onChange={setEmail} type="email" />
             <Input placeholder={"Password"} value={password} onChange={setPassword} type="password" />
-            <div>
-                <button className="text-ndex-button-text-filled-light border-2 rounded-lg w-40 h-8 shadow-md bg-ndex-button-filled-light
-                    active:bg-ndex-button-active-light"
-                    onClick={handleLogin}
-                >
-                    Log In
-                </button>
-            </div>
+            {renderButton("Log In", handleLogin)}
             <div>
                 Don't have an account?
                 {" "}

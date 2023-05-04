@@ -34,7 +34,10 @@ const AccountTable = ({className} : {className: string}) => {
                     <Menu as="div" className="inline-block">
                         <div>
                             <Menu.Button className="flex w-full hover:opacity-50 active:opacity-30">
-                                <KebabIcon className="w-8 h-8"/>
+                                <KebabIcon className="w-8 h-8
+                                    stroke-ndex-light-text-primary
+                                    rounded-lg
+                                    dark:stroke-ndex-text-white"/>
                             </Menu.Button>
                         </div>
                         <Transition

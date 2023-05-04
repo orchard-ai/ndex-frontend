@@ -30,11 +30,11 @@ export default function ConnectionsTab() {
     alt: string,
     detailedDescription: string}) => {
       return <Dialog
-        buttonContent={"Add Account"}
+        buttonContent={"add account"}
         buttonClassName="
-          rounded-md bg-opacity-20 p-2 text-sm text-ndex-button-bordered-green border-ndex-button-bordered-green border-2
-          hover:bg-opacity-30 hover:text-ndex-button-bordered-green-hover hover:border-ndex-button-bordered-green-hover
-          focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+          rounded-lg p-3 text-sm text-ndex-text-white bg-ndex-button-bordered-green shadow-md
+          hover:bg-ndex-button-bordered-green-hover
+          transition duration-200 ease-in-out"
         buttonContainerClassName="ml-2"
         content={(
         <div className="block">
@@ -48,9 +48,10 @@ export default function ConnectionsTab() {
           </div>
           <div className="flex justify-center align-middle my-4">
             <LinkButton
-              className="text-ndex-button-bordered-green border-ndex-button-bordered-green rounded-md p-2 border-2
-               hover:text-ndex-button-bordered-green-hover hover:border-ndex-button-bordered-green-hover
-               "
+              className="
+                rounded-lg p-3 text-sm text-ndex-text-white bg-ndex-button-bordered-green shadow-md
+                hover:bg-ndex-button-bordered-green-hover
+                transition duration-200 ease-in-out"
               href={connection.href}
             >
               Authenticate
@@ -87,7 +88,7 @@ export default function ConnectionsTab() {
           {connections.map((connection) => (
             <div
               key={connection.id}
-              className="flex flex-col rounded-lg shadow-2xl ring-1 ring-black/5 overflow-hidden"
+              className="flex flex-col rounded-lg ring-1 ring-black/5 overflow-hidden"
             >
               <div
                 className="px-4 py-5 sm:p-6 flex-grow-0
