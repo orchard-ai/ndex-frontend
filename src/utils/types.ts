@@ -32,3 +32,7 @@ export type User = {
   name: string
   email: string
 }
+
+export type Account = {
+  email: string
+}

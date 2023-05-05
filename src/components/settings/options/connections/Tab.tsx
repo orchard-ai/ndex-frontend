@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { connections } from "utils/constants"
 import LinkButton from "components/common/LinkButton"
 import Dialog from "components/common/dialog/Dialog"
@@ -20,6 +21,12 @@ export default function ConnectionsTab() {
       return
     }
   }
+
+  const [accounts, setAccounts] = useState([
+    {email : "john@orchid.ai"},
+    {email: "zhi@ndex.com"},
+    {email: "xin@ndex.com"}
+  ]);
 
   const addAccountDialog = (connection : {
     id: number,
@@ -122,7 +129,7 @@ export default function ConnectionsTab() {
                   <div className="text-ndex-light-text-secondary dark:text-ndex-text-grey font-bold text-sm my-2">
                       CONNECTIONS
                   </div>
-                  <AccountTable className="mt-1" />
+                  <AccountTable accounts={accounts} className="mt-1" />
                 </div>
               </div>
             </div>

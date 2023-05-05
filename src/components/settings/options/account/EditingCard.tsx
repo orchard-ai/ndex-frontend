@@ -48,7 +48,7 @@ const EditingCard = ({user, setEditing} : PropType) => {
           <div className="text-ndex-text-grey  font-bold text-sm">
             PASSWORD
           </div>
-          <button className="py-2 px-4 font-bold text-sm rounded-lg text-ndex-dark-text-default bg-ndex-button-bordered-red hover:">
+          <button className="py-2 px-4 font-bold text-sm rounded-lg text-ndex-dark-text-default bg-ndex-button-bordered-red hover:opacity-80">
             Change Password
           </button>
         </div>

@@ -59,9 +59,7 @@ export default function Login({ className } : PropType) {
   return (
     <div
       className={`
-      flex flex-col items-center justify-center rounded-lg
-       sm:pr-24  sm:pl-24  sm:pt-16  sm:pb-16
-       md:pr-32  md:pl-32  md:pt-24  md:pb-24
+      flex items-center justify-center rounded-lg
        ${className}
       `}
     >
