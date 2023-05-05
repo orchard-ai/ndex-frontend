@@ -1,3 +1,4 @@
+import LinkButton from "components/common/LinkButton";
 import Logo from "components/common/Logo";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -19,11 +20,14 @@ const AddFirstConnection = () => {
 
     const Card = ({connection}:{connection: Connection}) => {
        return (
-            <div className="flex flex-col justify-between w-[100%] h-64 p-8 bg-white border-2 rounded-lg shadow-md">
+            <div className="flex flex-col justify-between w-[100%] h-64 p-8 bg-ndex-light-background-1 border-2 rounded-lg shadow-md
+                dark:bg-ndex-dark-background-grey
+                dark:text-ndex-dark-text-default
+                dark:border-none">
                 <div className="flex">
                     <img
-                    className="h-8 w-8 p-1"
-                    src={connection.icon}
+                        className="h-8 w-8 p-1"
+                        src={connection.icon}
                     />
                     <div className="align-middle text-md my-auto hidden sm:block">
                         {connection.name}
@@ -32,10 +36,15 @@ const AddFirstConnection = () => {
                 <div>
                     {connection.description}
                 </div>
-                <button className="flex text-ndex-button-text-filled-light border-2 rounded-lg w-40 h-8 shadow-sm bg-ndex-button-filled-light
-                        active:bg-ndex-button-active-light justify-center items-center mx-auto">
+                <LinkButton
+                    className="
+                        rounded-lg p-3 text-sm text-ndex-text-white bg-ndex-button-bordered-green shadow-md mx-auto
+                        hover:bg-ndex-button-bordered-green-hover
+                        transition duration-200 ease-in-out"
+                    href={connection.href}
+                >
                     add account
-                </button>
+                </LinkButton>
             </div>
         );
     };
