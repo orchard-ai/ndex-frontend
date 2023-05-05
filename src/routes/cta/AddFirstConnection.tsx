@@ -1,5 +1,7 @@
+import Logo from "components/common/Logo";
 import { useState } from "react";
-import { connections } from "utils/constants"
+import { useNavigate } from "react-router-dom";
+import { ROUTES, connections } from "utils/constants"
 
 
 type Connection = {
@@ -13,31 +15,61 @@ type Connection = {
 }
 
 const AddFirstConnection = () => {
+    const navigate = useNavigate();
 
     const Card = ({connection}:{connection: Connection}) => {
        return (
-        <div className="w-[90%] p-4 bg-white">
-            <div>
-                {connection.name}
+            <div className="flex flex-col justify-between w-[100%] h-64 p-8 bg-white border-2 rounded-lg shadow-md">
+                <div className="flex">
+                    <img
+                    className="h-8 w-8 p-1"
+                    src={connection.icon}
+                    />
+                    <div className="align-middle text-md my-auto hidden sm:block">
+                        {connection.name}
+                    </div>
+                </div>
+                <div>
+                    {connection.description}
+                </div>
+                <button className="flex text-ndex-button-text-filled-light border-2 rounded-lg w-40 h-8 shadow-sm bg-ndex-button-filled-light
+                        active:bg-ndex-button-active-light justify-center items-center mx-auto">
+                    add account
+                </button>
             </div>
-            <div>
-                Connection Description
-            </div>
-            <div>
-                Add Button
-            </div>
-        </div>)
-    }
+        );
+    };
+
+    const onSkipPress = () => {
+        navigate(ROUTES.SEARCH);
+    };
 
     return (
-    <div className="flex flex-col items-center  justify-center">
-       {connections.map((connection : Connection) => {
-            return (
-                <Card connection={connection} />
-            )
-       })}
-    </div>
-    )
+        <div className="flex flex-col h-screen bg-ndex-light-background-1 dark:bg-ndex-dark-background-default py-5 items-center ">
+            <div className="flex flex-row justify-between items-center px-10 w-full">
+                <Logo/>
+                <button className="items-center justify-center rounded-lg w-20 h-10 mr-4 text-center dark:text-ndex-dark-text-default
+                    hover:bg-ndex-light-background-2
+                    dark:hover:bg-ndex-dark-background-default-selected
+                    active:bg-ndex-dark-background-4
+                    transition duration-200 ease-in-out"
+                    onClick={onSkipPress}
+                >
+                    skip
+                </button>
+            </div>
+            <div className="text-ndex-light-text-primary dark:text-ndex-dark-text-default text-lg font-semibold my-10">
+                Integrate with your first platform
+            </div>
+            <div className="flex-col w-1/2 items-center justify-center grid grid-cols-1 sm:grid-cols-2 gap-10">
+                {connections.map((connection : Connection) => {
+                    return (
+                        <Card connection={connection} />
+                    )
+                })}
+            </div>
+        </div>
+    );
 }
 
 

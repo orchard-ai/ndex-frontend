@@ -7,7 +7,7 @@ import { AccountType, UserAuthRequest } from "api/models";
 import { useAppDispatch, useAppSelector } from "store";
 import { createUser, loginUser, userFetchStatusSelector } from "store/user/userAuthSlice";
 import { ROUTES } from "utils/constants";
-import { isFetchStatePending } from "utils/helpers";
+import { isFetchStateFailed, isFetchStatePending } from "utils/helpers";
 
 type PropType = {
     onSuccess: (credentials : string) => void

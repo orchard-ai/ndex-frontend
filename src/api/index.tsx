@@ -7,6 +7,7 @@ enum apiRoutes {
     userSignup = '/user/signup',
     userLogin = '/user/login',
     notionAccessToken = '/notion/obtain_access_token',
+    userIntegrations = '/user/integrations'
 }
 
 const method = {
@@ -70,8 +71,23 @@ const fetchNotionAccessToken = async(tempCode: string) => {
     return response;
 };
 
+// GET USER INTEGRATIONS
+const getUserIntegrations = async(ndexToken: string) => {
+    const response = await fetch(getRoute(apiRoutes.userIntegrations), {
+        method: method.GET,
+        headers: {
+            'Authorization': `Bearer ${ndexToken}`
+        }
+    })
+        .then(response => response.json())
+        .catch(err => { throw new Error('Error fetching user integrations'); });
+
+    return response
+};
+
 export {
     signupUser,
     signinUser,
-    fetchNotionAccessToken
+    fetchNotionAccessToken,
+    getUserIntegrations
 };

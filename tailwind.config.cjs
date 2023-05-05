@@ -52,7 +52,7 @@ module.exports = {
           "grey-variant": "#575757",
         },
         "ndex-button-text": {
-          "filled-light": "#6A6A6A",
+          "filled-light": "#7A7A7A",
         },
         "ndex-button": {
           "bordered-green": "#4CAF50",
