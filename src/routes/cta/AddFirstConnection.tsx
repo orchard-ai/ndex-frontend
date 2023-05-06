@@ -3,7 +3,8 @@ import Logo from "components/common/Logo";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ROUTES, connections } from "utils/constants"
-
+import { useAppDispatch } from "store";
+import { toggleTheme } from "store/local/localSettingsSlice";
 
 type Connection = {
     id: number,
@@ -18,11 +19,14 @@ type Connection = {
 const AddFirstConnection = () => {
     const navigate = useNavigate();
 
+    const dispatch = useAppDispatch(); 
+
     const Card = ({connection}:{connection: Connection}) => {
        return (
-            <div className="flex flex-col justify-between w-[100%] h-64 p-8 bg-ndex-light-background-1 border-2 rounded-lg shadow-md
-                dark:bg-ndex-dark-background-grey
-                dark:text-ndex-dark-text-default
+            <div className="flex flex-col justify-between w-full h-64 p-8 border-2 rounded-lg shadow-md
+                bg-ndex-light-background-1 dark:bg-ndex-dark-background-grey
+                dark:border-ndex-dark-background-grey
+                dark:text-white
                 dark:border-none">
                 <div className="flex">
                     <img
@@ -38,7 +42,10 @@ const AddFirstConnection = () => {
                 </div>
                 <LinkButton
                     className="
-                        rounded-lg p-3 text-sm text-ndex-text-white bg-ndex-button-bordered-green shadow-md mx-auto
+                        flex justify-center items-center  w-full h-8  rounded-lg p-4 shadow-md text-ndex-text-white bg-ndex-button-bordered-green
+                        text-sm dark:text-md
+                        border-2 dark:border-0
+                        dark:shadow-grey
                         hover:bg-ndex-button-bordered-green-hover
                         transition duration-200 ease-in-out"
                     href={connection.href}
@@ -53,10 +60,14 @@ const AddFirstConnection = () => {
         navigate(ROUTES.SEARCH);
     };
 
+    const handleLogoPress = () => {
+        dispatch(toggleTheme());
+      }
+
     return (
-        <div className="flex flex-col h-screen bg-ndex-light-background-1 dark:bg-ndex-dark-background-default py-5 items-center ">
+        <div className="flex flex-col h-full bg-ndex-light-background-1 dark:bg-ndex-dark-background-default py-5 items-center ">
             <div className="flex flex-row justify-between items-center px-10 w-full">
-                <Logo/>
+                <Logo onPress={handleLogoPress} />
                 <button className="items-center justify-center rounded-lg w-20 h-10 mr-4 text-center dark:text-ndex-dark-text-default
                     hover:bg-ndex-light-background-2
                     dark:hover:bg-ndex-dark-background-default-selected
@@ -67,10 +78,10 @@ const AddFirstConnection = () => {
                     skip
                 </button>
             </div>
-            <div className="text-ndex-light-text-primary dark:text-ndex-dark-text-default text-lg font-semibold my-10">
+            <div className="items-center justify-center text-center text-ndex-light-text-primary dark:text-ndex-dark-text-default text-3xl font-light dark:font-extralight my-10">
                 Integrate with your first platform
             </div>
-            <div className="flex-col w-1/2 items-center justify-center grid grid-cols-1 sm:grid-cols-2 gap-10">
+            <div className="flex-col w-full max-w-3xl items-center justify-center grid grid-cols-1 sm:grid-cols-2 gap-10 px-4 sm:p-0">
                 {connections.map((connection : Connection) => {
                     return (
                         <Card connection={connection} />

@@ -13,7 +13,7 @@ const Header = ({children, className} : TableProps) => {
 
 const HeaderRow = ({children, className} : TableProps) => {
     return (
-        <tr className={`${className} bg-ndex-light-table-header dark:bg-ndex-dark-table-header`} >
+        <tr className={`${className} `} >
             {children}
         </tr>
     )
@@ -29,7 +29,7 @@ const HeaderCell = ({children, className} : TableProps) => {
 
 const Row = ({children, className} : TableProps) => {
     return (
-        <tr className={`${className} bg-ndex-light-table-row dark:bg-ndex-dark-table-row`} >
+        <tr className={`${className}`} >
             {children}
         </tr>
     )
@@ -53,7 +53,7 @@ const Body = ({children, className} : TableProps) => {
 
 const Table = ({children, className} : TableProps) => {
     return (
-        <table className={`table-fixed bg-ndex-light-table-default dark:bg-ndex-dark-table-default ${className}`}>
+        <table className={`table-fixed ${className}`}>
             {children}
         </table>
     )

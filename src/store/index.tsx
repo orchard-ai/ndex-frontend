@@ -45,8 +45,10 @@ store.subscribe(() => {
 
     if (isDarkMode) {
       document.documentElement.classList.add('dark');
+      document.body.classList.add('dark-background');
     } else {
       document.documentElement.classList.remove('dark');
+      document.body.classList.remove('dark-background');
     }
   }
 })

@@ -18,9 +18,7 @@ type PropType = {
 
 export default function Login({ className } : PropType) {
   const darkMode = useAppSelector(isUsingDarkModeSelector);
-
-  const dispatch = useAppDispatch(); 
-
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const handleGoogleSuccess = async(credentialRes: CredentialResponse) => {
@@ -63,7 +61,7 @@ export default function Login({ className } : PropType) {
        ${className}
       `}
     >
-      <div className="flex flex-col items-center justify-center w-full h-full space-y-3 text-ndex-text-white">
+      <div className="flex flex-col items-center justify-center w-full space-y-3 text-ndex-text-white">
         <Logo className="text-6xl text-ndex-text-white" onPress={handleLogoPress}/>
         <h2 className="text-2xl tracking-normal p-5 text-ndex-light-text-primary dark:text-ndex-text-white">
           Search your things, in <b>one place</b>

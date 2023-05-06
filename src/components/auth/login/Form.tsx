@@ -110,7 +110,7 @@ const Form = ({onSuccess, onFailure} : PropType) => {
             <div>
                 Don't have an account?
                 {" "}
-                <button className="ml-2 underline underline-offset-4 text-ndex-light-text-primary dark:text-ndex-dark-text-default hover:text-ndex-text-column-hover"
+                <button className="mt-12 underline underline-offset-4 text-ndex-light-text-primary dark:text-ndex-dark-text-default hover:text-ndex-text-column-hover"
                  onClick={() => {
                     setShowSignUp(true);
                 }}>

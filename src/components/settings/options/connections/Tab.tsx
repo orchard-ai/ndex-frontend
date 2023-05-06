@@ -126,10 +126,10 @@ export default function ConnectionsTab() {
                   </p>
                 </div>
                 <div className="mt-4">
-                  <div className="text-ndex-light-text-secondary dark:text-ndex-text-grey font-bold text-sm my-2">
+                  <div className="text-ndex-light-text-secondary dark:text-ndex-text-grey font-bold text-sm">
                       CONNECTIONS
                   </div>
-                  <AccountTable accounts={accounts} className="mt-1" />
+                  <AccountTable className="mt-1" accounts={accounts} />
                 </div>
               </div>
             </div>
