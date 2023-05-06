@@ -37,7 +37,7 @@ const router = createBrowserRouter(
       {/* private routes */}
       <Route element={<PrivateRoute/>}>
         <Route path={ROUTES.SEARCH} element={<Search/>} />
-        <Route path={ROUTES.ADD_CONNECTION} element={<AddFirstConnection/>} />
+        <Route path={ROUTES.ADD_FIRST_CONNECTION} element={<AddFirstConnection/>} />
         <Route path={ROUTES.SETTINGS} element={<Settings/>} />
         <Route path={ROUTES.NOTION_REDIRECT} element={<NotionRedirect/>} />
       </Route>

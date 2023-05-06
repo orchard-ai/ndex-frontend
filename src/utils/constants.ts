@@ -13,7 +13,7 @@ export const NOTION_FULL_OAUTH_URL = `${NOTION_OAUTH_URL}?owner=user&client_id=$
 export const ROUTES = {
   AUTHENTICATE: '/authenticate',
   SEARCH: '/search',
-  ADD_CONNECTION: '/add-connection',
+  ADD_FIRST_CONNECTION: '/add-first-connection',
   SETTINGS: '/settings',
   NOTION_REDIRECT: '/notion-access-redirect'
 };

@@ -44,7 +44,8 @@ export default function Header({className} : PropType) {
       </div>
       <Logo className="text-6xl text-ndex-dark-text-default text-center" onPress={logoOnClick}/>
       <Link to={ROUTES.SETTINGS} className="
-        relative flex items-center justify-center rounded-lg w-20 h-10 mr-4 text-center z-10 dark:text-ndex-dark-text-default
+        relative flex items-center justify-center rounded-lg w-20 h-10 mr-4 text-center z-10
+        dark:text-ndex-dark-text-default
         hover:bg-ndex-light-background-2
         dark:hover:bg-ndex-dark-background-default-selected
         active:bg-ndex-dark-background-4

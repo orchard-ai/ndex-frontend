@@ -35,7 +35,7 @@ export default function Login({ className } : PropType) {
     await dispatch(createUser(form));
 
     // ON SUCCESS OF SIGN UP
-    navigate(ROUTES.ADD_CONNECTION, { replace: true });
+    navigate(ROUTES.ADD_FIRST_CONNECTION, { replace: true });
   }
 
   const handleGoogleFailure = () => {
