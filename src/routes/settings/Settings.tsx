@@ -83,8 +83,10 @@ export default function Settings() {
           }}>
             <MenuIcon className="
             w-12 h-12 p-2 block
-            stroke-ndex-text-white
-            hover:stroke-ndex-text-grey
+            stroke-ndex-light-text-primary
+            hover:bg-ndex-light-background-2
+            dark:hover:bg-ndex-dark-background-default-selected
+            dark:stroke-ndex-text-white
             active:stroke-ndex-text-grey-variant
             md:hidden
             "
@@ -96,11 +98,10 @@ export default function Settings() {
             routerLink={ROUTES.SEARCH}
           >
             <CloseIcon  className="
-              w-10 h-10 p-1
+              w-10 h-10 p-1 rounded-lg
               md:fixed md:top-4 md:right-4
               stroke-ndex-light-text-primary
               hover:bg-ndex-light-background-2
-              rounded-lg
               dark:hover:bg-ndex-dark-background-default-selected
               dark:stroke-ndex-text-white
               active:stroke-ndex-text-grey-variant

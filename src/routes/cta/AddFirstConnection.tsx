@@ -65,7 +65,10 @@ const AddFirstConnection = () => {
       }
 
     return (
-        <div className="flex flex-col h-full bg-ndex-light-background-1 dark:bg-ndex-dark-background-default py-5 items-center ">
+        <div className="
+        flex flex-col h-full py-5 items-center
+        bg-ndex-light-background-1 dark:bg-ndex-dark-background-default
+        ">
             <div className="flex flex-row justify-between items-center px-10 w-full">
                 <Logo onPress={handleLogoPress} />
                 <button className="items-center justify-center rounded-lg w-20 h-10 mr-4 text-center dark:text-ndex-dark-text-default
@@ -78,7 +81,11 @@ const AddFirstConnection = () => {
                     skip
                 </button>
             </div>
-            <div className="items-center justify-center text-center text-ndex-light-text-primary dark:text-ndex-dark-text-default text-3xl font-light dark:font-extralight my-10">
+            <div className="
+                items-center justify-center text-center  text-3xl font-light my-10
+                text-ndex-light-text-primary dark:text-ndex-dark-text-default
+                dark:font-extralight
+                ">
                 Integrate with your first platform
             </div>
             <div className="flex-col w-full max-w-3xl items-center justify-center grid grid-cols-1 sm:grid-cols-2 gap-10 px-4 sm:p-0">
