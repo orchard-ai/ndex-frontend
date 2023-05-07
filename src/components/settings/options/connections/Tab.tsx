@@ -48,12 +48,15 @@ export default function ConnectionsTab() {
           <div className="text-ndex-text-grey font-bold text-sm my-2">
               ABOUT
           </div>
-          <div className="text-white py-4">
+          <div className="
+          py-4
+          text-ndex-light-text-primary dark:text-ndex-dark-text-default
+          ">
             <p>
               {connection.detailedDescription}
             </p>
           </div>
-          <div className="flex justify-center align-middle my-4">
+          <div className="flex justify-center align-middle mt-4">
             <LinkButton
               className="
                 rounded-lg p-3 text-sm text-ndex-text-white bg-ndex-button-bordered-green shadow-md

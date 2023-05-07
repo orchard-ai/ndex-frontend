@@ -68,10 +68,15 @@ export default function Dialog({
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <HeadlessDialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-ndex-dark-background-default  p-6 text-left align-middle shadow-xl transition-all">
+                <HeadlessDialog.Panel className="
+                 w-full max-w-md transform overflow-hidden rounded-2xl p-6 text-left align-middle shadow-xl transition-all
+                 bg-ndex-light-background-1 dark:bg-ndex-dark-background-default
+                 ">
                   <HeadlessDialog.Title
                     as="h3"
-                    className="flex w-full text-lg font-medium justify-between text-ndex-dark-text-default mb-4"
+                    className="flex w-full text-lg font-medium justify-between mb-4
+                    text-ndex-light-text-primary dark:text-ndex-dark-text-default
+                    "
                   >
                     {title}
                     {headerContent}
@@ -81,8 +86,8 @@ export default function Dialog({
                       <CloseIcon className="
                         absolute top-6 right-4 w-8 h-8
                         rounded-lg
-                        hover:bg-ndex-dark-background-default-selected
-                        stroke-ndex-text-white
+                        stroke-ndex-light-text-primary dark:stroke-ndex-text-white
+                        hover:bg-ndex-light-background-2 dark:hover:bg-ndex-dark-background-default-selected
                         active:stroke-ndex-text-grey-variant
                         transition duration-200 ease-in-out
                       " />
