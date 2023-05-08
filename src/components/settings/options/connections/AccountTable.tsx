@@ -31,7 +31,6 @@ const AccountTable = ({accounts, className} : PropType) => {
     return (
         <>
         <Table className={`w-full text-left  border-separate  border-spacing-y-1.5 bg-ndex-light-background-2 dark:bg-ndex-dark-background-grey ${className}`}>
-            <LoadingBar loading={true} className="w-full" />
             <Table.Header className="h-0">
                 <Table.HeaderRow>
                     <Table.HeaderCell className="w-full">
@@ -111,7 +110,11 @@ const AccountTable = ({accounts, className} : PropType) => {
                     </Table.Row>
                     )
                 })}
+                <Table.Row>
+                    <LoadingBar loading={true} className="w-full" />
+                </Table.Row>
             </Table.Body>
+            
         </Table>
         </>
     )
