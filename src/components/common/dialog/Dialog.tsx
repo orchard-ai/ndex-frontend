@@ -1,6 +1,7 @@
 import { Dialog as HeadlessDialog, Transition } from '@headlessui/react'
 import React, { Fragment, useState, useEffect } from 'react'
 import CloseIcon from 'assets/icons/tsx/CloseIcon';
+import LoadingBar from '../loading/LoadingBar';
 
 type PropType =  {
   title?:  React.ReactNode
@@ -43,6 +44,7 @@ export default function Dialog({
 
       <Transition show={isOpen} as={Fragment}>
         <HeadlessDialog as="div" className="relative z-10" onClose={closeModal}>
+          
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
