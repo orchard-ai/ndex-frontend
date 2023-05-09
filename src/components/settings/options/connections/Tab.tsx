@@ -39,7 +39,7 @@ export default function ConnectionsTab() {
           {connections.map((connection : Connection) => (
             <div
               key={connection.id}
-              className="flex flex-col rounded-lg ring-1 ring-black/5 overflow-hidden"
+              className="flex flex-col rounded-lg overflow-hidden shadow-md"
             >
               <div
                 className="px-4 py-5 sm:p-6 flex-grow-0
@@ -56,19 +56,6 @@ export default function ConnectionsTab() {
                     <h3 className="text-lg m-auto mx-2 leading-6 font-medium text-ndex-light-text-primary dark:text-ndex-dark-text-default">
                       {connection.name}
                     </h3>
-                  </div>
-                  <div className="ml-2 flex-shrink-0 flex">
-                    <AddAccountDialog
-                    buttonContent={`add account`}
-                    buttonClassName={`
-                      rounded-lg p-3 text-sm text-ndex-text-white bg-ndex-button-bordered-green shadow-md
-                      hover:bg-ndex-button-bordered-green-hover
-                      transition duration-200 ease-in-out
-                      `}
-                    buttonContainerClassName={
-                      `ml-2`
-                    }
-                    connection={connection} />
                   </div>
                 </div>
                 <div className="mt-4">

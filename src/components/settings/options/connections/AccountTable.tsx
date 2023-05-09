@@ -8,6 +8,8 @@ import { Integration, IntegrationPlatform } from "api/models";
 import { Connection } from "utils/types";
 import AddAccountDialog from "components/settings/options/connections/AddAccountDialog";
 
+import AddAccountIcon from "assets/icons/svg/add-button.svg";
+
 
 type PropType = {
     platform: IntegrationPlatform,
@@ -24,6 +26,17 @@ const AccountTable = ({accounts, connection, className} : PropType) => {
     const handleDelete = () => {
         console.log("DELETE")
     }
+
+    const connectButton = () => {
+        return (
+            <div className="flex justify-center items-center">
+                <img src={AddAccountIcon} className="w-5 h-5 mr-2"/>
+                <div>
+                    connect new account
+                </div>
+            </div>
+        );
+    };
 
     return (
         <>
@@ -110,19 +123,18 @@ const AccountTable = ({accounts, connection, className} : PropType) => {
             </Table.Body>
         </Table>
         <AddAccountDialog
-                   buttonContent={`+ add account`}
-                   buttonClassName={`
-                     rounded-lg w-full p-4 text-sm border-1
-                     shadow-md dark:shadow-ndex-dark-background-default 
-                     text-ndex-light-text-secondary dark:text-ndex-dark-text-grey hover:text-ndex-light-text-primary dark:hover:text-ndex-dark-text-default
-                     border-ndex-light-text-secondary dark:border-ndex-dark-background-default hover:border-ndex-light-text-primary
-                     bg-transparent hover:bg-ndex-light-background-1 dark:hover:bg-ndex-dark-background-default-selected
-                     transition duration-200 ease-in-out
-                     `}
-                   buttonContainerClassName={
-                     `flex w-full`
-                   }
-                   connection={connection} />
+            buttonContent={connectButton()}
+            buttonClassName={`
+                rounded-lg w-full p-4 text-sm border-1
+                shadow-md font-bold
+                bg-ndex-button-bordered-green shadow-md
+                hover:bg-ndex-button-bordered-green-hover
+                transition duration-250 ease-in-out
+                `}
+            buttonContainerClassName={
+                `flex w-full`
+            }
+            connection={connection} />
         <LoadingBar loading={false} className="w-full" />
         </>
     )
