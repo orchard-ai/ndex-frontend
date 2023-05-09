@@ -2,18 +2,21 @@ import { Menu } from "@headlessui/react";
 import { Fragment } from "react";
 import { Transition } from "@headlessui/react";
 import KebabIcon from "assets/icons/tsx/KebabIcon";
-import { Account } from "utils/types";
 import Table from "components/common/table/Table";
 import LoadingBar from "components/common/loading/LoadingBar";
 import { Integration, IntegrationPlatform } from "api/models";
+import { Connection } from "utils/types";
+import AddAccountDialog from "components/settings/options/connections/AddAccountDialog";
+
 
 type PropType = {
     platform: IntegrationPlatform,
-    accounts: Integration[]
+    accounts: Integration[],
+    connection: Connection,
     className?: string
 }
 
-const AccountTable = ({accounts, className} : PropType) => {
+const AccountTable = ({accounts, connection, className} : PropType) => {
     const handleEdit = () => {
         console.log("EDIT")
     }
@@ -22,17 +25,9 @@ const AccountTable = ({accounts, className} : PropType) => {
         console.log("DELETE")
     }
 
-    if(accounts.length == 0) {
-        return (
-            <div>
-
-            </div>
-        )
-    }
-
     return (
         <>
-        <Table className={`w-full text-left  border-separate  border-spacing-y-1.5 bg-ndex-light-background-2 dark:bg-ndex-dark-background-grey ${className}`}>
+        <Table className={`w-full text-left border-separate  border-spacing-y-1.5 bg-ndex-light-background-2 dark:bg-ndex-dark-background-grey ${className}`}>
             <Table.Header className="h-0">
                 <Table.HeaderRow>
                     <Table.HeaderCell className="w-full">
@@ -40,7 +35,7 @@ const AccountTable = ({accounts, className} : PropType) => {
                     <Table.HeaderCell className="w-[50px]" />
                 </Table.HeaderRow>
             </Table.Header>
-            <Table.Body className="bg-ndex-light-background-2 border-separate  dark:bg-ndex-dark-background-grey">
+            <Table.Body className="bg-ndex-light-background-2 border-separate dark:bg-ndex-dark-background-grey">
                 {accounts.map((account : Integration) => {
                     return (
                     <Table.Row key={account.email} className="bg-ndex-light-table-default dark:bg-ndex-dark-background-default">
@@ -112,11 +107,23 @@ const AccountTable = ({accounts, className} : PropType) => {
                     </Table.Row>
                     )
                 })}
-                <Table.Row>
-                    <LoadingBar loading={true} className="w-full" />
-                </Table.Row>
             </Table.Body>
         </Table>
+        <AddAccountDialog
+                   buttonContent={`+ add account`}
+                   buttonClassName={`
+                     rounded-lg w-full p-4 text-sm border-1
+                     shadow-md dark:shadow-ndex-dark-background-default 
+                     text-ndex-light-text-secondary dark:text-ndex-dark-text-grey hover:text-ndex-light-text-primary dark:hover:text-ndex-dark-text-default
+                     border-ndex-light-text-secondary dark:border-ndex-dark-background-default hover:border-ndex-light-text-primary
+                     bg-transparent hover:bg-ndex-light-background-1 dark:hover:bg-ndex-dark-background-default-selected
+                     transition duration-200 ease-in-out
+                     `}
+                   buttonContainerClassName={
+                     `flex w-full`
+                   }
+                   connection={connection} />
+        <LoadingBar loading={false} className="w-full" />
         </>
     )
 }

@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { connections } from "utils/constants"
-import LinkButton from "components/common/LinkButton"
-import Dialog from "components/common/dialog/Dialog"
 import AccountTable from "components/settings/options/connections/AccountTable";
+import AddAccountDialog from "components/settings/options/connections/AddAccountDialog";
 import { useAppDispatch, useAppSelector } from "store";
 import { getIntegrations, userDataIntegrationsSelector } from "store/user/userDataSlice";
+import { Connection } from "utils/types";
+import { IntegrationPlatform } from "api/models";
 
 // Notion how to oauth connect publicly
 // https://developers.notion.com/docs/authorization#step-1-navigate-the-user-to-the-integrations-authorization-url
@@ -31,74 +32,11 @@ export default function ConnectionsTab() {
     dispatch(getIntegrations());
   }, []);
 
-  const addAccountDialog = (connection : {
-    id: number,
-    name: string,
-    description: string,
-    href: string,
-    icon: string,
-    alt: string,
-    detailedDescription: string}) => {
-      return <Dialog
-        buttonContent={"add account"}
-        buttonClassName="
-          rounded-lg p-3 text-sm text-ndex-text-white bg-ndex-button-bordered-green shadow-md
-          hover:bg-ndex-button-bordered-green-hover
-          transition duration-200 ease-in-out"
-        buttonContainerClassName="ml-2"
-        content={(
-        <div className="block">
-          <div className="text-ndex-text-grey font-bold text-sm my-2">
-              ABOUT
-          </div>
-          <div className="
-          py-4
-          text-ndex-light-text-primary dark:text-ndex-dark-text-default
-          ">
-            <p>
-              {connection.detailedDescription}
-            </p>
-          </div>
-          <div className="flex justify-center align-middle mt-4">
-            <LinkButton
-              className="
-                rounded-lg p-3 text-sm text-ndex-text-white bg-ndex-button-bordered-green shadow-md
-                hover:bg-ndex-button-bordered-green-hover
-                transition duration-200 ease-in-out"
-              href={connection.href}
-            >
-              Authenticate
-            </LinkButton>
-          </div>
-        </div>)}
-        headerContent={
-          <div className="
-            flex absolute space-x-2 top-6 right-16
-            sm:right-20
-          ">
-              <img
-              className="h-8 w-8 p-1"
-              src={connection.icon}
-              />
-              <div className="align-middle text-sm my-auto hidden sm:block">
-                {connection.name}
-              </div>
-          </div>
-        }
-        title={
-          <div>
-            Add Account
-          </div>
-        }
-      />
-  }
-
-
   return (
     <div>
       <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-16">
         <div className="grid grid-cols-1 gap-4 space-y-4">
-          {connections.map((connection) => (
+          {connections.map((connection : Connection) => (
             <div
               key={connection.id}
               className="flex flex-col rounded-lg ring-1 ring-black/5 overflow-hidden"
@@ -120,7 +58,17 @@ export default function ConnectionsTab() {
                     </h3>
                   </div>
                   <div className="ml-2 flex-shrink-0 flex">
-                    {addAccountDialog(connection)}
+                    <AddAccountDialog
+                    buttonContent={`add account`}
+                    buttonClassName={`
+                      rounded-lg p-3 text-sm text-ndex-text-white bg-ndex-button-bordered-green shadow-md
+                      hover:bg-ndex-button-bordered-green-hover
+                      transition duration-200 ease-in-out
+                      `}
+                    buttonContainerClassName={
+                      `ml-2`
+                    }
+                    connection={connection} />
                   </div>
                 </div>
                 <div className="mt-4">
@@ -135,7 +83,7 @@ export default function ConnectionsTab() {
                   <div className="text-ndex-light-text-secondary dark:text-ndex-text-grey font-bold text-sm">
                       CONNECTIONS
                   </div>
-                  <AccountTable className="mt-1" accounts={accounts.filter(account => account.integration_platform === connection.platform)} platform={connection.platform}/>
+                  <AccountTable className="mt-1" connection={connection} accounts={accounts.filter(account => account.integration_platform === connection.platform)} platform={connection.platform}/>
                 </div>
               </div>
             </div>

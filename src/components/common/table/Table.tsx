@@ -3,7 +3,7 @@ export interface TableProps  {
     className?: string
  }
 
-const Header = ({children, className} : TableProps) => {
+const Header = ({children, className=""} : TableProps) => {
     return (
         <thead className={`${className}`} >
             {children}
@@ -11,7 +11,7 @@ const Header = ({children, className} : TableProps) => {
     )
 }
 
-const HeaderRow = ({children, className} : TableProps) => {
+const HeaderRow = ({children, className=""} : TableProps) => {
     return (
         <tr className={`${className} `} >
             {children}
@@ -19,7 +19,7 @@ const HeaderRow = ({children, className} : TableProps) => {
     )
 }
 
-const HeaderCell = ({children, className} : TableProps) => {
+const HeaderCell = ({children, className=""} : TableProps) => {
     return (
         <th className={`${className}`} >
             {children}
@@ -27,7 +27,7 @@ const HeaderCell = ({children, className} : TableProps) => {
     )
 }
 
-const Row = ({children, className} : TableProps) => {
+const Row = ({children, className=""} : TableProps) => {
     return (
         <tr className={`${className}`} >
             {children}
@@ -35,7 +35,7 @@ const Row = ({children, className} : TableProps) => {
     )
 }
 
-const Cell = ({children, className} : TableProps) => {
+const Cell = ({children, className=""} : TableProps) => {
     return (
         <td className={`${className}`} >
             {children}
@@ -43,7 +43,7 @@ const Cell = ({children, className} : TableProps) => {
     )
 }
 
-const Body = ({children, className} : TableProps) => {
+const Body = ({children, className=""} : TableProps) => {
     return (
         <tbody className={`${className}`}>
             {children}
@@ -51,7 +51,7 @@ const Body = ({children, className} : TableProps) => {
     )
 }
 
-const Table = ({children, className} : TableProps) => {
+const Table = ({children, className=""} : TableProps) => {
     return (
         <table className={`table-fixed ${className}`}>
             {children}

@@ -7,13 +7,15 @@ type PropType = {
 
 const LoadingBar = ({loading, className} : PropType) => {
     const [progress, setProgress] = useState(0);
-    const [running, setRunning] = useState(true);
+    const [running, setRunning] = useState(loading);
 
     useEffect(() => {
-          const updateProgress = () => setProgress(progress + 1)
-          if (progress < 100) {
-            setTimeout(updateProgress, 10)
-          }
+      if(running) {
+        const updateProgress = () => setProgress(progress + 1)
+        if (progress < 100) {
+          setTimeout(updateProgress, 10)
+        }
+      }
       }, [progress]);
 
     return (

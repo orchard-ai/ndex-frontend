@@ -1,3 +1,5 @@
+import { IntegrationPlatform } from "api/models"
+
 export type Hit = {
   contents: string
   created_time: number
@@ -35,4 +37,15 @@ export type User = {
 
 export type Account = {
   email: string
+}
+
+export type Connection = {
+    id: number,
+    name: string,
+    platform: IntegrationPlatform,
+    description: string,
+    href: string,
+    icon: string,
+    alt: string,
+    detailedDescription: string
 }
