@@ -1,7 +1,9 @@
+import { IntegrationPlatform, IntegrationTempCode } from "api/models";
 import { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "store";
 import { notionAccessTokenSelector, obtainAccessToken } from "store/notion/notionSlice";
+import { addIntegration } from "store/user/userDataSlice";
 import { ROUTES } from "utils/constants";
 
 export default function NotionRedirect () {
@@ -17,16 +19,23 @@ export default function NotionRedirect () {
 
     useEffect(() => {
       if(tempCode) {
-        dispatch(obtainAccessToken(tempCode));
+        const newIntegration: IntegrationTempCode = {
+          temp_code: tempCode,
+          scopes:[],
+          integration_platform: IntegrationPlatform.Notion
+        }
+
+        dispatch(addIntegration(newIntegration));
+
         navigate(ROUTES.SETTINGS);
       } else {
-        // handle showing error page
+        navigate(ROUTES.SEARCH)
       }
     }, [dispatch])
 
     return (
-        <div className="flex flex-col items-center p-0 w-full h-full bg-ndex-dark-background-default">
-          Loading
-        </div>
+      <div className="flex flex-col items-center p-0 w-full h-full bg-ndex-dark-background-default">
+        Loading
+      </div>
     );
 }

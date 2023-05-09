@@ -40,9 +40,10 @@ module.exports = {
           "row": "#505558"
         },
         "ndex-light-table": {
-          "default": "#F1F5F8",
+          "default": "#E1E1E1",
           "row": "#E5E7EB",
-          "header": "#D1D5DB"
+          "header": "#D1D5DB",
+          "kebab": "#747474",
         },
         "ndex-text": {
           white: "#FFFFFF",

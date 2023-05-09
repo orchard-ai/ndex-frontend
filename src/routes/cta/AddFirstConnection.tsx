@@ -42,9 +42,8 @@ const AddFirstConnection = () => {
                 </div>
                 <LinkButton
                     className="
-                        flex justify-center items-center  w-full h-8  rounded-lg p-4 shadow-md text-ndex-text-white bg-ndex-button-bordered-green
+                        flex justify-center items-center w-1/2 h-8 mx-auto rounded-lg p-4 shadow-md text-ndex-text-white bg-ndex-button-bordered-green
                         text-sm dark:text-md
-                        border-2 dark:border-0
                         dark:shadow-grey
                         hover:bg-ndex-button-bordered-green-hover
                         transition duration-200 ease-in-out"

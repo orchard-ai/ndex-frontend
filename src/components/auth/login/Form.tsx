@@ -51,31 +51,41 @@ const Form = ({onSuccess, onFailure} : PropType) => {
     const handleCredentialSignUp = async() => {
         const form: UserAuthRequest = {
             email: email,
-            oauth_provider_id: undefined,
-            oauth_access_token: undefined,
+            oauth_provider_id: null,
+            oauth_access_token: null,
             password: password,
             account_type: AccountType.Credentials
         };
 
         await dispatch(createUser(form));
 
-        // ON SUCCESS OF SIGN UP
-        navigate(ROUTES.ADD_FIRST_CONNECTION, { replace: true })
+        if(isFetchStateFailed(userFetchState)) {
+            // TODO: BETTER ERROR SHOWING
+            console.log('Signup failed');
+        } else {
+            // ON SUCCESS OF SIGN UP
+            navigate(ROUTES.ADD_FIRST_CONNECTION, { replace: true })
+        }
     }
 
     const handleLogin = async() => {
         const form: UserAuthRequest = {
             email: email,
-            oauth_provider_id: undefined,
-            oauth_access_token: undefined,
+            oauth_provider_id: null,
+            oauth_access_token: null,
             password: password,
             account_type: AccountType.Credentials
         };
 
         await dispatch(loginUser(form));
 
-        // ON SUCCESS OF SIGN UP
-        navigate(ROUTES.SEARCH, { replace: true })
+        if(isFetchStateFailed(userFetchState)) {
+            // TODO: BETTER ERROR SHOWING
+            console.log('login failed')
+        } else {
+            // ON SUCCESS OF SIGN UP
+            navigate(ROUTES.SEARCH, { replace: true })
+        }
     }
 
     // TODO(philiptam): Remove Signup Form and instead use another page for this

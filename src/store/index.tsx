@@ -3,6 +3,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
 import notionReducer from './notion/notionSlice';
 import userAuthReducer from './user/userAuthSlice';
+import userDataReducer from './user/userDataSlice';
 import localSettingsReducer from './local/localSettingsSlice';
 
 import { isUsingDarkModeSelector } from './local/localSettingsSlice';
@@ -24,6 +25,7 @@ const userPersistConfig = {
 
 const rootReducer = combineReducers({
   userAuth: persistReducer(userPersistConfig, userAuthReducer),
+  userData: userDataReducer,
   notion: notionReducer,
   localSettings: localSettingsReducer,
 });

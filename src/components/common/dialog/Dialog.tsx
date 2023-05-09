@@ -44,7 +44,6 @@ export default function Dialog({
 
       <Transition show={isOpen} as={Fragment}>
         <HeadlessDialog as="div" className="relative z-10" onClose={closeModal}>
-          
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"

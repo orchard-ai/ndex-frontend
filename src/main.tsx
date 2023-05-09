@@ -49,7 +49,7 @@ const router = createBrowserRouter(
 );
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
+  <React.Fragment>
     <GoogleOAuthProvider clientId={clientID}>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
@@ -57,5 +57,5 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         </PersistGate>
       </Provider>
     </GoogleOAuthProvider>
-  </React.StrictMode>
+  </React.Fragment>
 )

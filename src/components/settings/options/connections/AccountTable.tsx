@@ -5,9 +5,11 @@ import KebabIcon from "assets/icons/tsx/KebabIcon";
 import { Account } from "utils/types";
 import Table from "components/common/table/Table";
 import LoadingBar from "components/common/loading/LoadingBar";
+import { Integration, IntegrationPlatform } from "api/models";
 
 type PropType = {
-    accounts: Account[]
+    platform: IntegrationPlatform,
+    accounts: Integration[]
     className?: string
 }
 
@@ -39,7 +41,7 @@ const AccountTable = ({accounts, className} : PropType) => {
                 </Table.HeaderRow>
             </Table.Header>
             <Table.Body className="bg-ndex-light-background-2 border-separate  dark:bg-ndex-dark-background-grey">
-                {accounts.map((account : Account) => {
+                {accounts.map((account : Integration) => {
                     return (
                     <Table.Row key={account.email} className="bg-ndex-light-table-default dark:bg-ndex-dark-background-default">
                         <Table.Cell className="
@@ -114,7 +116,6 @@ const AccountTable = ({accounts, className} : PropType) => {
                     <LoadingBar loading={true} className="w-full" />
                 </Table.Row>
             </Table.Body>
-            
         </Table>
         </>
     )

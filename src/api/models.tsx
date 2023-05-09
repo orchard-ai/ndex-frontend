@@ -6,9 +6,9 @@ export interface NotionAuthRequest {
 
 export interface UserAuthRequest {
     email: string
-    oauth_provider_id: string | undefined
-    oauth_access_token: string | undefined
-    password: string | undefined
+    oauth_provider_id: string | null
+    oauth_access_token: string | null
+    password: string | null
     account_type: AccountType
 }
 
@@ -23,4 +23,31 @@ export enum FetchState {
     Pending,
     Complete,
     Failed,
+}
+
+export enum IntegrationPlatform {
+    File = 0,
+    Notion = 1,
+    Google = 2,
+    Discord = 3,
+    Slack = 4,
+}
+
+export interface Integration {
+    email: string
+    oauth_provider_id: string | null
+    integration_platform: IntegrationPlatform
+    scopes: string[],
+}
+
+export interface IntegrationTempCode {
+    temp_code: string
+    scopes: string[]
+    integration_platform: IntegrationPlatform
+}
+
+export interface AddIntegrationRequest extends Integration {
+    email: string,
+    access_token: string,
+    extras: string
 }

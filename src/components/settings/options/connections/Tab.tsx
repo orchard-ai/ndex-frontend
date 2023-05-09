@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { connections } from "utils/constants"
 import LinkButton from "components/common/LinkButton"
 import Dialog from "components/common/dialog/Dialog"
 import AccountTable from "components/settings/options/connections/AccountTable";
+import { useAppDispatch, useAppSelector } from "store";
+import { getIntegrations, userDataIntegrationsSelector } from "store/user/userDataSlice";
 
 // Notion how to oauth connect publicly
 // https://developers.notion.com/docs/authorization#step-1-navigate-the-user-to-the-integrations-authorization-url
@@ -22,11 +24,12 @@ export default function ConnectionsTab() {
     }
   }
 
-  const [accounts, setAccounts] = useState([
-    {email : "john@orchid.ai"},
-    {email: "zhi@ndex.com"},
-    {email: "xin@ndex.com"}
-  ]);
+  const dispatch = useAppDispatch();
+  const accounts = useAppSelector(userDataIntegrationsSelector);
+
+  useEffect(() => {
+    dispatch(getIntegrations());
+  }, []);
 
   const addAccountDialog = (connection : {
     id: number,
@@ -132,7 +135,7 @@ export default function ConnectionsTab() {
                   <div className="text-ndex-light-text-secondary dark:text-ndex-text-grey font-bold text-sm">
                       CONNECTIONS
                   </div>
-                  <AccountTable className="mt-1" accounts={accounts} />
+                  <AccountTable className="mt-1" accounts={accounts.filter(account => account.integration_platform === connection.platform)} platform={connection.platform}/>
                 </div>
               </div>
             </div>

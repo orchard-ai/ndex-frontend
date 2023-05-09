@@ -6,21 +6,25 @@ import { RootState } from 'store';
 
 export const createUser = createAsyncThunk(
     'user/createUser',
-    async (form: UserAuthRequest) => {
-
-        const response = await signupUser(form);
-
-        return response;
+    async (form: UserAuthRequest, { rejectWithValue }) => {
+        try {
+            const response = await signupUser(form);
+            return response;
+        } catch (error: any) {
+            return rejectWithValue(error.message);
+        }
     }
 );
 
 export const loginUser = createAsyncThunk(
     'user/loginUser',
-    async (form: UserAuthRequest) => {
-
-        const response = await signinUser(form);
-
-        return response;
+    async (form: UserAuthRequest, { rejectWithValue }) => {
+        try {
+            const response = await signinUser(form);
+            return response;
+        } catch (error: any) {
+            return rejectWithValue(error.message);
+        }
     }
 );
 
@@ -55,9 +59,10 @@ export const userAuthSlice = createSlice({
             state.error = null;
             state.fetchStatus = FetchState.Pending;
         })
-        builder.addCase(createUser.rejected, (state) => {
+        builder.addCase(createUser.rejected, (state, action) => {
             state.token = null;
-            state.error = 'Something went wrong';
+            state.error = action.error.message ?? "Unknown error";
+            state.fetchStatus = FetchState.Failed;
         });
         builder.addCase(loginUser.fulfilled, (state, action) => {
             state.token = action.payload.token;
@@ -68,9 +73,10 @@ export const userAuthSlice = createSlice({
             state.error = null;
             state.fetchStatus = FetchState.Pending;
         })
-        builder.addCase(loginUser.rejected, (state) => {
+        builder.addCase(loginUser.rejected, (state, action) => {
             state.token = null;
-            state.error = 'Something went wrong';
+            state.error = action.error.message ?? "Unknown error";
+            state.fetchStatus = FetchState.Failed;
         });
     }
 });

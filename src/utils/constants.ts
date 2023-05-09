@@ -1,3 +1,4 @@
+import { IntegrationPlatform } from "api/models"
 import { getSourceIcon } from "components/common/PlatformIcon"
 
 export const APP_NAME = "ndex"
@@ -18,18 +19,26 @@ export const ROUTES = {
   NOTION_REDIRECT: '/notion-access-redirect'
 };
 
+export enum GoogleScopes {
+  Gmail = 'https://www.googleapis.com/auth/gmail.readonly',
+  Calendar = 'https://www.googleapis.com/auth/calendar.readonly',
+  Drive = 'https://www.googleapis.com/auth/drive.readonly'
+}
+
 export const connections = [
   {
     id: 1,
+    platform: IntegrationPlatform.Notion,
     name: "Notion",
-    description: "All your work in one place",
+    description: "Search across all of your Notion pages and databases with ndex",
     href: NOTION_FULL_OAUTH_URL,
     icon: getSourceIcon("notion"),
     alt: "Notion Icon",
-    detailedDescription: "Index all your notions notes, tasks, etc."
+    detailedDescription: "Index all your Notion notes, tasks, etc."
   },
   {
     id: 2,
+    platform: IntegrationPlatform.Google,
     name: "Gmail",
     description: "Team communication",
     href: "#",
@@ -37,15 +46,15 @@ export const connections = [
     alt: "Gmail Icon",
     detailedDescription: "Index your emails, messages, and important documents from Google Gmail!"
   },
-  {
-    id: 3,
-    name: "Google Calendar",
-    description: "Your timely events!",
-    href: "#",
-    icon: getSourceIcon("g-calendar"),
-    alt: "Google Calendar Icon",
-    detailedDescription: "Index your events your calendar events from Google Calendar!"
-  },
+  // {
+  //   id: 3,
+  //   name: "Google Calendar",
+  //   description: "Your timely events!",
+  //   href: "#",
+  //   icon: getSourceIcon("g-calendar"),
+  //   alt: "Google Calendar Icon",
+  //   detailedDescription: "Index your events your calendar events from Google Calendar!"
+  // },
   // {
   //   id: 3,
   //   name: "GitHub",
