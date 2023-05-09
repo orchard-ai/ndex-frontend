@@ -17,7 +17,7 @@ export default function Header({className} : PropType) {
   const dispatch = useAppDispatch();
 
   const logoOnClick = () => {
-    navigate(ROUTES.SETTINGS);
+    navigate(ROUTES.SETTINGS_ACCOUNT);
   }
 
   const toggleThemeIcon = () => {
@@ -43,7 +43,7 @@ export default function Header({className} : PropType) {
         {toggleThemeIcon()}
       </div>
       <Logo className="text-6xl text-ndex-dark-text-default text-center" onPress={logoOnClick}/>
-      <Link to={ROUTES.SETTINGS} className="
+      <Link to={ROUTES.SETTINGS_ACCOUNT} className="
         relative flex items-center justify-center rounded-lg w-20 h-10 mr-10 text-center z-10
         dark:text-ndex-dark-text-default
         hover:bg-ndex-light-background-2

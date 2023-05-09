@@ -34,7 +34,7 @@ const Options = ({ category, onOptionClick, className }: PropType) => {
           className={`w-100 cursor-pointer flex text-ndex-light-text-primary dark:text-ndex-dark-text-default rounded-lg h-8 items-center p-5 transition duration-200 ease-in-out ${
             category === "account" ?  selectedStyle : notSelectStyle
           }`}
-          onClick={() => onOptionClick("account")}
+          onClick={() => onOptionClick(ROUTES.SETTINGS_ACCOUNT)}
         >
           Account
         </div>
@@ -42,7 +42,7 @@ const Options = ({ category, onOptionClick, className }: PropType) => {
           className={`w-100 cursor-pointer flex text-ndex-light-text-primary dark:text-ndex-dark-text-default rounded-lg h-8 items-center p-5 transition duration-200 ease-in-out ${
             category === "connections" ?  selectedStyle : notSelectStyle
           }`}
-          onClick={() => onOptionClick("connections")}
+          onClick={() => onOptionClick(ROUTES.SETTINGS_CONNECTIONS)}
         >
           Connections
         </div>

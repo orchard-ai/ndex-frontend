@@ -54,7 +54,7 @@ const SearchToolbar = () => {
                 })
                 }
                 <div className={`rounded-md p-1 bg-ndex-search-toolbar-icon-selected active:bg-ndex-search-toolbar-icon-active`}
-                    onClick={() => navigate(ROUTES.SETTINGS)}
+                    onClick={() => navigate(ROUTES.SETTINGS_CONNECTIONS)}
                 >
                     <img
                         className="h-6 w-6"

@@ -27,7 +27,7 @@ export default function NotionRedirect () {
 
         dispatch(addIntegration(newIntegration));
 
-        navigate(ROUTES.SETTINGS);
+        navigate(ROUTES.SETTINGS_CONNECTIONS);
       } else {
         navigate(ROUTES.SEARCH)
       }

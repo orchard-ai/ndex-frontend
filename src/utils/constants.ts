@@ -15,7 +15,9 @@ export const ROUTES = {
   AUTHENTICATE: '/authenticate',
   SEARCH: '/search',
   ADD_FIRST_CONNECTION: '/add-first-connection',
-  SETTINGS: '/settings',
+  SETTINGS: '/settings/:tab', // NEVER USE THIS ONE. USE ONE OF THE SETTINGS ROUTES BELOW
+  SETTINGS_ACCOUNT: '/settings/account',
+  SETTINGS_CONNECTIONS: '/settings/connections',
   NOTION_REDIRECT: '/notion-access-redirect'
 };
 

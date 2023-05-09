@@ -12,6 +12,7 @@ import CloseIcon from "assets/icons/tsx/CloseIcon";
 import axios from "axios";
 import { useState } from "react";
 import { ROUTES } from "utils/constants";
+import { useNavigate, useParams } from "react-router-dom";
 
 // Should only appear in dev environment
 const handleConnectBackend = (setIsLoading: any) => {
@@ -51,18 +52,21 @@ const handleConnectBackend = (setIsLoading: any) => {
  * @returns Settings route page
  */
 export default function Settings() {
+  const { tab } = useParams();
+  const currentTab = tab ?? 'account'; // Fallback on 'ACCOUNT' tab if null
+  const navigate = useNavigate();
+
   const [isLoading, setIsLoading] = useState(false);
   const [isSelecting, setIsSelecting] = useState(false);
-  const [category, setCategory] = useState("account");
 
-  const onOptionClick = (value : string) => {
-    setCategory(value);
+  const onOptionClick = (tab: string) => {
     setIsSelecting(false);
-  }
+    navigate(tab);
+  };
 
   return (
     <div className="flex justify-center max-h-[100vh] min-h-[100vh] bg-ndex-light-background-1 dark:bg-ndex-dark-background-default text-gray-100">
-      <Options category={category} onOptionClick={onOptionClick} className={`
+      <Options category={currentTab} onOptionClick={onOptionClick} className={`
         fixed top-0 bottom-0 left-0 overflow-y-scroll overflow-x-hidden
         md:w-3/12 md:block  
         xl:w-2/12
@@ -92,7 +96,7 @@ export default function Settings() {
             "
             />
           </button>
-          <Title category={category} className="pt-4 pb-4 md:ml-8" />
+          <Title category={currentTab} className="pt-4 pb-4 md:ml-8" />
 
           <LinkButton
             routerLink={ROUTES.SEARCH}
@@ -109,7 +113,7 @@ export default function Settings() {
           </LinkButton>
         </div>
 
-        <DisplayedTab category={category} />
+        <DisplayedTab category={currentTab} />
 
         {isLoading && <Loading />}
 
