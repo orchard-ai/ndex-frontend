@@ -29,12 +29,14 @@ export const loginUser = createAsyncThunk(
 );
 
 interface UserAuthState {
+    userId: string | null;
     token: string | null;
     error: string | null;
     fetchStatus: FetchState;
 }
 
 const initialState: UserAuthState = {
+    userId: null,
     token: null,
     error: null,
     fetchStatus: FetchState.Idle
@@ -47,10 +49,12 @@ export const userAuthSlice = createSlice({
         clearUserAuth: (state) => {
             state.error = null;
             state.token = null;
+            state.userId = null;
         }
     },
     extraReducers: (builder) => {
         builder.addCase(createUser.fulfilled, (state, action) => {
+            state.userId = action.payload.user_id;
             state.token = action.payload.token;
             state.error = null;
             state.fetchStatus = FetchState.Complete;
@@ -65,6 +69,7 @@ export const userAuthSlice = createSlice({
             state.fetchStatus = FetchState.Failed;
         });
         builder.addCase(loginUser.fulfilled, (state, action) => {
+            state.userId = action.payload.user_id;
             state.token = action.payload.token;
             state.error = null;
             state.fetchStatus = FetchState.Complete;
@@ -87,6 +92,7 @@ export const {
 } = userAuthSlice.actions;
 
 // SELECTORS
+export const userIdSelector = (state: RootState) => state.userAuth.userId;
 export const usertokenSelector = (state: RootState) => state.userAuth.token;
 export const userErrorSelector = (state: RootState) => state.userAuth.error;
 export const userFetchStatusSelector = (state: RootState) => state.userAuth.fetchStatus;
