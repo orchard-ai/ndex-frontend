@@ -9,6 +9,7 @@ import { Connection } from "utils/types";
 import AddAccountDialog from "components/settings/options/connections/AddAccountDialog";
 
 import AddAccountIcon from "assets/icons/svg/add-button.svg";
+import PlusIcon from "assets/icons/tsx/PlusIcon";
 
 
 type PropType = {
@@ -29,8 +30,11 @@ const AccountTable = ({accounts, connection, className} : PropType) => {
 
     const connectButton = () => {
         return (
-            <div className="flex justify-center items-center">
-                <img src={AddAccountIcon} className="w-5 h-5 mr-2"/>
+            <div className="flex justify-center items-center m-auto">
+                <PlusIcon className="
+                w-4 h-4
+                mr-2
+                "/>
                 <div>
                     connect new account
                 </div>
@@ -125,17 +129,19 @@ const AccountTable = ({accounts, connection, className} : PropType) => {
         <AddAccountDialog
             buttonContent={connectButton()}
             buttonClassName={`
-                rounded-lg w-full p-4 text-sm border-1
-                shadow-md font-bold
-                bg-ndex-button-bordered-green shadow-md
-                hover:bg-ndex-button-bordered-green-hover
+                rounded-lg w-full p-4 text-sm 
+                font-bold
+                stroke-ndex-light-text-primary dark:stroke-ndex-text-white
+                text-ndex-light-text-primary dark:text-ndex-dark-text-default hover:text-ndex-dark-text-default
+                bg-transparent hover:bg-ndex-button-bordered-green
+                hover:border-1 hover:shadow-md 
                 transition duration-250 ease-in-out
                 `}
             buttonContainerClassName={
                 `flex w-full`
             }
             connection={connection} />
-        <LoadingBar loading={false} className="w-full" />
+        {/* <LoadingBar loading={false} className="w-full" /> */}
         </>
     )
 }
