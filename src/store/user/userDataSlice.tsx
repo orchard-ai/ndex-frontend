@@ -10,7 +10,7 @@ export const addIntegration = createAsyncThunk(
 
         if(token) {
             // NOTION INTEGRATION
-            switch(form.integration_platform) {
+            switch(form.platform) {
                 case IntegrationPlatform.Notion: {
                     try {
                         const notionAuthResponse = await fetchNotionAccessToken(form.temp_code);
@@ -21,7 +21,7 @@ export const addIntegration = createAsyncThunk(
                         const newIntegration: AddIntegrationRequest = {
                             email: email,
                             oauth_provider_id: null,
-                            integration_platform: IntegrationPlatform.Notion,
+                            platform: IntegrationPlatform.Notion,
                             scopes: [],
                             access_token: access_token,
                             extras: extras
@@ -33,7 +33,7 @@ export const addIntegration = createAsyncThunk(
                         return {
                             email: email,
                             oauth_provider_id: null,
-                            integration_platform: IntegrationPlatform.Notion,
+                            platform: IntegrationPlatform.Notion,
                             scopes: []
                         } as Integration;
                     } catch {
@@ -66,16 +66,16 @@ export const getIntegrations = createAsyncThunk(
 
 const convertIntegration = (integrationJson: any) => {
     console.log(integrationJson)
-    const { email, oauth_provider_id, integration_platform, scopes } = integrationJson;
+    const { email, oauth_provider_id, platform, scopes } = integrationJson;
 
-    if(email === undefined || oauth_provider_id === undefined || integration_platform === undefined || scopes === undefined) {
+    if(email === undefined || oauth_provider_id === undefined || platform === undefined || scopes === undefined) {
         throw new Error('Integration data absent')
     }
 
     return {
         email,
         oauth_provider_id,
-        integration_platform: platformStrToEnum(integration_platform),
+        platform: platformStrToEnum(platform),
         scopes
     } as Integration;
 }
@@ -123,7 +123,7 @@ export const userDataFetchStatusSelector = (state: RootState) => state.userData.
 export const userDataIntegrationsSelector = (state: RootState) => state.userData.integrations;
 export const userDataIntegrationByPlatformSelector = (platform: IntegrationPlatform) => createSelector(
     userDataIntegrationsSelector,
-    (integrations: Integration[]) => integrations.filter(integration => integration.integration_platform === platform)
+    (integrations: Integration[]) => integrations.filter(integration => integration.platform === platform)
 );
 
 export default userDataSlice.reducer;

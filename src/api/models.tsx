@@ -36,14 +36,14 @@ export enum IntegrationPlatform {
 export interface Integration {
     email: string
     oauth_provider_id: string | null
-    integration_platform: IntegrationPlatform
+    platform: IntegrationPlatform
     scopes: string[],
 }
 
 export interface IntegrationTempCode {
     temp_code: string
     scopes: string[]
-    integration_platform: IntegrationPlatform
+    platform: IntegrationPlatform
 }
 
 export interface AddIntegrationRequest extends Integration {

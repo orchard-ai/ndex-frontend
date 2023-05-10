@@ -22,7 +22,7 @@ export default function NotionRedirect () {
         const newIntegration: IntegrationTempCode = {
           temp_code: tempCode,
           scopes:[],
-          integration_platform: IntegrationPlatform.Notion
+          platform: IntegrationPlatform.Notion
         }
 
         dispatch(addIntegration(newIntegration));

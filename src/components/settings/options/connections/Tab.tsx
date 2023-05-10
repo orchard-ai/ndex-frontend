@@ -60,7 +60,7 @@ export default function ConnectionsTab() {
                 </div>
                 <div className="mt-4">
                   <div className="text-ndex-light-text-secondary dark:text-ndex-text-grey font-bold text-sm my-2">
-                      ABOUT
+                    ABOUT
                   </div>
                   <p className="mt-2 text-sm leading-5 text-ndex-light-text-primary dark:text-ndex-dark-text-default">
                     {connection.description}
@@ -68,9 +68,9 @@ export default function ConnectionsTab() {
                 </div>
                 <div className="mt-4">
                   <div className="text-ndex-light-text-secondary dark:text-ndex-text-grey font-bold text-sm">
-                      CONNECTIONS
+                    CONNECTIONS
                   </div>
-                  <AccountTable className="mt-1" connection={connection} accounts={accounts.filter(account => account.integration_platform === connection.platform)} platform={connection.platform}/>
+                  <AccountTable className="mt-1" connection={connection} accounts={accounts.filter(account => account.platform === connection.platform)} platform={connection.platform}/>
                 </div>
               </div>
             </div>
