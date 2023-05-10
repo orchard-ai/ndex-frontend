@@ -2,7 +2,8 @@ import { NOTION_CLIENT_ID, NOTION_SECRET } from "utils/constants";
 import {
     AddIntegrationRequest,
     NotionAuthRequest,
-    UserAuthRequest
+    UserAuthRequest,
+    IndexNotionRequest
 } from "./models";
 
 const baseUrl = 'http://localhost:3001';
@@ -13,6 +14,7 @@ enum apiRoutes {
     notionAccessToken = '/notion/obtain_access_token',
     userIntegrations = '/user/integrations',
     addIntegrationToUser = '/user/add_integration',
+    notionIndex = '/notion/index',
 }
 
 const method = {
@@ -124,10 +126,34 @@ const getUserIntegrations = async(ndexToken: string) => {
     return response
 };
 
+// INDEX NOTION
+const indexNotion = async(ndexToken: string, request: IndexNotionRequest) => {
+    try {
+        const response = await fetch(getRoute(apiRoutes.notionIndex), {
+            method: method.POST,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${ndexToken}`
+            },
+            body: JSON.stringify(request),
+        });
+
+        if(!isStatusOk(response.status)) {
+            throw new Error('Trouble while indexing Notion.');
+        }
+
+        const data = await response.json();
+        return data;
+    } catch {
+        throw new Error('Something went wrong while indexing Notion.');
+    }
+}
+
 export {
     signupUser,
     signinUser,
     fetchNotionAccessToken,
     getUserIntegrations,
-    addIntegrationForUser
+    addIntegrationForUser,
+    indexNotion
 };

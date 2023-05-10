@@ -93,7 +93,7 @@ export const {
 
 // SELECTORS
 export const userIdSelector = (state: RootState) => state.userAuth.userId;
-export const usertokenSelector = (state: RootState) => state.userAuth.token;
+export const userTokenSelector = (state: RootState) => state.userAuth.token;
 export const userErrorSelector = (state: RootState) => state.userAuth.error;
 export const userFetchStatusSelector = (state: RootState) => state.userAuth.fetchStatus;
 

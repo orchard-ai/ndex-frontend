@@ -8,6 +8,11 @@ import SearchResults from "components/search/SearchResults"
 import { Hit } from "utils/types"
 import { typesenseInstantSearchAdapter } from "utils/typesense"
 import SearchToolbar from "components/search/SearchToolbar"
+import { useAppSelector } from "store"
+import { userIdSelector } from "store/user/userAuthSlice"
+import { useNavigate } from "react-router-dom"
+import { ROUTES } from "utils/constants"
+import { useEffect } from "react"
 
 function InstantCustomSearch({
   currentRefinement,
@@ -44,14 +49,24 @@ function InstantCustomSearch({
 const CustomSearch = connectSearchBox(InstantCustomSearch)
 
 function Search() {
-  return (
-    <InstantSearch
-      indexName="documents"
-      searchClient={typesenseInstantSearchAdapter.searchClient}
-    >
-      <CustomSearch />
-    </InstantSearch>
-  )
+  const userId = useAppSelector(userIdSelector);
+
+  const navigate = useNavigate();
+
+  if(userId) {
+    return (
+      <InstantSearch
+        indexName={userId}
+        searchClient={typesenseInstantSearchAdapter.searchClient}
+      >
+        <CustomSearch />
+      </InstantSearch>
+    )
+  } else {
+    return (
+      <div>Something went wrong</div>
+    )
+  }
 }
 
 export default Search

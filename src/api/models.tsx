@@ -51,3 +51,7 @@ export interface AddIntegrationRequest extends Integration {
     access_token: string,
     extras: string
 }
+
+export interface IndexNotionRequest {
+    email: string
+}

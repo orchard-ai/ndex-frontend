@@ -36,7 +36,7 @@ const SearchBox = ({
         />
         <Combobox.Input
           className={`bg-transparent w-full pl-4 border-0 focus:ring-0 outline-none text-xl text-gray-800 placeholder-ndex-text-grey`}
-          placeholder="press / to jump here!"
+          placeholder="press / to jump here"
           onChange={(event) => refine(event.currentTarget.value)}
           displayValue={currentRefinement}
           onBlur={(e) => {

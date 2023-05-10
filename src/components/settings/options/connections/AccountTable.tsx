@@ -4,12 +4,15 @@ import { Transition } from "@headlessui/react";
 import KebabIcon from "assets/icons/tsx/KebabIcon";
 import Table from "components/common/table/Table";
 import LoadingBar from "components/common/loading/LoadingBar";
-import { Integration, IntegrationPlatform } from "api/models";
+import { IndexNotionRequest, Integration, IntegrationPlatform } from "api/models";
 import { Connection } from "utils/types";
 import AddAccountDialog from "components/settings/options/connections/AddAccountDialog";
 
 import AddAccountIcon from "assets/icons/svg/add-button.svg";
 import PlusIcon from "assets/icons/tsx/PlusIcon";
+import { useAppSelector } from "store";
+import { userTokenSelector } from "store/user/userAuthSlice";
+import { indexNotion } from "api";
 
 
 type PropType = {
@@ -26,6 +29,22 @@ const AccountTable = ({accounts, connection, className} : PropType) => {
 
     const handleDelete = () => {
         console.log("DELETE")
+    }
+
+    const handleIndex = async(account: Integration) => {
+        const request: IndexNotionRequest = {
+            email: account.email
+        };
+
+        // TESTING PURPOSES, WILL DO THIS ANOTHER
+        const token = useAppSelector(userTokenSelector);
+        switch(account.platform) {
+            case IntegrationPlatform.Notion: {
+                if(token) {
+                    await indexNotion(token, request);
+                }
+            }
+        }
     }
 
     const connectButton = () => {
@@ -85,6 +104,22 @@ const AccountTable = ({accounts, connection, className} : PropType) => {
                                 leaveTo="transform opacity-0 scale-95"
                                 >
                                     <Menu.Items className="absolute z-50 right-0 mt-2 w-32 origin-top-left divide-y bg-ndex-light-background-1 dark:bg-ndex-dark-background-default dark:divide-ndex-dark-background-grey rounded-md bg-ndex-dark-background-4 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                        <div className="px-1 py-1 ">
+                                            <Menu.Item>
+                                                {({ active }) => (
+                                                <button
+                                                    onClick={() => handleIndex(account)}
+                                                    className={`
+                                                    bg-ndex-light-background-1 dark:bg-ndex-dark-background-default 
+                                                    text-ndex-light-text-primary dark:text-white
+                                                    ${active && 'hover:bg-ndex-light-background-2 hover:dark:bg-ndex-dark-background-default-selected'
+                                                    } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                                                >
+                                                    Index
+                                                </button>
+                                                )}
+                                            </Menu.Item>
+                                        </div>
                                         <div className="px-1 py-1 ">
                                             <Menu.Item>
                                                 {({ active }) => (
