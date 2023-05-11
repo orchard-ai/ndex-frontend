@@ -3,7 +3,7 @@ import {
     AddIntegrationRequest,
     NotionAuthRequest,
     UserAuthRequest,
-    IndexNotionRequest
+    IndexRequest
 } from "./models";
 
 const baseUrl = 'http://localhost:3001';
@@ -127,7 +127,7 @@ const getUserIntegrations = async(ndexToken: string) => {
 };
 
 // INDEX NOTION
-const indexNotion = async(ndexToken: string, request: IndexNotionRequest) => {
+const indexNotion = async(ndexToken: string, request: IndexRequest) => {
     try {
         const response = await fetch(getRoute(apiRoutes.notionIndex), {
             method: method.POST,

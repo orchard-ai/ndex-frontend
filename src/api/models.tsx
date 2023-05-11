@@ -52,6 +52,6 @@ export interface AddIntegrationRequest extends Integration {
     extras: string
 }
 
-export interface IndexNotionRequest {
+export interface IndexRequest {
     email: string
 }

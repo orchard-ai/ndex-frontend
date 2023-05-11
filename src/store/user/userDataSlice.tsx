@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSelector, createSlice } from "@reduxjs/toolkit"
-import { addIntegrationForUser, fetchNotionAccessToken, getUserIntegrations } from "api";
-import { AddIntegrationRequest, FetchState, Integration, IntegrationPlatform, IntegrationTempCode } from "api/models";
+import { addIntegrationForUser, fetchNotionAccessToken, getUserIntegrations, indexNotion } from "api";
+import { AddIntegrationRequest, FetchState, IndexRequest, Integration, IntegrationPlatform, IntegrationTempCode } from "api/models";
 import { RootState } from "store";
 
 export const addIntegration = createAsyncThunk(
@@ -62,7 +62,7 @@ export const getIntegrations = createAsyncThunk(
 
         return null;
     }
-)
+);
 
 const convertIntegration = (integrationJson: any) => {
     console.log(integrationJson)
@@ -78,7 +78,7 @@ const convertIntegration = (integrationJson: any) => {
         platform: platformStrToEnum(platform),
         scopes
     } as Integration;
-}
+};
 
 const platformStrToEnum = (platform: string) => {
     switch(platform) {
@@ -86,6 +86,23 @@ const platformStrToEnum = (platform: string) => {
             return IntegrationPlatform.Notion
     }
 }
+
+export const indexData = createAsyncThunk(
+    'userData/index',
+    async(request: IndexRequest, { getState }) => {
+        const { token } = (getState() as RootState).userAuth;
+
+        if(token) {
+            const response = await indexNotion(token, request);
+
+            // ASSERT OK
+            // maybe better handling here
+            return response;
+        }
+
+        return null;
+    }
+)
 
 interface UserDataState {
     userEmail: string

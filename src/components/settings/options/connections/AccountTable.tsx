@@ -4,15 +4,13 @@ import { Transition } from "@headlessui/react";
 import KebabIcon from "assets/icons/tsx/KebabIcon";
 import Table from "components/common/table/Table";
 import LoadingBar from "components/common/loading/LoadingBar";
-import { IndexNotionRequest, Integration, IntegrationPlatform } from "api/models";
+import { IndexRequest, Integration, IntegrationPlatform } from "api/models";
 import { Connection } from "utils/types";
 import AddAccountDialog from "components/settings/options/connections/AddAccountDialog";
 
-import AddAccountIcon from "assets/icons/svg/add-button.svg";
 import PlusIcon from "assets/icons/tsx/PlusIcon";
-import { useAppSelector } from "store";
-import { userTokenSelector } from "store/user/userAuthSlice";
-import { indexNotion } from "api";
+
+import { indexData } from "store/user/userDataSlice";
 
 
 type PropType = {
@@ -32,17 +30,14 @@ const AccountTable = ({accounts, connection, className} : PropType) => {
     }
 
     const handleIndex = async(account: Integration) => {
-        const request: IndexNotionRequest = {
+        const request: IndexRequest = {
             email: account.email
         };
 
         // TESTING PURPOSES, WILL DO THIS ANOTHER
-        const token = useAppSelector(userTokenSelector);
         switch(account.platform) {
             case IntegrationPlatform.Notion: {
-                if(token) {
-                    await indexNotion(token, request);
-                }
+                indexData(request);
             }
         }
     }
