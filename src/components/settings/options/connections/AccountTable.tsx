@@ -10,7 +10,10 @@ import AddAccountDialog from "components/settings/options/connections/AddAccount
 
 import PlusIcon from "assets/icons/tsx/PlusIcon";
 
+import AddAccountIcon from "assets/icons/svg/add-button.svg";
+
 import { indexData } from "store/user/userDataSlice";
+import { useAppDispatch } from "store";
 
 
 type PropType = {
@@ -21,6 +24,8 @@ type PropType = {
 }
 
 const AccountTable = ({accounts, connection, className} : PropType) => {
+    const dispatch = useAppDispatch();
+
     const handleEdit = () => {
         console.log("EDIT")
     }
@@ -29,26 +34,25 @@ const AccountTable = ({accounts, connection, className} : PropType) => {
         console.log("DELETE")
     }
 
-    const handleIndex = async(account: Integration) => {
+    const handleIndex = (account: Integration) => {
         const request: IndexRequest = {
             email: account.email
         };
 
-        // TESTING PURPOSES, WILL DO THIS ANOTHER
+        // TESTING PURPOSES, WILL DO THIS ANOTHER WAY
         switch(account.platform) {
             case IntegrationPlatform.Notion: {
-                indexData(request);
-            }
+            dispatch(indexData(request));
+        }
+
+            return undefined;
         }
     }
 
     const connectButton = () => {
         return (
-            <div className="flex justify-center items-center m-auto">
-                <PlusIcon className="
-                w-4 h-4
-                mr-2
-                "/>
+            <div className="flex justify-center items-center">
+                <img src={AddAccountIcon} className="w-5 h-5 mr-2"/>
                 <div>
                     connect new account
                 </div>
@@ -103,7 +107,7 @@ const AccountTable = ({accounts, connection, className} : PropType) => {
                                             <Menu.Item>
                                                 {({ active }) => (
                                                 <button
-                                                    onClick={() => handleIndex(account)}
+                                                    onClick={handleIndex(account)}
                                                     className={`
                                                     bg-ndex-light-background-1 dark:bg-ndex-dark-background-default 
                                                     text-ndex-light-text-primary dark:text-white

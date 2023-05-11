@@ -65,7 +65,6 @@ export const getIntegrations = createAsyncThunk(
 );
 
 const convertIntegration = (integrationJson: any) => {
-    console.log(integrationJson)
     const { email, oauth_provider_id, platform, scopes } = integrationJson;
 
     if(email === undefined || oauth_provider_id === undefined || platform === undefined || scopes === undefined) {
@@ -94,6 +93,8 @@ export const indexData = createAsyncThunk(
 
         if(token) {
             const response = await indexNotion(token, request);
+
+            console.log('indexData', response);
 
             // ASSERT OK
             // maybe better handling here

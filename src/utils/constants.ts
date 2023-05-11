@@ -48,15 +48,15 @@ export const connections = [
     alt: "Gmail Icon",
     detailedDescription: "Index your emails, messages, and important documents from Google Gmail!"
   },
-  // {
-  //   id: 3,
-  //   name: "Google Calendar",
-  //   description: "Your timely events!",
-  //   href: "#",
-  //   icon: getSourceIcon("g-calendar"),
-  //   alt: "Google Calendar Icon",
-  //   detailedDescription: "Index your events your calendar events from Google Calendar!"
-  // },
+  {
+    id: 3,
+    name: "Google Calendar",
+    description: "Your timely events!",
+    href: "#",
+    icon: getSourceIcon("g-calendar"),
+    alt: "Google Calendar Icon",
+    detailedDescription: "Index your events your calendar events from Google Calendar!"
+  },
   // {
   //   id: 3,
   //   name: "GitHub",
