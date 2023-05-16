@@ -4,6 +4,10 @@ export interface NotionAuthRequest {
     notion_secret: string
 }
 
+export interface GoogleTokenRequest {
+    temp_code: string
+}
+
 export interface UserAuthRequest {
     email: string
     oauth_provider_id: string | null

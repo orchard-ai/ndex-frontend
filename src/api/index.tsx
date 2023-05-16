@@ -3,7 +3,8 @@ import {
     AddIntegrationRequest,
     NotionAuthRequest,
     UserAuthRequest,
-    IndexRequest
+    IndexRequest,
+    GoogleTokenRequest
 } from "./models";
 
 const baseUrl = 'http://localhost:3001';
@@ -12,6 +13,7 @@ enum apiRoutes {
     userSignup = '/user/signup',
     userLogin = '/user/login',
     notionAccessToken = '/notion/obtain_access_token',
+    googleAccessToken = '/google/obtain_access_token',
     userIntegrations = '/user/integrations',
     addIntegrationToUser = '/user/add_integration',
     notionIndex = '/notion/index',
@@ -96,6 +98,28 @@ const fetchNotionAccessToken = async(tempCode: string) => {
     return response;
 };
 
+// GOOGLE ACCESS TOKEN
+const obtainGoogleAccessToken = async(tempCode: string) => {
+    const requestBody = {
+        temp_code: tempCode
+    } as GoogleTokenRequest;
+
+    try {
+        const response = await fetch(getRoute(apiRoutes.googleAccessToken), {
+            method: method.POST,
+            body: JSON.stringify(requestBody),
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+
+        const data = await response.json();
+        return data;
+    } catch {
+        throw new Error('Something went wrong while obtain Google access token.');
+    }
+};
+
 // ADD INTEGRATION FOR USER
 const addIntegrationForUser = async(ndexToken: string, request: AddIntegrationRequest) => {
     const response = await fetch(getRoute(apiRoutes.addIntegrationToUser), {
@@ -153,6 +177,7 @@ export {
     signupUser,
     signinUser,
     fetchNotionAccessToken,
+    obtainGoogleAccessToken,
     getUserIntegrations,
     addIntegrationForUser,
     indexNotion
