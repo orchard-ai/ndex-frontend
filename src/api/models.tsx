@@ -37,6 +37,16 @@ export enum IntegrationPlatform {
     Slack = 4,
 }
 
+export enum Scope {
+    Gmail = 'https://www.googleapis.com/auth/gmail.readonly',
+    Calendar = 'https://www.googleapis.com/auth/calendar.readonly',
+    Drive = 'https://www.googleapis.com/auth/drive.readonly',
+    Notion = 'notion',
+    // For google auth purposes
+    UserInfo = 'https://www.googleapis.com/auth/userinfo.email',
+    openId = 'openid'
+}
+
 export interface Integration {
     email: string
     oauth_provider_id: string | null
@@ -46,14 +56,13 @@ export interface Integration {
 
 export interface IntegrationTempCode {
     temp_code: string
-    scopes: string[]
-    platform: IntegrationPlatform
+    platform: IntegrationPlatform,
 }
 
 export interface AddIntegrationRequest extends Integration {
     email: string,
     access_token: string,
-    extras: string
+    extra: string
 }
 
 export interface IndexRequest {

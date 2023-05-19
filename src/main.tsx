@@ -18,6 +18,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import Settings from "routes/settings/Settings"
 import Search from "routes/search/Search"
 import NotionRedirect from "routes/redirects/NotionRedirect"
+import GoogleAuthRedirect from "routes/redirects/GoogleAuthRedirect"
 import AddFirstConnection from "routes/cta/AddFirstConnection"
 import AuthScreen from "routes/authScreen"
 import NotFound from "routes/notFound"
@@ -40,6 +41,7 @@ const router = createBrowserRouter(
         <Route path={ROUTES.ADD_FIRST_CONNECTION} element={<AddFirstConnection/>} />
         <Route path={ROUTES.SETTINGS} element={<Settings/>} />
         <Route path={ROUTES.NOTION_REDIRECT} element={<NotionRedirect/>} />
+        <Route path={ROUTES.GOOGLE_REDIRECT} element={<GoogleAuthRedirect/>}/>
       </Route>
 
       {/* catch-all route */}

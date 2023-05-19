@@ -3,9 +3,9 @@ import { connections } from "utils/constants"
 import AccountTable from "components/settings/options/connections/AccountTable";
 import AddAccountDialog from "components/settings/options/connections/AddAccountDialog";
 import { useAppDispatch, useAppSelector } from "store";
-import { getIntegrations, userDataIntegrationsSelector } from "store/user/userDataSlice";
+import { getIntegrations, userDataFetchStatusSelector, userDataIntegrationsSelector } from "store/user/userDataSlice";
 import { Connection } from "utils/types";
-import { IntegrationPlatform } from "api/models";
+import { Integration, IntegrationPlatform, Scope } from "api/models";
 
 // Notion how to oauth connect publicly
 // https://developers.notion.com/docs/authorization#step-1-navigate-the-user-to-the-integrations-authorization-url
@@ -27,10 +27,28 @@ export default function ConnectionsTab() {
 
   const dispatch = useAppDispatch();
   const accounts = useAppSelector(userDataIntegrationsSelector);
+  const fetchStatus = useAppSelector(userDataFetchStatusSelector);
+
+  const filterAccountsByPlatformScope = (
+    accounts: Integration[],
+    platform: IntegrationPlatform,
+    scope: Scope
+  ) => {
+    switch(platform) {
+      case IntegrationPlatform.Notion: {
+        return accounts.filter(i => i.platform === IntegrationPlatform.Notion)
+      }
+      case IntegrationPlatform.Google: {
+        return accounts.filter(i => i.platform === IntegrationPlatform.Google && i.scopes.includes(scope))
+      }
+    }
+
+    return [];
+  }
 
   useEffect(() => {
     dispatch(getIntegrations());
-  }, []);
+  }, [fetchStatus]);
 
   return (
     <div>
@@ -70,7 +88,7 @@ export default function ConnectionsTab() {
                   <div className="text-ndex-light-text-secondary dark:text-ndex-text-grey font-bold text-sm">
                     CONNECTIONS
                   </div>
-                  <AccountTable className="mt-1" connection={connection} accounts={accounts.filter(account => account.platform === connection.platform)} platform={connection.platform}/>
+                  <AccountTable className="mt-1" connection={connection} accounts={filterAccountsByPlatformScope(accounts, connection.platform, connection.scope)} platform={connection.platform}/>
                 </div>
               </div>
             </div>

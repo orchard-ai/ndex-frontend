@@ -2,6 +2,7 @@ import Notion from "assets/icons/svg/notion.svg"
 import Unknown from "assets/icons/svg/unknown.svg"
 import Gmail from "assets/icons/svg/gmail.svg"
 import GCalendar from "assets/icons/svg/g-calendar.svg"
+import GDrive from "assets/icons/svg/g-drive.svg"
 
 type IconProps = {
   platform?: string
@@ -15,6 +16,8 @@ export const getSourceIcon = (platform: string | undefined) => {
       return Gmail
     case "g-calendar":
       return GCalendar
+    case "g-drive":
+      return GDrive
     default:
       return Unknown
   }

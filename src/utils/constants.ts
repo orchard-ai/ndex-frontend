@@ -1,4 +1,4 @@
-import { IntegrationPlatform } from "api/models"
+import { IntegrationPlatform, Scope } from "api/models"
 import { getSourceIcon } from "components/common/PlatformIcon"
 
 export const APP_NAME = "ndex"
@@ -11,6 +11,14 @@ export const NOTION_CLIENT_ID = import.meta.env.VITE_NOTION_CLIENT_ID
 export const NOTION_SECRET = import.meta.env.VITE_NOTION_CLIENT_SECRET
 export const NOTION_FULL_OAUTH_URL = `${NOTION_OAUTH_URL}?owner=user&client_id=${NOTION_CLIENT_ID}&redirect_uri=${NOTION_REDIRECT_URI}&response_type=code`
 
+// Google OAuth Docs: https://developers.google.com/identity/openid-connect/openid-connect#libraries
+export const GOOGLE_CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
+export const GOOGLE_REDIRECT_URI = import.meta.env.VITE_GOOGLE_REDIRECT_URI;
+
+export const GOOGLE_GMAIL_OAUTH_URL = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${GOOGLE_CLIENT_ID}&scope=openid%20email%20${Scope.Gmail}&redirect_uri=${GOOGLE_REDIRECT_URI}&access_type=offline`;
+export const GOOGLE_GCAL_OAUTH_URL = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${GOOGLE_CLIENT_ID}&scope=openid%20email%20${Scope.Calendar}&redirect_uri=${GOOGLE_REDIRECT_URI}&access_type=offline`;
+export const GOOGLE_DRIVE_OAUTH_URL = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${GOOGLE_CLIENT_ID}&scope=openid%20email%20${Scope.Drive}&redirect_uri=${GOOGLE_REDIRECT_URI}&access_type=offline`;
+
 export const ROUTES = {
   AUTHENTICATE: '/authenticate',
   SEARCH: '/search',
@@ -18,14 +26,9 @@ export const ROUTES = {
   SETTINGS: '/settings/:tab', // NEVER USE THIS ONE. USE ONE OF THE SETTINGS ROUTES BELOW
   SETTINGS_ACCOUNT: '/settings/account',
   SETTINGS_CONNECTIONS: '/settings/connections',
-  NOTION_REDIRECT: '/notion-access-redirect'
+  NOTION_REDIRECT: '/notion-access-redirect',
+  GOOGLE_REDIRECT: '/google-access-redirect',
 };
-
-export enum GoogleScopes {
-  Gmail = 'https://www.googleapis.com/auth/gmail.readonly',
-  Calendar = 'https://www.googleapis.com/auth/calendar.readonly',
-  Drive = 'https://www.googleapis.com/auth/drive.readonly'
-}
 
 export const connections = [
   {
@@ -36,26 +39,41 @@ export const connections = [
     href: NOTION_FULL_OAUTH_URL,
     icon: getSourceIcon("notion"),
     alt: "Notion Icon",
-    detailedDescription: "Index all your Notion notes, tasks, etc."
+    detailedDescription: "Index all your Notion notes, tasks, etc.",
+    scope: Scope.Notion
   },
   {
     id: 2,
     platform: IntegrationPlatform.Google,
     name: "Gmail",
     description: "Team communication",
-    href: "#",
+    href: GOOGLE_GMAIL_OAUTH_URL,
     icon: getSourceIcon("gmail"),
     alt: "Gmail Icon",
-    detailedDescription: "Index your emails, messages, and important documents from Google Gmail!"
+    detailedDescription: "Index your emails, messages, and important documents from Google Gmail!",
+    scope: Scope.Gmail
   },
   {
     id: 3,
+    platform: IntegrationPlatform.Google,
     name: "Google Calendar",
     description: "Your timely events!",
-    href: "#",
+    href: GOOGLE_GCAL_OAUTH_URL,
     icon: getSourceIcon("g-calendar"),
     alt: "Google Calendar Icon",
-    detailedDescription: "Index your events your calendar events from Google Calendar!"
+    detailedDescription: "Index your calendar events from Google Calendar!",
+    scope: Scope.Calendar
+  },
+  {
+    id: 4,
+    platform: IntegrationPlatform.Google,
+    name: "Google Drive",
+    description: "All your files and documents",
+    href: GOOGLE_DRIVE_OAUTH_URL,
+    icon: getSourceIcon("g-drive"),
+    alt: "Google Drive Icon",
+    detailedDescription: "Index your files from Google Drive!",
+    scope: Scope.Drive
   },
   // {
   //   id: 3,

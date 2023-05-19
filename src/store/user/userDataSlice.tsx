@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSelector, createSlice } from "@reduxjs/toolkit"
-import { addIntegrationForUser, fetchNotionAccessToken, getUserIntegrations, indexNotion } from "api";
-import { AddIntegrationRequest, FetchState, IndexRequest, Integration, IntegrationPlatform, IntegrationTempCode } from "api/models";
+import { addIntegrationForUser, fetchNotionAccessToken, getUserIntegrations, indexNotion, obtainGoogleAccessToken } from "api";
+import { AddIntegrationRequest, FetchState, IndexRequest, Integration, IntegrationPlatform, IntegrationTempCode, Scope } from "api/models";
+import jwtDecode from 'jwt-decode';
 import { RootState } from "store";
 
 export const addIntegration = createAsyncThunk(
@@ -14,9 +15,9 @@ export const addIntegration = createAsyncThunk(
                 case IntegrationPlatform.Notion: {
                     try {
                         const notionAuthResponse = await fetchNotionAccessToken(form.temp_code);
-                        const { access_token, ...extras } = notionAuthResponse;
+                        const { access_token, ...extra } = notionAuthResponse;
 
-                        const { email } = extras.owner.user.person;
+                        const { email } = extra.owner.user.person;
 
                         const newIntegration: AddIntegrationRequest = {
                             email: email,
@@ -24,10 +25,10 @@ export const addIntegration = createAsyncThunk(
                             platform: IntegrationPlatform.Notion,
                             scopes: [],
                             access_token: access_token,
-                            extras: extras
+                            extra: extra
                         }
 
-                        // NEED TO ASSERT OK
+                        // TODO: NEED TO ASSERT OK
                         await addIntegrationForUser(token, newIntegration);
 
                         return {
@@ -37,7 +38,54 @@ export const addIntegration = createAsyncThunk(
                             scopes: []
                         } as Integration;
                     } catch {
-                        rejectWithValue('Error occurred while trying to add integration');
+                        return rejectWithValue('Error occurred while trying to add integration');
+                    }
+                }
+                case IntegrationPlatform.Google: {
+                    try {
+                        // fetch the access token
+                        const googleTokenResponse = await obtainGoogleAccessToken(form.temp_code);
+
+                        // get the relevant data
+                        const { access_token, ...extra } = googleTokenResponse;
+                        const { id_token, scope } = extra;
+
+                        // get scope
+                        // get rid of the basic scopes requested (openId and user info)
+                        const scopes: string[] = scope.split(' ');
+                        const requestedScope = scopes.filter((s: string) => s !== Scope.UserInfo && s !== Scope.openId);
+
+                        // obtain user information by decoding id_token
+                        const decodedToken: { email: string } = jwtDecode(id_token);
+                        const email = decodedToken.email;
+
+                        // find if there is already a google integration with this email
+                        const { integrations } = (getState() as RootState).userData;
+                        const googIntegs = integrations.filter(i => i.platform === IntegrationPlatform.Google);
+                        const existingIntegration = googIntegs.find(i => i.email === email);
+
+                        // check if scope already in integration
+                        // can take the first element or requestedScope bc assumption of only requesting one scope at a time
+                        if(existingIntegration && existingIntegration.scopes.includes(requestedScope[0])) {
+                            return rejectWithValue('Scope already integrated');
+                        }
+
+                        // create new integration. append new scopes if integration already exists.
+                        const newIntegration: AddIntegrationRequest = {
+                            email: email,
+                            oauth_provider_id: null,
+                            platform: IntegrationPlatform.Google,
+                            scopes: existingIntegration === undefined ? [...requestedScope] : existingIntegration.scopes.concat(requestedScope),
+                            access_token: access_token,
+                            extra: extra
+                        };
+
+                        // TODO: NEED TO ASSERT OK
+                        const integration = await addIntegrationForUser(token, newIntegration);
+
+                        return convertIntegration(integration);
+                    } catch {
+                        return rejectWithValue('Error occurred while trying to add integration');
                     }
                 }
             }
@@ -57,7 +105,7 @@ export const getIntegrations = createAsyncThunk(
 
             // ASSERT OK
             // maybe better handling here
-            return response.integrations.map(res => convertIntegration(res));
+            return response.integrations.map((res: any) => convertIntegration(res));
         }
 
         return null;
@@ -83,6 +131,8 @@ const platformStrToEnum = (platform: string) => {
     switch(platform) {
         case 'notion':
             return IntegrationPlatform.Notion
+        case 'google':
+            return IntegrationPlatform.Google
     }
 }
 
@@ -122,9 +172,8 @@ export const userDataSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(addIntegration.fulfilled, (state, action) => {
+        builder.addCase(addIntegration.fulfilled, (state) => {
             state.fetchStatus = FetchState.Complete;
-            state.integrations = [...state.integrations, action.payload];
         }),
         builder.addCase(addIntegration.rejected, (state) => {
             state.fetchStatus = FetchState.Failed;

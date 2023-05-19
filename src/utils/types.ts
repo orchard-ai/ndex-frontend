@@ -1,4 +1,4 @@
-import { IntegrationPlatform } from "api/models"
+import { IntegrationPlatform, Scope } from "api/models"
 
 export type Hit = {
   contents: string
@@ -47,5 +47,6 @@ export type Connection = {
     href: string,
     icon: string,
     alt: string,
-    detailedDescription: string
+    detailedDescription: string,
+    scope: Scope
 }
