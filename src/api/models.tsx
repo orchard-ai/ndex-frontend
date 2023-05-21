@@ -66,5 +66,7 @@ export interface AddIntegrationRequest extends Integration {
 }
 
 export interface IndexRequest {
-    email: string
+    platform: IntegrationPlatform,
+    email: string,
+    scope: Scope
 }

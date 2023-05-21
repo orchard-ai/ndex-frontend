@@ -1,6 +1,20 @@
 import { createAsyncThunk, createSelector, createSlice } from "@reduxjs/toolkit"
-import { addIntegrationForUser, fetchNotionAccessToken, getUserIntegrations, indexNotion, obtainGoogleAccessToken } from "api";
-import { AddIntegrationRequest, FetchState, IndexRequest, Integration, IntegrationPlatform, IntegrationTempCode, Scope } from "api/models";
+import {
+    addIntegrationForUser,
+    fetchNotionAccessToken,
+    getUserIntegrations,
+    indexAccount,
+    obtainGoogleAccessToken
+} from "api";
+import {
+    AddIntegrationRequest,
+    FetchState,
+    IndexRequest,
+    Integration,
+    IntegrationPlatform,
+    IntegrationTempCode,
+    Scope
+} from "api/models";
 import jwtDecode from 'jwt-decode';
 import { RootState } from "store";
 
@@ -142,13 +156,13 @@ export const indexData = createAsyncThunk(
         const { token } = (getState() as RootState).userAuth;
 
         if(token) {
-            const response = await indexNotion(token, request);
+            const res = await indexAccount(token, request);
 
-            console.log('indexData', response);
+            console.log('indexData', res);
 
             // ASSERT OK
             // maybe better handling here
-            return response;
+            return res;
         }
 
         return null;
@@ -181,6 +195,9 @@ export const userDataSlice = createSlice({
         builder.addCase(getIntegrations.fulfilled, (state, action) => {
             state.fetchStatus = FetchState.Complete;
             state.integrations = action.payload;
+        }),
+        builder.addCase(indexData.fulfilled, (state) => {
+            state.fetchStatus = FetchState.Complete;
         })
     }
 });

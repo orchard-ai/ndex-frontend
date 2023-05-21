@@ -3,8 +3,10 @@ import {
     AddIntegrationRequest,
     NotionAuthRequest,
     UserAuthRequest,
+    IntegrationPlatform,
     IndexRequest,
-    GoogleTokenRequest
+    GoogleTokenRequest,
+    Scope
 } from "./models";
 
 const baseUrl = 'http://localhost:3001';
@@ -17,6 +19,9 @@ enum apiRoutes {
     userIntegrations = '/user/integrations',
     addIntegrationToUser = '/user/add_integration',
     notionIndex = '/notion/index',
+    gmailIndex = '/google/index_gmail',
+    gcalIndex = '/google/index_calendar',
+    gdriveIndex = '/google/index_drive',
 }
 
 const method = {
@@ -150,10 +155,47 @@ const getUserIntegrations = async(ndexToken: string) => {
     return response
 };
 
-// INDEX NOTION
-const indexNotion = async(ndexToken: string, request: IndexRequest) => {
+// INDEXING
+const indexAccount = async(ndexToken: string, request: IndexRequest) => {
+    const getIndexRoute = (p: IntegrationPlatform, s: Scope) => {
+        switch(p) {
+            case IntegrationPlatform.Notion: {
+                return getRoute(apiRoutes.notionIndex)
+            }
+            case IntegrationPlatform.Google: {
+                return getIndexRouteByScope(s)
+            }
+        }
+
+        throw new Error('No platform found');
+    }
+
+    const getIndexRouteByScope = (s: Scope) => {
+        switch(s) {
+            case Scope.Gmail: {
+                return getRoute(apiRoutes.gmailIndex)
+            }
+            case Scope.Calendar: {
+                return getRoute(apiRoutes.gcalIndex)
+            }
+            case Scope.Drive: {
+                return getRoute(apiRoutes.gdriveIndex)
+            }
+        }
+
+        throw new Error('No scope found');
+    }
+
+    const {
+        platform,
+        email,
+        scope
+    } = request;
+
     try {
-        const response = await fetch(getRoute(apiRoutes.notionIndex), {
+        const indexingRoute = getIndexRoute(platform, scope);
+
+        const response = await fetch(indexingRoute, {
             method: method.POST,
             headers: {
                 'Content-Type': 'application/json',
@@ -163,15 +205,15 @@ const indexNotion = async(ndexToken: string, request: IndexRequest) => {
         });
 
         if(!isStatusOk(response.status)) {
-            throw new Error('Trouble while indexing Notion.');
+            throw new Error(`Trouble while indexing ${platform}.${scope}`);
         }
 
         const data = await response.json();
         return data;
     } catch {
-        throw new Error('Something went wrong while indexing Notion.');
+        throw new Error(`Something went wrong while indexing ${platform}.${scope}`);
     }
-}
+};
 
 export {
     signupUser,
@@ -180,5 +222,5 @@ export {
     obtainGoogleAccessToken,
     getUserIntegrations,
     addIntegrationForUser,
-    indexNotion
+    indexAccount
 };

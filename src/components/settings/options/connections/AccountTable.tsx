@@ -36,17 +36,12 @@ const AccountTable = ({accounts, connection, className} : PropType) => {
 
     const handleIndex = (account: Integration) => {
         const request: IndexRequest = {
-            email: account.email
+            email: account.email,
+            platform: account.platform,
+            scope: connection.scope
         };
 
-        // TESTING PURPOSES, WILL DO THIS ANOTHER WAY
-        switch(account.platform) {
-            case IntegrationPlatform.Notion: {
-            dispatch(indexData(request));
-        }
-
-            return undefined;
-        }
+        dispatch(indexData(request));
     }
 
     const connectButton = () => {
@@ -71,7 +66,7 @@ const AccountTable = ({accounts, connection, className} : PropType) => {
                 </Table.HeaderRow>
             </Table.Header>
             <Table.Body className="bg-ndex-light-background-2 border-separate dark:bg-ndex-dark-background-grey">
-                {accounts.map((account : Integration) => {
+                {accounts.map((account: Integration) => {
                     return (
                     <Table.Row key={account.email} className="bg-ndex-light-table-default dark:bg-ndex-dark-background-default">
                         <Table.Cell className="

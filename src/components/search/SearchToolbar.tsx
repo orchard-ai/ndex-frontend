@@ -23,10 +23,10 @@ const SearchToolbar = () => {
         defaultConnectionFilter
     );
 
-    const updateFilter = (connection : string, index: number) => {
+    const updateFilter = (connection : string) => {
         console.log(connectionFilters);
         setConnectionFilter(
-            connectionFilters.map((connectionFilter) => {
+            connectionFilters.map((connectionFilter, index) => {
                 return connectionFilter.id == index || connectionFilter.name == connection
                 ? {...connectionFilter, selected: !connectionFilter.selected}
                 : connectionFilter
@@ -40,10 +40,10 @@ const SearchToolbar = () => {
             <button className="flex space-x-4 p-1">
                 {connectionFilters.map((connection, index) => {
                     return (
-                        <div className={`rounded-md p-1 active:bg-ndex-search-toolbar-icon-active
-                            ${connection.selected ?  "bg-ndex-search-toolbar-icon-selected" : "hover:bg-ndex-search-toolbar-icon-hover"} 
+                        <div key={index} className={`rounded-md p-1 active:bg-ndex-search-toolbar-icon-active
+                            ${connection.selected ?  "bg-ndex-search-toolbar-icon-selected" : "hover:bg-ndex-search-toolbar-icon-hover"}
                         `}
-                            onClick={() => updateFilter(connection.name, index)}
+                            onClick={() => updateFilter(connection.name)}
                         >
                             <img
                                 className="h-6 w-6"
@@ -51,8 +51,7 @@ const SearchToolbar = () => {
                             />
                         </div>
                     )
-                })
-                }
+                })}
                 <div className={`rounded-md p-1 bg-ndex-search-toolbar-icon-selected active:bg-ndex-search-toolbar-icon-active`}
                     onClick={() => navigate(ROUTES.SETTINGS_CONNECTIONS)}
                 >

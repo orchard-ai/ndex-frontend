@@ -37,7 +37,10 @@ const persistedReducer = persistReducer(
 
 const store = configureStore({
   reducer: persistedReducer,
-  devTools: true,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+  }),
 });
 
 // REHYDRATES LOCAL STATE CORRECTLY
