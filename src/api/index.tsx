@@ -201,7 +201,9 @@ const indexAccount = async(ndexToken: string, request: IndexRequest) => {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${ndexToken}`
             },
-            body: JSON.stringify(request),
+            body: JSON.stringify({
+                email: email
+            }),
         });
 
         if(!isStatusOk(response.status)) {
