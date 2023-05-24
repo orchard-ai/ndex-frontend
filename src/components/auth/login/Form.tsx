@@ -19,6 +19,7 @@ const Form = ({onSuccess, onFailure} : PropType) => {
     const [email, setEmail] : [string, (value: string) => void]  = useState("");
     const [password, setPassword] : [string, (value: string) => void]  = useState("");
     const [showPassword, setShowPassword] : [boolean, (value: boolean) => void]  = useState(true);
+    const [showFailure, setShowFailure] : [boolean, (value: boolean) => void] = useState(false);
 
     const navigate = useNavigate();
 
