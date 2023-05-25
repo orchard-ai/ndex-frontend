@@ -42,14 +42,6 @@ export default function Login({ className } : PropType) {
     alert("Login failed");
   }
 
-  const handleLoginSuccess = (credentials : any) => {
-    console.log("Success");
-  }
-
-  const handleLoginFailure = () => {
-    console.log("Failure");
-  }
-
   const handleLogoPress = () => {
     dispatch(toggleTheme());
   }
@@ -94,10 +86,7 @@ export default function Login({ className } : PropType) {
             }}
           />
         </div>
-        <Form
-          onSuccess={handleLoginSuccess}
-          onFailure={handleLoginFailure}
-        />
+        <Form/>
       </div>
     </div>
   )

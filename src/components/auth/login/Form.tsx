@@ -9,17 +9,12 @@ import { createUser, loginUser, userFetchStatusSelector } from "store/user/userA
 import { ROUTES } from "utils/constants";
 import { isFetchStateFailed, isFetchStatePending } from "utils/helpers";
 
-type PropType = {
-    onSuccess: (credentials : string) => void
-    onFailure: () => void
-}
-
-const Form = ({onSuccess, onFailure} : PropType) => {
+const Form = () => {
     const [showSignUp, setShowSignUp] : [boolean, (value: boolean) => void]  = useState(false);
     const [email, setEmail] : [string, (value: string) => void]  = useState("");
     const [password, setPassword] : [string, (value: string) => void]  = useState("");
     const [showPassword, setShowPassword] : [boolean, (value: boolean) => void]  = useState(true);
-    const [showFailure, setShowFailure] : [boolean, (value: boolean) => void] = useState(false);
+    const [failureMessage, setShowFailureMessage] : [string, (value: string) => void] = useState("");
 
     const navigate = useNavigate();
 
@@ -39,8 +34,11 @@ const Form = ({onSuccess, onFailure} : PropType) => {
             );
         } else {
             return (
-                <button className="flex text-ndex-button-text-filled-light border-2 rounded-lg w-40 h-8 shadow-md bg-ndex-button-filled-light
-                    active:bg-ndex-button-active-light justify-center items-center"
+                <button className={`
+                    flex text-ndex-button-text-filled-light border-2  rounded-lg w-40 h-8 shadow-md bg-ndex-button-filled-light
+                    active:bg-ndex-button-active-light justify-center items-center 
+                    ${failureMessage === "" ? "" : "border-red-300"}
+                `}
                     onClick={onClickFunc}
                 >
                     {buttonText}
@@ -61,8 +59,9 @@ const Form = ({onSuccess, onFailure} : PropType) => {
         await dispatch(createUser(form));
 
         if(isFetchStateFailed(userFetchState)) {
-            // TODO: BETTER ERROR SHOWING
+            // TODO: GET REASON FOR FAILURE
             console.log('Signup failed');
+            setShowFailureMessage("Signup Failed. Account is either duplicated.");
         } else {
             // ON SUCCESS OF SIGN UP
             navigate(ROUTES.ADD_FIRST_CONNECTION, { replace: true })
@@ -83,6 +82,7 @@ const Form = ({onSuccess, onFailure} : PropType) => {
         if(isFetchStateFailed(userFetchState)) {
             // TODO: BETTER ERROR SHOWING
             console.log('login failed')
+            setShowFailureMessage("Login Failed. Wrong password or account does not exist.");
         } else {
             // ON SUCCESS OF SIGN UP
             navigate(ROUTES.SEARCH, { replace: true })
@@ -93,8 +93,8 @@ const Form = ({onSuccess, onFailure} : PropType) => {
     if(showSignUp) {
         return (
         <div className="flex flex-col items-center justify-center w-full h-full space-y-4 text-ndex-light-text-primary dark:text-ndex-dark-text-default">
-            <Input placeholder={"Email"} value={email} onChange={setEmail} type="email" />
-            <Input placeholder={"Password"} value={password} onChange={setPassword} type="password" />
+            <Input placeholder={"Email"} value={email} onChange={setEmail} type="email"  showError={failureMessage !== ""} />
+            <Input placeholder={"Password"} value={password} onChange={setPassword} type="password"  showError={failureMessage !== ""} />
             {renderButton("Sign up", handleCredentialSignUp)}
             <div>
                 Have an account?
@@ -103,6 +103,7 @@ const Form = ({onSuccess, onFailure} : PropType) => {
                 className="mt-12 underline underline-offset-4 hover:text-ndex-text-column-hover text-ndex-light-text-primary dark:text-ndex-dark-text-default"
                 onClick={() => {
                     setShowSignUp(false);
+                    setShowFailureMessage("");
                 }}>
                     {" "}
                         Log in
@@ -115,8 +116,8 @@ const Form = ({onSuccess, onFailure} : PropType) => {
 
     return (
         <div className="flex flex-col items-center justify-center w-full h-full space-y-4 text-ndex-light-text-primary dark:text-ndex-dark-text-default">
-            <Input placeholder={"Email"} value={email} onChange={setEmail} type="email" />
-            <Input placeholder={"Password"} value={password} onChange={setPassword} type="password" />
+            <Input placeholder={"Email"} value={email} onChange={setEmail} type="email"  showError={failureMessage !== ""}/>
+            <Input placeholder={"Password"} value={password} onChange={setPassword} type="password"  showError={failureMessage !== ""} />
             {renderButton("Log In", handleLogin)}
             <div>
                 Don't have an account?
@@ -124,6 +125,7 @@ const Form = ({onSuccess, onFailure} : PropType) => {
                 <button className="mt-12 underline underline-offset-4 text-ndex-light-text-primary dark:text-ndex-dark-text-default hover:text-ndex-text-column-hover"
                  onClick={() => {
                     setShowSignUp(true);
+                    setShowFailureMessage("");
                 }}>
                     {" "}
                     Sign up
