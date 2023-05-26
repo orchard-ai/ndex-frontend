@@ -2,12 +2,15 @@ import { useState } from "react";
 
 import { useNavigate } from "react-router-dom"
 
+import CloseIcon from "assets/icons/tsx/CloseIcon";
 import Input from "components/common/Input";
+
 import { AccountType, UserAuthRequest } from "api/models";
 import { useAppDispatch, useAppSelector } from "store";
 import { createUser, loginUser, userFetchStatusSelector } from "store/user/userAuthSlice";
 import { ROUTES } from "utils/constants";
 import { isFetchStateFailed, isFetchStatePending } from "utils/helpers";
+
 
 const Form = () => {
     const [showSignUp, setShowSignUp] : [boolean, (value: boolean) => void]  = useState(false);
@@ -36,8 +39,7 @@ const Form = () => {
             return (
                 <button className={`
                     flex text-ndex-button-text-filled-light border-2  rounded-lg w-40 h-8 shadow-md bg-ndex-button-filled-light
-                    active:bg-ndex-button-active-light justify-center items-center 
-                    ${failureMessage === "" ? "" : "border-red-300"}
+                    active:bg-ndex-button-active-light justify-center items-center}
                 `}
                     onClick={onClickFunc}
                 >
@@ -61,7 +63,7 @@ const Form = () => {
         if(isFetchStateFailed(userFetchState)) {
             // TODO: GET REASON FOR FAILURE
             console.log('Signup failed');
-            setShowFailureMessage("Signup Failed. Account is either duplicated.");
+            setShowFailureMessage("Signup failed please contact contact@ndex.gg for support");
         } else {
             // ON SUCCESS OF SIGN UP
             navigate(ROUTES.ADD_FIRST_CONNECTION, { replace: true })
@@ -82,7 +84,7 @@ const Form = () => {
         if(isFetchStateFailed(userFetchState)) {
             // TODO: BETTER ERROR SHOWING
             console.log('login failed')
-            setShowFailureMessage("Login Failed. Wrong password or account does not exist.");
+            setShowFailureMessage("Incorrect username or password.");
         } else {
             // ON SUCCESS OF SIGN UP
             navigate(ROUTES.SEARCH, { replace: true })
@@ -93,6 +95,18 @@ const Form = () => {
     if(showSignUp) {
         return (
         <div className="flex flex-col items-center justify-center w-full h-full space-y-4 text-ndex-light-text-primary dark:text-ndex-dark-text-default">
+             {
+                failureMessage && (
+                <div className="flex w-3/4 h-[120px] md:h-[65px] pl-4 text-red-700 bg-red-100 items-center">
+                    <div>
+                        {failureMessage}
+                    </div>
+                    <button onClick={() => {setShowFailureMessage("")}}>
+                        <CloseIcon className="p-2 w-8 h-8" />
+                    </button>
+                </div>
+                )
+            }
             <Input placeholder={"Email"} value={email} onChange={setEmail} type="email"  showError={failureMessage !== ""} />
             <Input placeholder={"Password"} value={password} onChange={setPassword} type="password"  showError={failureMessage !== ""} />
             {renderButton("Sign up", handleCredentialSignUp)}
@@ -116,6 +130,18 @@ const Form = () => {
 
     return (
         <div className="flex flex-col items-center justify-center w-full h-full space-y-4 text-ndex-light-text-primary dark:text-ndex-dark-text-default">
+             {
+                failureMessage && (
+                <div className="flex w-3/4 h-[85px] md:h-[65px] pl-4 text-red-700 bg-red-100 items-center">
+                    <div>
+                        {failureMessage}
+                    </div>
+                    <button onClick={() => {setShowFailureMessage("")}}>
+                        <CloseIcon className="p-2 w-8 h-8" />
+                    </button>
+                </div>
+                )
+            }
             <Input placeholder={"Email"} value={email} onChange={setEmail} type="email"  showError={failureMessage !== ""}/>
             <Input placeholder={"Password"} value={password} onChange={setPassword} type="password"  showError={failureMessage !== ""} />
             {renderButton("Log In", handleLogin)}
