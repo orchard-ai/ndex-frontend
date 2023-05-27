@@ -81,7 +81,6 @@ const Form = () => {
             account_type: AccountType.Credentials
         };
         setAuthenticating(true);
-        console.log(form);
         await dispatch(loginUser(form));
 
         if(isFetchStateFailed(userFetchState)) {
