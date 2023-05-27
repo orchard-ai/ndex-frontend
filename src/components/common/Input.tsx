@@ -11,6 +11,19 @@ type PropType = {
 
 const Input = ({value, placeholder, onChange, showLabel = true, className, showError, type = "text", form} : PropType) => {
 
+    const getAutocomplete = (type : string) => {
+        switch(type) { 
+            case "text":
+                return ""
+            case "password":
+                return "currrent-password"
+            case "email":
+                return "email"
+            default:
+                return ""
+        }
+    }
+
     return (
         <div className="flex flex-col w-3/4">
             {showLabel && <label className="text-sm text-ndex-light-text-secondary dark:text-gray-200 font-medium mb-1">{placeholder}</label>}
@@ -24,6 +37,7 @@ const Input = ({value, placeholder, onChange, showLabel = true, className, showE
                     focus:ring-blue-200
                     ${showError ? "border-red-400" : "border-ndex-input-border"}
                     `}
+                autoComplete={getAutocomplete(type)}
                 type={type}
                 value={value}
                 onChange={(e) => onChange(e.target.value)}

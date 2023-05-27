@@ -18,6 +18,7 @@ const Form = () => {
     const [password, setPassword] : [string, (value: string) => void]  = useState("");
     const [showPassword, setShowPassword] : [boolean, (value: boolean) => void]  = useState(true);
     const [failureMessage, setShowFailureMessage] : [string, (value: string) => void] = useState("");
+    const [authenticating,  setAuthenticating]  : [boolean, (value: boolean) => void]  = useState(false);
 
     const navigate = useNavigate();
 
@@ -28,23 +29,22 @@ const Form = () => {
     const renderButton = (buttonText: string, onClickFunc: () => void) => {
         if(isFetchStatePending(userFetchState)) {
             return (
-                <button className="
+                <div className="
                     flex text-ndex-button-text-filled-light border-2 rounded-lg w-40 h-8 shadow-md bg-ndex-button-filled-light
                     active:bg-ndex-button-active-light justify-center items-center"
                 >
                     <div className="animate-spin border-b-2 border-gray-400 h-4 w-4 rounded-full items-center"/>
-                </button>
+                </div>
             );
         } else {
             return (
-                <button className={`
+                <input type="submit" disabled={authenticating} className={`
                     flex text-ndex-button-text-filled-light border-2  rounded-lg w-40 h-8 shadow-md bg-ndex-button-filled-light
                     active:bg-ndex-button-active-light justify-center items-center}
                 `}
                     onClick={onClickFunc}
-                >
-                    {buttonText}
-                </button>
+                    value={buttonText}
+                />
             );
         }
     };
@@ -57,10 +57,12 @@ const Form = () => {
             password: password,
             account_type: AccountType.Credentials
         };
+        setAuthenticating(true);
 
         await dispatch(createUser(form));
 
         if(isFetchStateFailed(userFetchState)) {
+            setAuthenticating(false);
             // TODO: GET REASON FOR FAILURE
             console.log('Signup failed');
             setShowFailureMessage("Signup failed please contact contact@ndex.gg for support");
@@ -78,11 +80,13 @@ const Form = () => {
             password: password,
             account_type: AccountType.Credentials
         };
-
+        setAuthenticating(true);
+        console.log(form);
         await dispatch(loginUser(form));
 
         if(isFetchStateFailed(userFetchState)) {
             // TODO: BETTER ERROR SHOWING
+            setAuthenticating(false);
             console.log('login failed')
             setShowFailureMessage("Incorrect username or password.");
         } else {
@@ -94,28 +98,33 @@ const Form = () => {
     // TODO(philiptam): Remove Signup Form and instead use another page for this
     if(showSignUp) {
         return (
-        <div className="flex flex-col items-center justify-center w-full h-full space-y-4 text-ndex-light-text-primary dark:text-ndex-dark-text-default">
+        <form onSubmit={handleCredentialSignUp} className="flex flex-col items-center justify-center w-full h-full space-y-4 text-ndex-light-text-primary dark:text-ndex-dark-text-default">
              {
                 failureMessage && (
                 <div className="flex w-3/4 h-[120px] md:h-[65px] pl-4 text-red-700 bg-red-100 items-center">
                     <div>
                         {failureMessage}
                     </div>
-                    <button onClick={() => {setShowFailureMessage("")}}>
+                    <button onClick={(event) => {
+                        event.preventDefault();
+                        setShowFailureMessage("");
+                    }}>
                         <CloseIcon className="p-2 w-8 h-8" />
                     </button>
                 </div>
                 )
             }
             <Input placeholder={"Email"} value={email} onChange={setEmail} type="email"  showError={failureMessage !== ""} />
-            <Input placeholder={"Password"} value={password} onChange={setPassword} type="password"  showError={failureMessage !== ""} />
+            <Input placeholder={"Password"} value={password} onChange={setPassword} type="current-password"  showError={failureMessage !== ""} />
             {renderButton("Sign up", handleCredentialSignUp)}
             <div>
                 Have an account?
                 {" "}
                 <button
+                disabled={authenticating}
                 className="mt-12 underline underline-offset-4 hover:text-ndex-text-column-hover text-ndex-light-text-primary dark:text-ndex-dark-text-default"
-                onClick={() => {
+                onClick={(event) => {
+                    event.preventDefault();
                     setShowSignUp(false);
                     setShowFailureMessage("");
                 }}>
@@ -124,41 +133,48 @@ const Form = () => {
                     {" "}
                 </button>
             </div>
-        </div>
+        </form>
         )
     }
 
     return (
-        <div className="flex flex-col items-center justify-center w-full h-full space-y-4 text-ndex-light-text-primary dark:text-ndex-dark-text-default">
+        <form onSubmit={handleLogin} className="flex flex-col items-center justify-center w-full h-full space-y-4 text-ndex-light-text-primary dark:text-ndex-dark-text-default">
              {
                 failureMessage && (
                 <div className="flex w-3/4 h-[85px] md:h-[65px] pl-4 text-red-700 bg-red-100 items-center">
                     <div>
                         {failureMessage}
                     </div>
-                    <button onClick={() => {setShowFailureMessage("")}}>
+                    <button onClick={(event) => {
+                        event.preventDefault();
+                        setShowFailureMessage("");
+                    }}>
                         <CloseIcon className="p-2 w-8 h-8" />
                     </button>
                 </div>
                 )
             }
             <Input placeholder={"Email"} value={email} onChange={setEmail} type="email"  showError={failureMessage !== ""}/>
-            <Input placeholder={"Password"} value={password} onChange={setPassword} type="password"  showError={failureMessage !== ""} />
+            <Input placeholder={"Password"} value={password} onChange={setPassword} type="password" showError={failureMessage !== ""} />
             {renderButton("Log In", handleLogin)}
             <div>
                 Don't have an account?
                 {" "}
-                <button className="mt-12 underline underline-offset-4 text-ndex-light-text-primary dark:text-ndex-dark-text-default hover:text-ndex-text-column-hover"
-                 onClick={() => {
+                <button 
+                disabled={authenticating}
+                className="mt-12 underline underline-offset-4 text-ndex-light-text-primary dark:text-ndex-dark-text-default hover:text-ndex-text-column-hover"
+                onClick={(event) => {
+                    event.preventDefault();
                     setShowSignUp(true);
                     setShowFailureMessage("");
-                }}>
+                }}
+                >
                     {" "}
                     Sign up
                     {" "}
                 </button>
             </div>
-        </div>
+        </form>
     )
 }
 

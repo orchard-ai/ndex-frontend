@@ -58,7 +58,7 @@ const Options = ({ category, onOptionClick, className }: PropType) => {
       </div>
       <div className="space-y-4">
         <hr className="border-ndex-text-grey" />
-        <Logout className={`flex text-ndex-light-text-primary dark:text-ndex-dark-text-default rounded-lg h-8 items-center p-5 hover:bg-ndex-button-bordered-red hover:text-ndex-dark-text-default hover:opacity-80 transition duration-200 ease-in-out`} />
+        <Logout className={`flex w-full text-ndex-light-text-primary dark:text-ndex-dark-text-default rounded-lg h-8 items-center p-5 hover:bg-ndex-button-bordered-red hover:text-ndex-dark-text-default hover:opacity-80 transition duration-200 ease-in-out`} />
       </div>
     </div>
   )
