@@ -16,8 +16,10 @@ const Form = () => {
     const [showSignUp, setShowSignUp] : [boolean, (value: boolean) => void]  = useState(false);
     const [email, setEmail] : [string, (value: string) => void]  = useState("");
     const [password, setPassword] : [string, (value: string) => void]  = useState("");
-    const [showPassword, setShowPassword] : [boolean, (value: boolean) => void]  = useState(true);
+    const [showEmailError, setShowEmailError] : [boolean, (value: boolean) => void] = useState(false);
+    const [showPasswordError, setShowPasswordError] : [boolean, (value: boolean) => void] = useState(false);
     const [failureMessage, setShowFailureMessage] : [string, (value: string) => void] = useState("");
+
     const [authenticating,  setAuthenticating]  : [boolean, (value: boolean) => void]  = useState(false);
 
     const navigate = useNavigate();
@@ -26,7 +28,7 @@ const Form = () => {
 
     const userFetchState = useAppSelector(userFetchStatusSelector);
 
-    const renderButton = (buttonText: string, onClickFunc: () => void) => {
+    const renderButton = (buttonText: string, onClickFunc: (event: any) => void) => {
         if(isFetchStatePending(userFetchState)) {
             return (
                 <div className="
@@ -49,7 +51,9 @@ const Form = () => {
         }
     };
 
-    const handleCredentialSignUp = async() => {
+    const handleCredentialSignUp = async(event: any) => {
+        event.preventDefault();
+
         const form: UserAuthRequest = {
             email: email,
             oauth_provider_id: null,
@@ -57,22 +61,29 @@ const Form = () => {
             password: password,
             account_type: AccountType.Credentials
         };
-        setAuthenticating(true);
 
-        await dispatch(createUser(form));
+        if(validateSignupForm(form)) {
+            setAuthenticating(true);
 
-        if(isFetchStateFailed(userFetchState)) {
-            setAuthenticating(false);
-            // TODO: GET REASON FOR FAILURE
-            console.log('Signup failed');
-            setShowFailureMessage("Signup failed please contact contact@ndex.gg for support");
-        } else {
-            // ON SUCCESS OF SIGN UP
-            navigate(ROUTES.ADD_FIRST_CONNECTION, { replace: true })
+            await dispatch(createUser(form));
+
+            if(isFetchStateFailed(userFetchState)) {
+                setAuthenticating(false);
+                // TODO: GET REASON FOR FAILURE
+                console.log('Signup failed');
+                setShowFailureMessage("Signup failed please contact contact@ndex.gg for support");
+                setShowEmailError(true);
+                setShowPasswordError(true);
+            } else {
+                // ON SUCCESS OF SIGN UP
+                navigate(ROUTES.ADD_FIRST_CONNECTION, { replace: true })
+            }
         }
     }
 
-    const handleLogin = async() => {
+    const handleLogin = async(event: any) => {
+        event.preventDefault()
+
         const form: UserAuthRequest = {
             email: email,
             oauth_provider_id: null,
@@ -80,18 +91,91 @@ const Form = () => {
             password: password,
             account_type: AccountType.Credentials
         };
-        setAuthenticating(true);
-        await dispatch(loginUser(form));
 
-        if(isFetchStateFailed(userFetchState)) {
-            // TODO: BETTER ERROR SHOWING
-            setAuthenticating(false);
-            console.log('login failed')
-            setShowFailureMessage("Incorrect username or password.");
-        } else {
-            // ON SUCCESS OF SIGN UP
-            navigate(ROUTES.SEARCH, { replace: true })
+        if(validateLoginForm(form)) {
+            setAuthenticating(true);
+            await dispatch(loginUser(form));
+
+            if(isFetchStateFailed(userFetchState)) {
+                console.log("ERROR");
+                // TODO: BETTER ERROR SHOWING
+                setAuthenticating(false);
+                setShowFailureMessage("Incorrect username or password.");
+                setShowEmailError(true);
+                setShowPasswordError(true);
+            } else {
+                // ON SUCCESS OF SIGN UP
+                navigate(ROUTES.SEARCH, { replace: true })
+            }
         }
+    }
+
+    const validateLoginForm = (form: UserAuthRequest) : boolean => {
+        // Check for appropriate email length
+        if(!form.email) {
+            setShowFailureMessage("Email must be in the correct format.")
+            setShowEmailError(true);
+            return false
+        } else if(!form.email.match( /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+            setShowFailureMessage("Email must be in the correct format.")
+            setShowEmailError(true);
+            return false
+        }
+
+        if(!form.password) {
+            setShowFailureMessage("Password must be at least 8 characters.")
+            setShowPasswordError(true);
+           return false
+        } else if(form.password.length < 8) {
+            setShowFailureMessage("Password must be at least 8 characters.")
+            setShowPasswordError(true);
+            return false
+        } else if(form.password.length > 32) {
+            setShowFailureMessage("Password must have at most 32 characters.")
+            setShowPasswordError(true);
+            return false
+        }
+
+        return true
+    }
+
+
+    const validateSignupForm = (form: UserAuthRequest) : boolean => {
+        if(!form.email) {
+            setShowFailureMessage("Email must be in the correct format.")
+            setShowEmailError(true);
+            return false
+        } else if(!form.email.match( /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+            setShowFailureMessage("Email must be in the correct format.")
+            setShowEmailError(true);
+            return false
+        }
+
+        if(!form.password) {
+            setShowFailureMessage("Password must be at least 8 characters.")
+            setShowPasswordError(true);
+           return false
+        } else if(form.password.length < 8) {
+            setShowFailureMessage("Password must be at least 8 characters.")
+            setShowPasswordError(true);
+            return false
+        } else if(form.password.length > 32) {
+            setShowFailureMessage("Password must have at most 32 characters.")
+            setShowPasswordError(true);
+            return false
+        }  else if(!form.password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)) {
+            setShowFailureMessage("Password must contain a special character, a lowercased letter, an uppercased letter, and a number.")
+            setShowPasswordError(true);
+            return false
+        }
+
+        return true
+    }
+
+    const clearError = () => {
+        setShowEmailError(false);
+        setShowPasswordError(false);
+        setShowFailureMessage("");
     }
 
     // TODO(philiptam): Remove Signup Form and instead use another page for this
@@ -106,7 +190,7 @@ const Form = () => {
                     </div>
                     <button onClick={(event) => {
                         event.preventDefault();
-                        setShowFailureMessage("");
+                        clearError();
                     }}>
                         <CloseIcon className="p-2 w-8 h-8" />
                     </button>
@@ -114,7 +198,7 @@ const Form = () => {
                 )
             }
             <Input placeholder={"Email"} value={email} onChange={setEmail} type="email"  showError={failureMessage !== ""} />
-            <Input placeholder={"Password"} value={password} onChange={setPassword} type="current-password"  showError={failureMessage !== ""} />
+            <Input placeholder={"Password"} value={password} onChange={setPassword} type="password"  showError={failureMessage !== ""} />
             {renderButton("Sign up", handleCredentialSignUp)}
             <div>
                 Have an account?
@@ -125,7 +209,7 @@ const Form = () => {
                 onClick={(event) => {
                     event.preventDefault();
                     setShowSignUp(false);
-                    setShowFailureMessage("");
+                    clearError();
                 }}>
                     {" "}
                         Log in
@@ -146,15 +230,15 @@ const Form = () => {
                     </div>
                     <button onClick={(event) => {
                         event.preventDefault();
-                        setShowFailureMessage("");
+                        clearError();
                     }}>
                         <CloseIcon className="p-2 w-8 h-8" />
                     </button>
                 </div>
                 )
             }
-            <Input placeholder={"Email"} value={email} onChange={setEmail} type="email"  showError={failureMessage !== ""}/>
-            <Input placeholder={"Password"} value={password} onChange={setPassword} type="password" showError={failureMessage !== ""} />
+            <Input placeholder={"Email"} value={email} onChange={setEmail} type="email"  showError={showEmailError}/>
+            <Input placeholder={"Password"} value={password} onChange={setPassword} type="password" showError={showPasswordError} />
             {renderButton("Log In", handleLogin)}
             <div>
                 Don't have an account?
@@ -165,7 +249,7 @@ const Form = () => {
                 onClick={(event) => {
                     event.preventDefault();
                     setShowSignUp(true);
-                    setShowFailureMessage("");
+                    clearError();
                 }}
                 >
                     {" "}
