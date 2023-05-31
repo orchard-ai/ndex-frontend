@@ -1,15 +1,18 @@
 import { useState } from "react"
 import LinkButton from "components/common/LinkButton";
 import Logout from "components/auth/Logout";
+import { useAuth } from "hooks/useAuth";
 import EditingCard from "components/settings/options/account/EditingCard";
 import DefaultCard from "components/settings/options/account//DefaultCard";
 
+
 export default function AccountTab() {
   const [editing, setEditing] = useState(false);
-  // const [] = useState();
-  //SHOW REAL USER INFORMATION
+  // TODO:(philiptam) GET ACTUAL USER (NEED TO STORE IN LOCAL CACHE)
 
-  const [user, setUser] = useState({name: "John Smith", email: "johnsmith@orchid.ai"});
+  const { user } = useAuth()
+
+  console.log(user);
 
   return (
     <>
