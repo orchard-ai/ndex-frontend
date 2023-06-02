@@ -9,6 +9,7 @@ import SearchResultRow from "components/search/SearchResultRow"
 import SearchStatistics from "components/search/SearchStatistics"
 import Hits from "components/search/Hits";
 import { Hit } from "utils/types"
+import { motion } from "framer-motion"
 
 type StateResultsProps = {
   searchState: SearchState
@@ -25,23 +26,21 @@ function StateResults({
   const nbHits = searchResults && searchResults.nbHits
 
   return (
-    <div className={`flex w-full 
-      ${searchState.query ? "" : "hidden"}
-    `}>
+    <motion.div layout transition={{ duration: 0.1 }} className={`flex w-full`}>
       {currentRefinement !== "" && searchState.query !== "" && hasResults && (
         <>
           <Combobox.Options static className="w-full">
             <SearchStatistics className="" />
-            <div className="flex flex-col p-0 m-0 items-center w-full max-h-[70vh] overflow-y-auto overflow-x-hidden scrollbar">
+            <motion.div layout className="flex flex-col p-0 m-0 items-center w-full max-h-[70vh] overflow-y-auto overflow-x-hidden scrollbar">
               <Hits hits={searchResults.hits} />
-            </div>
+            </motion.div>
           </Combobox.Options>
         </>
       )}
       {searchState.query !== "" && nbHits === 0 && (
         <p className="p-4 text-left w-full">No results found</p>
       )}
-    </div>
+    </motion.div>
   )
 }
 

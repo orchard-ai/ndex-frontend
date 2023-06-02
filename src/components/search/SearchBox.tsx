@@ -1,6 +1,7 @@
 import SearchIcon from "assets/icons/svg/frying-pan.png"
 import { Combobox } from "@headlessui/react"
 import { useEffect, useRef } from "react"
+import { motion } from "framer-motion";
 
 const SearchBox = ({
   currentRefinement,
@@ -27,8 +28,8 @@ const SearchBox = ({
   }, [])
 
   return (
-    <div className="flex flex-col w-full full mx-4 mb-6 p-0">
-      <div className="px-4 flex items-center">
+    <motion.div className="flex flex-col w-full full mx-4 mb-6 p-0">
+      <motion.div className="px-4 flex items-center">
         <img
           src={SearchIcon}
           alt="Search icon"
@@ -37,7 +38,9 @@ const SearchBox = ({
         <Combobox.Input
           className={`bg-transparent w-full pl-4 border-0 focus:ring-0 outline-none text-xl text-gray-800 placeholder-ndex-text-grey`}
           placeholder="press / to jump here"
-          onChange={(event) => refine(event.currentTarget.value)}
+          onChange={(event) => { 
+            refine(event.currentTarget.value)
+          }}
           displayValue={currentRefinement}
           onBlur={(e) => {
             e.preventDefault()
@@ -47,8 +50,8 @@ const SearchBox = ({
           }}
           ref={inputRef}
         />
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   )
 }
 

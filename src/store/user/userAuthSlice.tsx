@@ -21,6 +21,7 @@ export const loginUser = createAsyncThunk(
     async (form: UserAuthRequest, { rejectWithValue }) => {
         try {
             const response = await signinUser(form);
+            console.log(response);
             return response;
         } catch (error: any) {
             return rejectWithValue(error.message);

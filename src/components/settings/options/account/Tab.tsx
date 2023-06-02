@@ -10,7 +10,7 @@ export default function AccountTab() {
   const [editing, setEditing] = useState(false);
   // TODO:(philiptam) GET ACTUAL USER (NEED TO STORE IN LOCAL CACHE)
 
-  const { user } = useAuth()
+  const { user } = useAuth();
 
   console.log(user);
 

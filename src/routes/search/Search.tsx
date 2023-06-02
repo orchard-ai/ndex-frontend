@@ -14,6 +14,8 @@ import { useNavigate } from "react-router-dom"
 import { ROUTES } from "utils/constants"
 import { useEffect } from "react"
 
+import { motion } from "framer-motion"
+
 function InstantCustomSearch({
   currentRefinement,
   refine,
@@ -25,7 +27,7 @@ function InstantCustomSearch({
     <div className="flex flex-col items-center p-0 w-full h-screen bg-ndex-light-background-1 dark:bg-ndex-dark-background-default">
       <Header className="w-full" />
       <Combobox
-        as="div"
+        as={motion.div}
         className="flex flex-col w-full max-w-[54rem] items-center mt-4 border rounded-xl bg-white shadow-2xl ring-1 ring-black/5"
         onChange={(hit: Hit) => {
           // Pressing enter on result row opens new tab

@@ -23,6 +23,8 @@ import AddFirstConnection from "routes/cta/AddFirstConnection"
 import AuthScreen from "routes/authScreen"
 import NotFound from "routes/notFound"
 
+import { AnimatePresence } from "framer-motion";
+
 import PrivateRoute from "components/auth/PrivateRoute"
 import { ROUTES } from "utils/constants"
 
@@ -32,12 +34,15 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       {/* public routes */}
+  
       <Route path={ROUTES.AUTHENTICATE} element={<AuthScreen/>} />
       <Route path={"/"} element={<AuthScreen/>} />
 
       {/* private routes */}
       <Route element={<PrivateRoute/>}>
-        <Route path={ROUTES.SEARCH} element={<Search/>} />
+        <Route path={ROUTES.SEARCH} element={
+          <Search />
+        }/>
         <Route path={ROUTES.ADD_FIRST_CONNECTION} element={<AddFirstConnection/>} />
         <Route path={ROUTES.SETTINGS} element={<Settings/>} />
         <Route path={ROUTES.NOTION_REDIRECT} element={<NotionRedirect/>} />
@@ -55,7 +60,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <GoogleOAuthProvider clientId={clientID}>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-        <RouterProvider router={router} />
+          <RouterProvider router={router} />
         </PersistGate>
       </Provider>
     </GoogleOAuthProvider>
