@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from "store";
 import {
   userDataEmailSelector,
   userDataFetchStatusSelector,
-  userEmail
+  userEmail,
 } from "store/user/userDataSlice";
 
 export default function AccountTab() {
