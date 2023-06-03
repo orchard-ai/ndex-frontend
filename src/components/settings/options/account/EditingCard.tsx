@@ -33,17 +33,6 @@ const EditingCard = ({ user, setEditing }: PropType) => {
           confirm edit
         </button>
       </div>
-      <div className="space-y-4">
-        <div className="text-ndex-light-text-secondary dark:text-ndex-text-grey font-bold text-sm">
-          DISPLAY NAME
-        </div>
-        <Input
-          value={name}
-          onChange={setName}
-          showLabel={false}
-          placeholder={"Name"}
-        />
-      </div>
       <div className="space-y-2 ">
         <div className="text-ndex-light-text-secondary dark:text-ndex-text-grey font-bold text-sm">
           EMAIL

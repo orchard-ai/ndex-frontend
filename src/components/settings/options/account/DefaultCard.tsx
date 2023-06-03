@@ -22,14 +22,6 @@ const DefaultCard = ({ user, setEditing }: PropType) => {
           edit profile
         </button>
       </div>
-      <div className="space-y-2">
-        <div className="text-ndex-light-text-secondary dark:text-ndex-text-grey font-bold text-sm">
-          DISPLAY NAME
-        </div>
-        <div className="text-ndex-light-text-primary dark:text-ndex-dark-text-default text-md pt-2">
-          {user.name}
-        </div>
-      </div>
       <div className="space-y-2 ">
         <div className="text-ndex-light-text-secondary dark:text-ndex-text-grey font-bold text-sm">
           EMAIL
