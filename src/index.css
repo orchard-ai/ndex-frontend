@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 html {
   margin: 0;
   min-height: 100vh;
@@ -12,6 +13,13 @@ body {
   margin: 0;
   min-height: 100vh;
   max-height: 100vh;
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+
+::-webkit-scrollbar {
+  width: 0;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
 }
 
 .dark-background {
@@ -40,7 +48,7 @@ body {
   }
 
   .scrollbar::-webkit-scrollbar-thumb {
-    /* background: #e0cbcb; */
+    background: #e0cbcb;
     border-radius: 100vh;
     border: 3px solid #f6f7ed;
     background: #cbcee0;
