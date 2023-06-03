@@ -112,7 +112,7 @@ const AccountTable = ({ accounts, connection, className }: PropType) => {
                           <Menu.Item>
                             {({ active }) => (
                               <button
-                                onClick={handleIndex(account)}
+                                onClick={() => handleIndex(account)}
                                 className={`
                                                     bg-ndex-light-background-1 dark:bg-ndex-dark-background-default 
                                                     text-ndex-light-text-primary dark:text-white

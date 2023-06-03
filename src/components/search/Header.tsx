@@ -1,4 +1,5 @@
 import Logo from "components/common/Logo";
+import Indicator from "components/common/indicator/Indicator";
 
 import Sun from "assets/icons/svg/light-icon.svg";
 import Moon from "assets/icons/svg/dark-icon.svg";
@@ -54,16 +55,20 @@ export default function Header({ className }: PropType) {
         className="text-6xl text-ndex-dark-text-default text-center"
         onPress={logoOnClick}
       />
-      <div
-        className="w-10 m-10 p-1 rounded-lg
-        hover:bg-ndex-light-background-2
-        dark:hover:bg-ndex-dark-background-default-selected
-        hover:cursor-pointer
-        transition duration-200 ease-in-out"
-        onClick={() => dispatch(toggleTheme())}
-      >
-        {toggleThemeIcon()}
+      <div className="flex items-center justify-between">
+        <Indicator/>
+        <div
+          className="w-10 m-10 p-1 rounded-lg
+          hover:bg-ndex-light-background-2
+          dark:hover:bg-ndex-dark-background-default-selected
+          hover:cursor-pointer
+          transition duration-200 ease-in-out"
+          onClick={() => dispatch(toggleTheme())}
+        >
+          {toggleThemeIcon()}
+        </div>
       </div>
+
     </div>
   );
 }

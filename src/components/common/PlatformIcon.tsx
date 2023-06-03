@@ -6,6 +6,7 @@ import GDrive from "assets/icons/svg/g-drive.svg";
 
 type IconProps = {
   platform?: string;
+  size?: number;
 };
 
 export const getSourceIcon = (platform: string | undefined) => {
@@ -23,7 +24,7 @@ export const getSourceIcon = (platform: string | undefined) => {
   }
 };
 
-const PlatformIcon = ({ platform }: IconProps) => {
+const PlatformIcon = ({ platform, size = 4 }: IconProps) => {
   //TODO(@fryingpan, @FL) DEMO PURPOSE SEND RANDOM PLATFORM:
   // const demo = () => {
   //   const icons = ["notion", "gmail"]
@@ -35,7 +36,7 @@ const PlatformIcon = ({ platform }: IconProps) => {
   return (
     <div className="p-1">
       <img
-        className="w-4 h-4"
+        className={`w-${size} h-${size}`}
         src={source}
       />
     </div>
