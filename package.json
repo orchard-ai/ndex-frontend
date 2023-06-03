@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint --fix",
+    "prettier": "prettier --write ."
   },
   "dependencies": {
     "@babel/runtime": "^7.20.13",
