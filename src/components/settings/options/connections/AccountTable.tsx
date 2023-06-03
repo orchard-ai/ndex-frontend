@@ -107,7 +107,7 @@ const AccountTable = ({ accounts, connection, className }: PropType) => {
                       leaveFrom="transform opacity-100 scale-100"
                       leaveTo="transform opacity-0 scale-95"
                     >
-                      <Menu.Items className="absolute z-50 right-0 mt-2 w-32 origin-top-left divide-y bg-ndex-light-background-1 dark:bg-ndex-dark-background-default dark:divide-ndex-dark-background-grey rounded-md bg-ndex-dark-background-4 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                      <Menu.Items className="absolute z-50 mt-2 w-32 origin-top-left divide-y bg-ndex-light-background-1 dark:bg-ndex-dark-background-default dark:divide-ndex-dark-background-grey rounded-md bg-ndex-dark-background-4 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                         <div className="px-1 py-1 ">
                           <Menu.Item>
                             {({ active }) => (
