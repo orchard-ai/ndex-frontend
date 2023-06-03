@@ -3,17 +3,15 @@ import Logout from "components/auth/Logout";
 import Input from "components/common/Input";
 
 type PropType = {
-  user: { email: string; name: string };
+  email: string;
   setEditing: (value: boolean) => void;
 };
 
-const EditingCard = ({ user, setEditing }: PropType) => {
-  const [name, setName] = useState(user.name);
-  const [email, setEmail] = useState(user.email);
+const EditingCard = ({ email, setEditing }: PropType) => {
+  const [dummyEmail, setEmail] = useState(email);
 
   const updateUser = () => {
-    user.name = name;
-    user.email = email;
+    // UPDATE EMAIL HERE
     setEditing(false);
   };
 
@@ -38,7 +36,7 @@ const EditingCard = ({ user, setEditing }: PropType) => {
           EMAIL
         </div>
         <Input
-          value={email}
+          value={dummyEmail}
           onChange={setEmail}
           showLabel={false}
           placeholder={"Email"}

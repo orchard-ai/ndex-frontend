@@ -17,6 +17,7 @@ enum apiRoutes {
   notionAccessToken = "/notion/obtain_access_token",
   googleAccessToken = "/google/obtain_access_token",
   userIntegrations = "/user/integrations",
+  userEmail = "/user/get_email",
   addIntegrationToUser = "/user/add_integration",
   notionIndex = "/notion/index",
   gmailIndex = "/google/index_gmail",
@@ -80,6 +81,21 @@ const signinUser = async (loginRequest: UserAuthRequest) => {
   } catch {
     throw new Error("Something went wrong while signing in.");
   }
+};
+
+const getUserEmail = async (ndexToken: string) => {
+  const response = await fetch(getRoute(apiRoutes.userEmail), {
+    method: method.GET,
+    headers: {
+      Authorization: `Bearer ${ndexToken}`,
+    },
+  })
+    .then((response) => response.json())
+    .catch((err) => {
+      throw new Error("Error fetching user integrations");
+    });
+
+  return response;
 };
 
 // NOTION ACCESS TOKEN
@@ -226,6 +242,7 @@ export {
   fetchNotionAccessToken,
   obtainGoogleAccessToken,
   getUserIntegrations,
+  getUserEmail,
   addIntegrationForUser,
   indexAccount,
 };

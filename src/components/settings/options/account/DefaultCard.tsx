@@ -1,11 +1,11 @@
 import { useState } from "react";
 
 type PropType = {
-  user: { email: string; name: string };
+  email: string;
   setEditing: (value: boolean) => void;
 };
 
-const DefaultCard = ({ user, setEditing }: PropType) => {
+const DefaultCard = ({ email, setEditing }: PropType) => {
   return (
     <div
       className="relative flex flex-col w-[90%] p-12 space-y-4 justify-center rounded-lg bg-ndex-light-background-2
@@ -27,7 +27,7 @@ const DefaultCard = ({ user, setEditing }: PropType) => {
           EMAIL
         </div>
         <div className="text-ndex-light-text-primary dark:text-ndex-dark-text-default text-md pt-2">
-          {user.email}
+          {email}
         </div>
       </div>
       <div className="space-y-2">

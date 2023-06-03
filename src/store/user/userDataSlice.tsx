@@ -6,6 +6,7 @@ import {
 import {
   addIntegrationForUser,
   fetchNotionAccessToken,
+  getUserEmail,
   getUserIntegrations,
   indexAccount,
   obtainGoogleAccessToken,
@@ -201,6 +202,23 @@ export const indexData = createAsyncThunk(
   }
 );
 
+export const userEmail = createAsyncThunk(
+  "userData/getEmail",
+  async (_, { getState }) => {
+    const { token } = (getState() as RootState).userAuth;
+
+    if (token) {
+      const response = await getUserEmail(token);
+
+      // ASSERT OK
+      // maybe better handling here
+      return response.email;
+    }
+
+    return null;
+  }
+);
+
 interface UserDataState {
   userEmail: string;
   integrations: Integration[];
@@ -228,6 +246,10 @@ export const userDataSlice = createSlice({
         state.fetchStatus = FetchState.Complete;
         state.integrations = action.payload;
       }),
+      builder.addCase(userEmail.fulfilled, (state, action) => {
+        state.fetchStatus = FetchState.Complete;
+        state.userEmail = action.payload;
+      }),
       builder.addCase(indexData.fulfilled, (state) => {
         state.fetchStatus = FetchState.Complete;
       });
@@ -239,6 +261,8 @@ export const userDataFetchStatusSelector = (state: RootState) =>
   state.userData.fetchStatus;
 export const userDataIntegrationsSelector = (state: RootState) =>
   state.userData.integrations;
+export const userDataEmailSelector = (state: RootState) =>
+  state.userData.userEmail;
 export const userDataIntegrationByPlatformSelector = (
   platform: IntegrationPlatform
 ) =>
