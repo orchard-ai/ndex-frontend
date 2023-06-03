@@ -26,7 +26,7 @@ function StateResults({
   const nbHits = searchResults && searchResults.nbHits;
 
   return (
-    <motion.div layout transition={{ duration: 0.1 }} className={`flex w-full`}>
+    <motion.div className={`flex w-full`}>
       {currentRefinement !== "" && searchState.query !== "" && hasResults && (
         <>
           <Combobox.Options static className="w-full">
