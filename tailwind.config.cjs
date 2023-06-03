@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: 'class',
+  darkMode: "class",
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     default: {
@@ -18,32 +18,32 @@ module.exports = {
         "ndex-light-background": {
           1: "#FFFFFF",
           2: "#EDEDED",
-          3: "#D2D2D2"
+          3: "#D2D2D2",
         },
         "ndex-light-text": {
-          "primary": "#000000",
-          "secondary": "#A5A5A5"
+          primary: "#000000",
+          secondary: "#A5A5A5",
         },
         "ndex-dark-background": {
-          "default": "#2F3437",
-          "grey": "#454B4E",
+          default: "#2F3437",
+          grey: "#454B4E",
           "default-selected": "#5d6366",
           "grey-selected": "#979A9B",
         },
         "ndex-dark-text": {
-          "default": "#FFFFFF",
-          "grey": "#8D8F91",
+          default: "#FFFFFF",
+          grey: "#8D8F91",
         },
         "ndex-dark-table": {
-          "default": "#2F3437",
-          "header": "#454B4E",
-          "row": "#505558"
+          default: "#2F3437",
+          header: "#454B4E",
+          row: "#505558",
         },
         "ndex-light-table": {
-          "default": "#E1E1E1",
-          "row": "#E5E7EB",
-          "header": "#D1D5DB",
-          "kebab": "#747474",
+          default: "#E1E1E1",
+          row: "#E5E7EB",
+          header: "#D1D5DB",
+          kebab: "#747474",
         },
         "ndex-text": {
           white: "#FFFFFF",
@@ -57,7 +57,7 @@ module.exports = {
         },
         "ndex-button": {
           "bordered-green": "#4CAF50",
-          "bordered-green-hover" : "#3E8D42",
+          "bordered-green-hover": "#3E8D42",
           "bordered-red": "#C52F00",
           "bordered-red-hover": "#AE4C2E",
           "bordered-grey": "#808086",
@@ -66,10 +66,10 @@ module.exports = {
           "active-light": "#C9C9C9",
         },
         "ndex-search": {
-          "default":"#f3f3ef",
+          default: "#f3f3ef",
           "toolbar-icon-hover": "#F8F8F8",
           "toolbar-icon-active": "#d0d0d0",
-          "toolbar-icon-selected": "#EBEBEB"
+          "toolbar-icon-selected": "#EBEBEB",
         },
         "ndex-login-background": {
           1: "#C19BDE",
@@ -88,4 +88,4 @@ module.exports = {
       },
     },
   },
-}
+};

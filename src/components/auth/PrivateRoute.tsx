@@ -4,13 +4,9 @@ import { userTokenSelector } from "store/user/userAuthSlice";
 import { ROUTES } from "utils/constants";
 
 const PrivateRoute = () => {
-    const token = useAppSelector(userTokenSelector);
+  const token = useAppSelector(userTokenSelector);
 
-    return token !== null ? (
-        <Outlet />
-    ) : (
-        <Navigate to={ROUTES.AUTHENTICATE} />
-    );
-}
+  return token !== null ? <Outlet /> : <Navigate to={ROUTES.AUTHENTICATE} />;
+};
 
 export default PrivateRoute;

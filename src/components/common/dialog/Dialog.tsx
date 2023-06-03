@@ -1,16 +1,16 @@
-import { Dialog as HeadlessDialog, Transition } from '@headlessui/react'
-import React, { Fragment, useState, useEffect } from 'react'
-import CloseIcon from 'assets/icons/tsx/CloseIcon';
-import LoadingBar from '../loading/LoadingBar';
+import { Dialog as HeadlessDialog, Transition } from "@headlessui/react";
+import React, { Fragment, useState, useEffect } from "react";
+import CloseIcon from "assets/icons/tsx/CloseIcon";
+import LoadingBar from "../loading/LoadingBar";
 
-type PropType =  {
-  title?:  React.ReactNode
-  buttonContent?: React.ReactNode
-  buttonClassName?: React.ComponentProps<'div'>['className']
-  buttonContainerClassName?: React.ComponentProps<'div'>['className']
-  content?: React.ReactNode
-  headerContent? : React.ReactNode
-}
+type PropType = {
+  title?: React.ReactNode;
+  buttonContent?: React.ReactNode;
+  buttonClassName?: React.ComponentProps<"div">["className"];
+  buttonContainerClassName?: React.ComponentProps<"div">["className"];
+  content?: React.ReactNode;
+  headerContent?: React.ReactNode;
+};
 
 export default function Dialog({
   title,
@@ -19,8 +19,8 @@ export default function Dialog({
   buttonContainerClassName,
   content,
   headerContent,
-  } : PropType) {
-  const [isOpen, setIsOpen] = useState(false)
+}: PropType) {
+  const [isOpen, setIsOpen] = useState(false);
 
   function closeModal() {
     setIsOpen(false);
@@ -34,10 +34,10 @@ export default function Dialog({
     <>
       <div className={`${buttonContainerClassName}`}>
         <button
-            type="button"
-            onClick={openModal}
-            className={`${buttonClassName}`}
-          >
+          type="button"
+          onClick={openModal}
+          className={`${buttonClassName}`}
+        >
           {buttonContent}
         </button>
       </div>
@@ -56,7 +56,7 @@ export default function Dialog({
             <div className="fixed inset-0  bg-black opacity-100 bg-opacity-25" />
           </Transition.Child>
 
-          <div className="absolute z-10 top-0 bottom-0 right-0 left-0 w-screen h-screen bg-opacity-50 bg-black opacity-50"/>
+          <div className="absolute z-10 top-0 bottom-0 right-0 left-0 w-screen h-screen bg-opacity-50 bg-black opacity-50" />
 
           <div className="fixed inset-0 overflow-y-auto">
             <div className="flex min-h-full items-center justify-center p-4 text-center">
@@ -69,10 +69,12 @@ export default function Dialog({
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <HeadlessDialog.Panel className="
+                <HeadlessDialog.Panel
+                  className="
                  w-full max-w-md transform overflow-hidden rounded-2xl p-6 text-left align-middle shadow-xl transition-all
                  bg-ndex-light-background-1 dark:bg-ndex-dark-background-default
-                 ">
+                 "
+                >
                   <HeadlessDialog.Title
                     as="h3"
                     className="flex w-full text-lg font-medium justify-between mb-4
@@ -81,17 +83,17 @@ export default function Dialog({
                   >
                     {title}
                     {headerContent}
-                    <button
-                      onClick={closeModal}
-                    >
-                      <CloseIcon className="
+                    <button onClick={closeModal}>
+                      <CloseIcon
+                        className="
                         absolute top-6 right-4 w-8 h-8
                         rounded-lg
                         stroke-ndex-light-text-primary dark:stroke-ndex-text-white
                         hover:bg-ndex-light-background-2 dark:hover:bg-ndex-dark-background-default-selected
                         active:stroke-ndex-text-grey-variant
                         transition duration-200 ease-in-out
-                      " />
+                      "
+                      />
                     </button>
                   </HeadlessDialog.Title>
                   {content}
@@ -102,5 +104,5 @@ export default function Dialog({
         </HeadlessDialog>
       </Transition>
     </>
-  )
+  );
 }

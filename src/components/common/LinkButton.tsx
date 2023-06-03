@@ -1,12 +1,12 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 type PropType = {
-  children: React.ReactNode | string
-  routerLink?: string
-  className?: string
-  onClick?: () => void
-  href?: string
-}
+  children: React.ReactNode | string;
+  routerLink?: string;
+  className?: string;
+  onClick?: () => void;
+  href?: string;
+};
 
 export default function LinkButton({
   children,
@@ -20,7 +20,7 @@ export default function LinkButton({
       {routerLink === undefined ? (
         <div className={`text-black ${className}`}>
           <a href={href}>
-           <button onClick={onClick}> {children} </button>
+            <button onClick={onClick}> {children} </button>
           </a>
         </div>
       ) : (
@@ -29,5 +29,5 @@ export default function LinkButton({
         </Link>
       )}
     </>
-  )
+  );
 }

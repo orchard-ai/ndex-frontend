@@ -1,15 +1,15 @@
-import { IntegrationPlatform, Scope } from "api/models"
-import { getSourceIcon } from "components/common/PlatformIcon"
+import { IntegrationPlatform, Scope } from "api/models";
+import { getSourceIcon } from "components/common/PlatformIcon";
 
-export const APP_NAME = "ndex"
-export const TYPESENSE_PORT = 8108
-export const SEARCH_COLOR = "#f3f3ef"
+export const APP_NAME = "ndex";
+export const TYPESENSE_PORT = 8108;
+export const SEARCH_COLOR = "#f3f3ef";
 // Notion OAuth Docs: https://developers.notion.com/docs/authorization#step-1-navigate-the-user-to-the-integrations-authorization-url
-const NOTION_OAUTH_URL = import.meta.env.VITE_NOTION_OAUTH_URL
-const NOTION_REDIRECT_URI = import.meta.env.VITE_NOTION_REDIRECT_URI
-export const NOTION_CLIENT_ID = import.meta.env.VITE_NOTION_CLIENT_ID
-export const NOTION_SECRET = import.meta.env.VITE_NOTION_CLIENT_SECRET
-export const NOTION_FULL_OAUTH_URL = `${NOTION_OAUTH_URL}?owner=user&client_id=${NOTION_CLIENT_ID}&redirect_uri=${NOTION_REDIRECT_URI}&response_type=code`
+const NOTION_OAUTH_URL = import.meta.env.VITE_NOTION_OAUTH_URL;
+const NOTION_REDIRECT_URI = import.meta.env.VITE_NOTION_REDIRECT_URI;
+export const NOTION_CLIENT_ID = import.meta.env.VITE_NOTION_CLIENT_ID;
+export const NOTION_SECRET = import.meta.env.VITE_NOTION_CLIENT_SECRET;
+export const NOTION_FULL_OAUTH_URL = `${NOTION_OAUTH_URL}?owner=user&client_id=${NOTION_CLIENT_ID}&redirect_uri=${NOTION_REDIRECT_URI}&response_type=code`;
 
 // Google OAuth Docs: https://developers.google.com/identity/openid-connect/openid-connect#libraries
 export const GOOGLE_CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
@@ -20,14 +20,14 @@ export const GOOGLE_GCAL_OAUTH_URL = `https://accounts.google.com/o/oauth2/v2/au
 export const GOOGLE_DRIVE_OAUTH_URL = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${GOOGLE_CLIENT_ID}&scope=openid%20email%20${Scope.Drive}&redirect_uri=${GOOGLE_REDIRECT_URI}&access_type=offline`;
 
 export const ROUTES = {
-  AUTHENTICATE: '/authenticate',
-  SEARCH: '/search',
-  ADD_FIRST_CONNECTION: '/add-first-connection',
-  SETTINGS: '/settings/:tab', // NEVER USE THIS ONE. USE ONE OF THE SETTINGS ROUTES BELOW
-  SETTINGS_ACCOUNT: '/settings/account',
-  SETTINGS_CONNECTIONS: '/settings/connections',
-  NOTION_REDIRECT: '/notion-access-redirect',
-  GOOGLE_REDIRECT: '/google-access-redirect',
+  AUTHENTICATE: "/authenticate",
+  SEARCH: "/search",
+  ADD_FIRST_CONNECTION: "/add-first-connection",
+  SETTINGS: "/settings/:tab", // NEVER USE THIS ONE. USE ONE OF THE SETTINGS ROUTES BELOW
+  SETTINGS_ACCOUNT: "/settings/account",
+  SETTINGS_CONNECTIONS: "/settings/connections",
+  NOTION_REDIRECT: "/notion-access-redirect",
+  GOOGLE_REDIRECT: "/google-access-redirect",
 };
 
 export const connections = [
@@ -35,12 +35,13 @@ export const connections = [
     id: 1,
     platform: IntegrationPlatform.Notion,
     name: "Notion",
-    description: "Search across all of your Notion pages and databases with ndex",
+    description:
+      "Search across all of your Notion pages and databases with ndex",
     href: NOTION_FULL_OAUTH_URL,
     icon: getSourceIcon("notion"),
     alt: "Notion Icon",
     detailedDescription: "Index all your Notion notes, tasks, etc.",
-    scope: Scope.Notion
+    scope: Scope.Notion,
   },
   {
     id: 2,
@@ -50,8 +51,9 @@ export const connections = [
     href: GOOGLE_GMAIL_OAUTH_URL,
     icon: getSourceIcon("gmail"),
     alt: "Gmail Icon",
-    detailedDescription: "Index your emails, messages, and important documents from Google Gmail!",
-    scope: Scope.Gmail
+    detailedDescription:
+      "Index your emails, messages, and important documents from Google Gmail!",
+    scope: Scope.Gmail,
   },
   {
     id: 3,
@@ -62,7 +64,7 @@ export const connections = [
     icon: getSourceIcon("g-calendar"),
     alt: "Google Calendar Icon",
     detailedDescription: "Index your calendar events from Google Calendar!",
-    scope: Scope.Calendar
+    scope: Scope.Calendar,
   },
   {
     id: 4,
@@ -73,7 +75,7 @@ export const connections = [
     icon: getSourceIcon("g-drive"),
     alt: "Google Drive Icon",
     detailedDescription: "Index your files from Google Drive!",
-    scope: Scope.Drive
+    scope: Scope.Drive,
   },
   // {
   //   id: 3,
@@ -93,4 +95,4 @@ export const connections = [
   //   alt: "Twitter Icon",
   //   bgColor: "bg-gray-100 text-gray-800",
   // },
-]
+];

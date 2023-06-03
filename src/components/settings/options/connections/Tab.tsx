@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
-import { connections } from "utils/constants"
+import { connections } from "utils/constants";
 import AccountTable from "components/settings/options/connections/AccountTable";
 import AddAccountDialog from "components/settings/options/connections/AddAccountDialog";
 import { useAppDispatch, useAppSelector } from "store";
-import { getIntegrations, userDataFetchStatusSelector, userDataIntegrationsSelector } from "store/user/userDataSlice";
+import {
+  getIntegrations,
+  userDataFetchStatusSelector,
+  userDataIntegrationsSelector,
+} from "store/user/userDataSlice";
 import { Connection } from "utils/types";
 import { Integration, IntegrationPlatform, Scope } from "api/models";
 
@@ -18,12 +22,12 @@ export default function ConnectionsTab() {
       oauth_url,
       "authWindow",
       "width=800,height=600"
-    )
+    );
     if (!authWindow) {
-      console.error("Failed to open the auth window")
-      return
+      console.error("Failed to open the auth window");
+      return;
     }
-  }
+  };
 
   const dispatch = useAppDispatch();
   const accounts = useAppSelector(userDataIntegrationsSelector);
@@ -34,17 +38,23 @@ export default function ConnectionsTab() {
     platform: IntegrationPlatform,
     scope: Scope
   ) => {
-    switch(platform) {
+    switch (platform) {
       case IntegrationPlatform.Notion: {
-        return accounts.filter(i => i.platform === IntegrationPlatform.Notion)
+        return accounts.filter(
+          (i) => i.platform === IntegrationPlatform.Notion
+        );
       }
       case IntegrationPlatform.Google: {
-        return accounts.filter(i => i.platform === IntegrationPlatform.Google && i.scopes.includes(scope))
+        return accounts.filter(
+          (i) =>
+            i.platform === IntegrationPlatform.Google &&
+            i.scopes.includes(scope)
+        );
       }
     }
 
     return [];
-  }
+  };
 
   useEffect(() => {
     dispatch(getIntegrations());
@@ -54,7 +64,7 @@ export default function ConnectionsTab() {
     <div>
       <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-16">
         <div className="grid grid-cols-1 gap-4 space-y-4">
-          {connections.map((connection : Connection) => (
+          {connections.map((connection: Connection) => (
             <div
               key={connection.id}
               className="flex flex-col rounded-lg overflow-hidden shadow-md"
@@ -88,7 +98,16 @@ export default function ConnectionsTab() {
                   <div className="text-ndex-light-text-secondary dark:text-ndex-text-grey font-bold text-sm">
                     CONNECTIONS
                   </div>
-                  <AccountTable className="mt-1" connection={connection} accounts={filterAccountsByPlatformScope(accounts, connection.platform, connection.scope)} platform={connection.platform}/>
+                  <AccountTable
+                    className="mt-1"
+                    connection={connection}
+                    accounts={filterAccountsByPlatformScope(
+                      accounts,
+                      connection.platform,
+                      connection.scope
+                    )}
+                    platform={connection.platform}
+                  />
                 </div>
               </div>
             </div>
@@ -96,5 +115,5 @@ export default function ConnectionsTab() {
         </div>
       </div>
     </div>
-  )
+  );
 }

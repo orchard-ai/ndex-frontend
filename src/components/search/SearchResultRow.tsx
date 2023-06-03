@@ -1,10 +1,10 @@
-import PlatformIcon from "components/common/PlatformIcon"
-import NewTabIcon from "assets/icons/svg/newtab.svg"
-import { Highlight } from "react-instantsearch-dom"
-import { SEARCH_COLOR } from "utils/constants"
-import { Hit } from "utils/types"
-import { Combobox } from "@headlessui/react"
-import { memo } from "react"
+import PlatformIcon from "components/common/PlatformIcon";
+import NewTabIcon from "assets/icons/svg/newtab.svg";
+import { Highlight } from "react-instantsearch-dom";
+import { SEARCH_COLOR } from "utils/constants";
+import { Hit } from "utils/types";
+import { Combobox } from "@headlessui/react";
+import { memo } from "react";
 
 export default function SearchResultRow({ hit }: { hit: Hit }) {
   return (
@@ -15,7 +15,7 @@ export default function SearchResultRow({ hit }: { hit: Hit }) {
     >
       {({ active }) => <MemoizedInnerRow active={active} hit={hit} />}
     </Combobox.Option>
-  )
+  );
 }
 
 const MemoizedInnerRow = memo(
@@ -23,12 +23,8 @@ const MemoizedInnerRow = memo(
     return (
       <div
         className={`flex w-full
-        ${
-          active ? "text-white" : "text-gray-700"
-        }
-        ${
-          active ? "bg-indigo-600" : `bg-ndex-search-default`
-        }`}
+        ${active ? "text-white" : "text-gray-700"}
+        ${active ? "bg-indigo-600" : `bg-ndex-search-default`}`}
       >
         <div className="flex flex-col text-left w-full">
           <Title hit={hit} />
@@ -45,10 +41,10 @@ const MemoizedInnerRow = memo(
           </a>
         </div>
       </div>
-    )
+    );
   },
   (prevProps, nextProps) => prevProps.active === nextProps.active
-)
+);
 
 const Title = ({ hit }: { hit: Hit }) => {
   return (
@@ -61,5 +57,5 @@ const Title = ({ hit }: { hit: Hit }) => {
         className="font-bold"
       />
     </div>
-  )
-}
+  );
+};

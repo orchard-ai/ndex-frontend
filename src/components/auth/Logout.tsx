@@ -1,35 +1,35 @@
-import { googleLogout } from "@react-oauth/google"
-import { useNavigate } from "react-router-dom"
-import { useAppDispatch } from "store"
-import { clearUserAuth } from "store/user/userAuthSlice"
-import { ROUTES } from "utils/constants"
+import { googleLogout } from "@react-oauth/google";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "store";
+import { clearUserAuth } from "store/user/userAuthSlice";
+import { ROUTES } from "utils/constants";
 
 type PropType = {
-  className?: string
-}
+  className?: string;
+};
 
 export default function Logout({ className }: PropType) {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const handleLogout = async() => {
+  const handleLogout = async () => {
     try {
-      googleLogout()
+      googleLogout();
       await dispatch(clearUserAuth());
     } catch (e) {
-      onFailure(e as Error)
+      onFailure(e as Error);
     }
-  }
+  };
 
   const onSuccess = () => {
-    navigate(ROUTES.AUTHENTICATE, { replace: true })
-    console.log("Logged out successfully")
-  }
+    navigate(ROUTES.AUTHENTICATE, { replace: true });
+    console.log("Logged out successfully");
+  };
 
   const onFailure = (error: Error) => {
-    alert(`Logged out failed. Check logs for failure`)
-    console.log(`Logged out failed with error: ${error.message}`)
-  }
+    alert(`Logged out failed. Check logs for failure`);
+    console.log(`Logged out failed with error: ${error.message}`);
+  };
 
   return (
     <button
@@ -39,5 +39,5 @@ export default function Logout({ className }: PropType) {
     >
       Log Out
     </button>
-  )
+  );
 }

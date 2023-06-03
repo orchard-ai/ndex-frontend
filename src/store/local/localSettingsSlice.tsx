@@ -1,35 +1,34 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { RootState } from 'store';
+import { createSlice } from "@reduxjs/toolkit";
+import { RootState } from "store";
 
 interface LocalSettingsState {
-    darkMode: boolean
+  darkMode: boolean;
 }
 
 const initialState: LocalSettingsState = {
-    darkMode: false
+  darkMode: false,
 };
 
 export const localSettingsSlice = createSlice({
-    name: 'localSettings',
-    initialState,
-    reducers: {
-        toggleTheme: (state) => {
-            state.darkMode = !state.darkMode;
-            if (state.darkMode) {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-            }
-        }
+  name: "localSettings",
+  initialState,
+  reducers: {
+    toggleTheme: (state) => {
+      state.darkMode = !state.darkMode;
+      if (state.darkMode) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
     },
+  },
 });
 
 // ACTIONS
-export const {
-    toggleTheme
-} = localSettingsSlice.actions;
+export const { toggleTheme } = localSettingsSlice.actions;
 
 // SELECTORS
-export const isUsingDarkModeSelector = (state: RootState) => state.localSettings.darkMode;
+export const isUsingDarkModeSelector = (state: RootState) =>
+  state.localSettings.darkMode;
 
 export default localSettingsSlice.reducer;

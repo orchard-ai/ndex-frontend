@@ -1,4 +1,4 @@
-import { CredentialResponse, GoogleLogin } from "@react-oauth/google"
+import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
 
 import Form from "components/auth/login/Form";
 
@@ -9,19 +9,22 @@ import { createUser } from "store/user/userAuthSlice";
 import { ROUTES } from "utils/constants";
 import { useNavigate } from "react-router-dom";
 import { decodeGoogleCredential } from "utils/googleAuth";
-import { isUsingDarkModeSelector, toggleTheme } from "store/local/localSettingsSlice";
+import {
+  isUsingDarkModeSelector,
+  toggleTheme,
+} from "store/local/localSettingsSlice";
 import { useAppSelector } from "store";
 
 type PropType = {
-  className?: string
-}
+  className?: string;
+};
 
-export default function Login({ className } : PropType) {
+export default function Login({ className }: PropType) {
   const darkMode = useAppSelector(isUsingDarkModeSelector);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const handleGoogleSuccess = async(credentialRes: CredentialResponse) => {
+  const handleGoogleSuccess = async (credentialRes: CredentialResponse) => {
     const ticket: any = decodeGoogleCredential(credentialRes);
 
     const form: UserAuthRequest = {
@@ -29,22 +32,22 @@ export default function Login({ className } : PropType) {
       oauth_provider_id: credentialRes.clientId,
       oauth_access_token: credentialRes.clientId,
       password: undefined,
-      account_type: AccountType.Google
+      account_type: AccountType.Google,
     };
 
     await dispatch(createUser(form));
 
     // ON SUCCESS OF SIGN UP
     navigate(ROUTES.ADD_FIRST_CONNECTION, { replace: true });
-  }
+  };
 
   const handleGoogleFailure = () => {
     alert("Login failed");
-  }
+  };
 
   const handleLogoPress = () => {
     dispatch(toggleTheme());
-  }
+  };
 
   return (
     <div
@@ -54,7 +57,10 @@ export default function Login({ className } : PropType) {
       `}
     >
       <div className="flex flex-col items-center justify-center w-full space-y-3 text-ndex-text-white">
-        <Logo className="text-6xl text-ndex-text-white" onPress={handleLogoPress}/>
+        <Logo
+          className="text-6xl text-ndex-text-white"
+          onPress={handleLogoPress}
+        />
         <h2 className="text-2xl tracking-normal p-5 text-ndex-light-text-primary dark:text-ndex-text-white">
           Search everything, in <b>one place</b>
         </h2>
@@ -77,7 +83,9 @@ export default function Login({ className } : PropType) {
               width: 100,
             }}
           />
-          <p className="text-ndex-light-text-primary dark:text-ndex-dark-text-default">or</p>
+          <p className="text-ndex-light-text-primary dark:text-ndex-dark-text-default">
+            or
+          </p>
           <hr
             style={{
               color: "black",
@@ -86,8 +94,8 @@ export default function Login({ className } : PropType) {
             }}
           />
         </div>
-        <Form/>
+        <Form />
       </div>
     </div>
-  )
+  );
 }

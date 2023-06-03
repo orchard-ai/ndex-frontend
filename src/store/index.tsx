@@ -1,26 +1,26 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
-import notionReducer from './notion/notionSlice';
-import userAuthReducer from './user/userAuthSlice';
-import userDataReducer from './user/userDataSlice';
-import localSettingsReducer from './local/localSettingsSlice';
+import notionReducer from "./notion/notionSlice";
+import userAuthReducer from "./user/userAuthSlice";
+import userDataReducer from "./user/userDataSlice";
+import localSettingsReducer from "./local/localSettingsSlice";
 
-import { isUsingDarkModeSelector } from './local/localSettingsSlice';
+import { isUsingDarkModeSelector } from "./local/localSettingsSlice";
 
-import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
 const rootPersistConfig = {
-	key: 'root',
-	storage,
-  whitelist: ['localSettings']
+  key: "root",
+  storage,
+  whitelist: ["localSettings"],
 };
 
 const userPersistConfig = {
-  key: 'userAuth',
+  key: "userAuth",
   storage,
-  whitelist: ['token', 'userId']
+  whitelist: ["token", "userId"],
 };
 
 const rootReducer = combineReducers({
@@ -30,33 +30,30 @@ const rootReducer = combineReducers({
   localSettings: localSettingsReducer,
 });
 
-const persistedReducer = persistReducer(
-	rootPersistConfig,
-	rootReducer
-);
+const persistedReducer = persistReducer(rootPersistConfig, rootReducer);
 
 const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
-  }),
+    }),
 });
 
 // REHYDRATES LOCAL STATE CORRECTLY
 store.subscribe(() => {
-  if(store.getState()._persist.rehydrated) {
+  if (store.getState()._persist.rehydrated) {
     const isDarkMode = isUsingDarkModeSelector(store.getState());
 
     if (isDarkMode) {
-      document.documentElement.classList.add('dark');
-      document.body.classList.add('dark-background');
+      document.documentElement.classList.add("dark");
+      document.body.classList.add("dark-background");
     } else {
-      document.documentElement.classList.remove('dark');
-      document.body.classList.remove('dark-background');
+      document.documentElement.classList.remove("dark");
+      document.body.classList.remove("dark-background");
     }
   }
-})
+});
 
 const persistor = persistStore(store);
 

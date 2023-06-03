@@ -1,63 +1,35 @@
-export interface TableProps  {
-    children?: React.ReactNode
-    className?: string
- }
-
-const Header = ({children, className=""} : TableProps) => {
-    return (
-        <thead className={`${className}`} >
-            {children}
-        </thead>
-    )
+export interface TableProps {
+  children?: React.ReactNode;
+  className?: string;
 }
 
-const HeaderRow = ({children, className=""} : TableProps) => {
-    return (
-        <tr className={`${className} `} >
-            {children}
-        </tr>
-    )
-}
+const Header = ({ children, className = "" }: TableProps) => {
+  return <thead className={`${className}`}>{children}</thead>;
+};
 
-const HeaderCell = ({children, className=""} : TableProps) => {
-    return (
-        <th className={`${className}`} >
-            {children}
-        </th>
-    )
-}
+const HeaderRow = ({ children, className = "" }: TableProps) => {
+  return <tr className={`${className} `}>{children}</tr>;
+};
 
-const Row = ({children, className=""} : TableProps) => {
-    return (
-        <tr className={`${className}`} >
-            {children}
-        </tr>
-    )
-}
+const HeaderCell = ({ children, className = "" }: TableProps) => {
+  return <th className={`${className}`}>{children}</th>;
+};
 
-const Cell = ({children, className=""} : TableProps) => {
-    return (
-        <td className={`${className}`} >
-            {children}
-        </td>
-    )
-}
+const Row = ({ children, className = "" }: TableProps) => {
+  return <tr className={`${className}`}>{children}</tr>;
+};
 
-const Body = ({children, className=""} : TableProps) => {
-    return (
-        <tbody className={`${className}`}>
-            {children}
-        </tbody>
-    )
-}
+const Cell = ({ children, className = "" }: TableProps) => {
+  return <td className={`${className}`}>{children}</td>;
+};
 
-const Table = ({children, className=""} : TableProps) => {
-    return (
-        <table className={`table-fixed ${className}`}>
-            {children}
-        </table>
-    )
-}
+const Body = ({ children, className = "" }: TableProps) => {
+  return <tbody className={`${className}`}>{children}</tbody>;
+};
+
+const Table = ({ children, className = "" }: TableProps) => {
+  return <table className={`table-fixed ${className}`}>{children}</table>;
+};
 
 Table.Header = Header;
 Table.HeaderRow = HeaderRow;

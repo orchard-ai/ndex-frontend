@@ -1,5 +1,5 @@
-import TypesenseInstantSearchAdapter from "typesense-instantsearch-adapter"
-import { TYPESENSE_PORT } from "utils/constants"
+import TypesenseInstantSearchAdapter from "typesense-instantsearch-adapter";
+import { TYPESENSE_PORT } from "utils/constants";
 
 export const typesenseInstantSearchAdapter = new TypesenseInstantSearchAdapter({
   server: {
@@ -16,4 +16,4 @@ export const typesenseInstantSearchAdapter = new TypesenseInstantSearchAdapter({
     query_by: "title,contents",
     query_by_weights: "4,2",
   },
-})
+});

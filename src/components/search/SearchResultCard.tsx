@@ -1,8 +1,4 @@
 const SearchResultCard = () => {
-    return (
-        <div>
-
-        </div>
-    )
-}
+  return <div></div>;
+};
 export default SearchResultCard;

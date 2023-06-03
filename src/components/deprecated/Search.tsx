@@ -1,28 +1,28 @@
-import SearchIcon from "assets/icons/icons8-frying-pan-64.png"
-import { useState, useEffect } from "react"
-import { useDebounce } from "hooks/useDebounce"
+import SearchIcon from "assets/icons/icons8-frying-pan-64.png";
+import { useState, useEffect } from "react";
+import { useDebounce } from "hooks/useDebounce";
 
-import { getSearch } from "utils/network"
+import { getSearch } from "utils/network";
 
 // CURRENTLY NOT USED ---------------------------------
 export default function SearchBar() {
-  const [results, setResults] = useState("")
-  const [text, setText] = useState("")
-  const debouncedValue = useDebounce(text)
+  const [results, setResults] = useState("");
+  const [text, setText] = useState("");
+  const debouncedValue = useDebounce(text);
 
   useEffect(() => {
-    console.log(text)
-  }, [debouncedValue])
+    console.log(text);
+  }, [debouncedValue]);
 
   const getSearchResults = async (search: string) => {
     // Make sure not fetch empty string
     try {
-      const { data } = await getSearch(search)
-      setResults(data)
+      const { data } = await getSearch(search);
+      setResults(data);
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-  }
+  };
 
   return (
     <div className="mx-8 mt-8 flex flex-col items-center relative">
@@ -38,5 +38,5 @@ export default function SearchBar() {
         />
       </span>
     </div>
-  )
+  );
 }

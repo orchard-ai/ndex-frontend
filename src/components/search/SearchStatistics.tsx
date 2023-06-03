@@ -1,12 +1,16 @@
-import { connectStats } from "react-instantsearch-dom"
+import { connectStats } from "react-instantsearch-dom";
 
 type CustomStatsProps = {
-  nbHits: number
-  processingTimeMS: number
-  className: string
-}
+  nbHits: number;
+  processingTimeMS: number;
+  className: string;
+};
 
-function CustomStats({ nbHits, processingTimeMS, className }: CustomStatsProps) {
+function CustomStats({
+  nbHits,
+  processingTimeMS,
+  className,
+}: CustomStatsProps) {
   return (
     <>
       {nbHits !== 0 && (
@@ -15,8 +19,8 @@ function CustomStats({ nbHits, processingTimeMS, className }: CustomStatsProps) 
         </p>
       )}
     </>
-  )
+  );
 }
 
-const SearchStatistics = connectStats(CustomStats)
-export default SearchStatistics
+const SearchStatistics = connectStats(CustomStats);
+export default SearchStatistics;
