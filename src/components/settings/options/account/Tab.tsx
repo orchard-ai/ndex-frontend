@@ -27,9 +27,15 @@ export default function AccountTab() {
     <>
       <div className="flex flex-col w-full items-center space-y-8 mt-4 bg-ndex-light-background-primary dark:bg-ndex-dark-background-default">
         {editing ? (
-          <EditingCard email={email} setEditing={setEditing} />
+          <EditingCard
+            email={email}
+            setEditing={setEditing}
+          />
         ) : (
-          <DefaultCard email={email} setEditing={setEditing} />
+          <DefaultCard
+            email={email}
+            setEditing={setEditing}
+          />
         )}
       </div>
     </>

@@ -37,7 +37,10 @@ const SearchToolbar = () => {
       connectionFilters.map((connectionFilter, index) => {
         return connectionFilter.id == index ||
           connectionFilter.name == connection
-          ? { ...connectionFilter, selected: !connectionFilter.selected }
+          ? {
+              ...connectionFilter,
+              selected: !connectionFilter.selected,
+            }
           : connectionFilter;
       })
     );
@@ -63,7 +66,10 @@ const SearchToolbar = () => {
                         `}
               onClick={() => updateFilter(connection.name)}
             >
-              <img className="h-6 w-6" src={connection.icon} />
+              <img
+                className="h-6 w-6"
+                src={connection.icon}
+              />
             </div>
           );
         })}
@@ -71,7 +77,10 @@ const SearchToolbar = () => {
           className={`rounded-md p-1 bg-ndex-search-toolbar-icon-selected active:bg-ndex-search-toolbar-icon-active`}
           onClick={() => navigate(ROUTES.SETTINGS_CONNECTIONS)}
         >
-          <img className="h-6 w-6" src={PlusIcon} />
+          <img
+            className="h-6 w-6"
+            src={PlusIcon}
+          />
         </div>
       </button>
     </div>

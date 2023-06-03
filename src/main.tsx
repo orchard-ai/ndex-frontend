@@ -35,23 +35,44 @@ const router = createBrowserRouter(
     <>
       {/* public routes */}
 
-      <Route path={ROUTES.AUTHENTICATE} element={<AuthScreen />} />
-      <Route path={"/"} element={<AuthScreen />} />
+      <Route
+        path={ROUTES.AUTHENTICATE}
+        element={<AuthScreen />}
+      />
+      <Route
+        path={"/"}
+        element={<AuthScreen />}
+      />
 
       {/* private routes */}
       <Route element={<PrivateRoute />}>
-        <Route path={ROUTES.SEARCH} element={<Search />} />
+        <Route
+          path={ROUTES.SEARCH}
+          element={<Search />}
+        />
         <Route
           path={ROUTES.ADD_FIRST_CONNECTION}
           element={<AddFirstConnection />}
         />
-        <Route path={ROUTES.SETTINGS} element={<Settings />} />
-        <Route path={ROUTES.NOTION_REDIRECT} element={<NotionRedirect />} />
-        <Route path={ROUTES.GOOGLE_REDIRECT} element={<GoogleAuthRedirect />} />
+        <Route
+          path={ROUTES.SETTINGS}
+          element={<Settings />}
+        />
+        <Route
+          path={ROUTES.NOTION_REDIRECT}
+          element={<NotionRedirect />}
+        />
+        <Route
+          path={ROUTES.GOOGLE_REDIRECT}
+          element={<GoogleAuthRedirect />}
+        />
       </Route>
 
       {/* catch-all route */}
-      <Route path="*" element={<NotFound />} />
+      <Route
+        path="*"
+        element={<NotFound />}
+      />
     </>
   )
 );
@@ -60,7 +81,10 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.Fragment>
     <GoogleOAuthProvider clientId={clientID}>
       <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
+        <PersistGate
+          loading={null}
+          persistor={persistor}
+        >
           <RouterProvider router={router} />
         </PersistGate>
       </Provider>

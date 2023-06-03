@@ -46,7 +46,10 @@ const AccountTable = ({ accounts, connection, className }: PropType) => {
   const connectButton = () => {
     return (
       <div className="flex justify-center items-center">
-        <img src={AddAccountIcon} className="w-5 h-5 mr-2" />
+        <img
+          src={AddAccountIcon}
+          className="w-5 h-5 mr-2"
+        />
         <div>connect new account</div>
       </div>
     );

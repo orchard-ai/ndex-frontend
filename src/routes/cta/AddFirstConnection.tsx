@@ -31,7 +31,10 @@ const AddFirstConnection = () => {
                 dark:border-none"
       >
         <div className="flex">
-          <img className="h-8 w-8 p-1" src={connection.icon} />
+          <img
+            className="h-8 w-8 p-1"
+            src={connection.icon}
+          />
           <div className="align-middle text-md my-auto hidden sm:block">
             {connection.name}
           </div>

@@ -41,7 +41,10 @@ function InstantCustomSearch({
         nullable
       >
         <SearchToolbar />
-        <SearchBox currentRefinement={currentRefinement} refine={refine} />
+        <SearchBox
+          currentRefinement={currentRefinement}
+          refine={refine}
+        />
         <SearchResults currentRefinement={currentRefinement} />
       </Combobox>
     </div>

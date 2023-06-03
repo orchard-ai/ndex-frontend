@@ -13,7 +13,12 @@ export default function SearchResultRow({ hit }: { hit: Hit }) {
       value={hit}
       className={`flex flex-row w-full m-0 p-0`}
     >
-      {({ active }) => <MemoizedInnerRow active={active} hit={hit} />}
+      {({ active }) => (
+        <MemoizedInnerRow
+          active={active}
+          hit={hit}
+        />
+      )}
     </Combobox.Option>
   );
 }
@@ -36,8 +41,15 @@ const MemoizedInnerRow = memo(
           />
         </div>
         <div className="min-w-4 max-w-4 ml-auto">
-          <a href={hit?.url} target="_blank" className="w-4 h-full flex">
-            <img src={NewTabIcon} alt="New Tab" />
+          <a
+            href={hit?.url}
+            target="_blank"
+            className="w-4 h-full flex"
+          >
+            <img
+              src={NewTabIcon}
+              alt="New Tab"
+            />
           </a>
         </div>
       </div>

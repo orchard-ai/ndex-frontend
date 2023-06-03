@@ -56,7 +56,10 @@ const AddAccountDialog = ({
             sm:right-20
           "
         >
-          <img className="h-8 w-8 p-1" src={connection.icon} />
+          <img
+            className="h-8 w-8 p-1"
+            src={connection.icon}
+          />
           <div className="align-middle text-sm my-auto hidden sm:block">
             {connection.name}
           </div>

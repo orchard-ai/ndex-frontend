@@ -6,12 +6,12 @@ module.exports = {
     default: {
       "primary-text": "ndex-text-white",
       "secondary-text": "ndex-text-grey",
-      primary: "ndex-dark-background-default",
-      secondary: "ndex-dark-background-4",
+      "primary": "ndex-dark-background-default",
+      "secondary": "ndex-dark-background-4",
       "primary-variant": "ndex-dark-background-default-selected",
       "secondary-variant": "ndex-dark-background-grey",
-      accent: "ndex-button-filled-dark",
-      input: "ndex-input",
+      "accent": "ndex-button-filled-dark",
+      "input": "ndex-input",
     },
     extend: {
       colors: {
@@ -25,8 +25,8 @@ module.exports = {
           secondary: "#A5A5A5",
         },
         "ndex-dark-background": {
-          default: "#2F3437",
-          grey: "#454B4E",
+          "default": "#2F3437",
+          "grey": "#454B4E",
           "default-selected": "#5d6366",
           "grey-selected": "#979A9B",
         },
@@ -46,10 +46,10 @@ module.exports = {
           kebab: "#747474",
         },
         "ndex-text": {
-          white: "#FFFFFF",
+          "white": "#FFFFFF",
           "column-selected": "#ABABAB",
           "column-hover": "#D0D0D0",
-          grey: "#A5A5A6",
+          "grey": "#A5A5A6",
           "grey-variant": "#575757",
         },
         "ndex-button-text": {
@@ -66,7 +66,7 @@ module.exports = {
           "active-light": "#C9C9C9",
         },
         "ndex-search": {
-          default: "#f3f3ef",
+          "default": "#f3f3ef",
           "toolbar-icon-hover": "#F8F8F8",
           "toolbar-icon-active": "#d0d0d0",
           "toolbar-icon-selected": "#EBEBEB",

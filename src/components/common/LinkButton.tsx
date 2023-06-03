@@ -24,7 +24,10 @@ export default function LinkButton({
           </a>
         </div>
       ) : (
-        <Link to={routerLink} className={`text-black ${className}`}>
+        <Link
+          to={routerLink}
+          className={`text-black ${className}`}
+        >
           {children}
         </Link>
       )}

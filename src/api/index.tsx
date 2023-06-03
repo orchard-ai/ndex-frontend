@@ -152,7 +152,7 @@ const addIntegrationForUser = async (
     method: method.POST,
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${ndexToken}`,
+      "Authorization": `Bearer ${ndexToken}`,
     },
     body: JSON.stringify(request),
   })
@@ -218,7 +218,7 @@ const indexAccount = async (ndexToken: string, request: IndexRequest) => {
       method: method.POST,
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${ndexToken}`,
+        "Authorization": `Bearer ${ndexToken}`,
       },
       body: JSON.stringify({
         email: email,

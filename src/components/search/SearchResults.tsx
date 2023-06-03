@@ -29,7 +29,10 @@ function StateResults({
     <motion.div className={`flex w-full`}>
       {currentRefinement !== "" && searchState.query !== "" && hasResults && (
         <>
-          <Combobox.Options static className="w-full">
+          <Combobox.Options
+            static
+            className="w-full"
+          >
             <SearchStatistics className="" />
             <motion.div
               layout

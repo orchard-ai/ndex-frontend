@@ -103,7 +103,10 @@ export default function Settings() {
             "
             />
           </button>
-          <Title category={currentTab} className="pt-4 pb-4 md:ml-8" />
+          <Title
+            category={currentTab}
+            className="pt-4 pb-4 md:ml-8"
+          />
 
           <LinkButton routerLink={ROUTES.SEARCH}>
             <CloseIcon

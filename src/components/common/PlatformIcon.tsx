@@ -34,7 +34,10 @@ const PlatformIcon = ({ platform }: IconProps) => {
 
   return (
     <div className="p-1">
-      <img className="w-4 h-4" src={source} />
+      <img
+        className="w-4 h-4"
+        src={source}
+      />
     </div>
   );
 };
