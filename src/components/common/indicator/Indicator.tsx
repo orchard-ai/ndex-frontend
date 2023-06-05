@@ -50,6 +50,7 @@ export default function Indicator() {
                         <div className="flex ml-4 w-full flex-wrap whitespace-normal">
                             Indexing your files at <p className="font-bold ml-2"> {account.email} </p>
                         </div>
+                        {/* Add Loading Animation Here */}
                       </div>
                     ))}
                   </div>
