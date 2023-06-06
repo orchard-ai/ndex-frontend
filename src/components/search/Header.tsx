@@ -1,5 +1,4 @@
 import Logo from "components/common/Logo";
-import Indicator from "components/common/indicator/Indicator";
 
 import Sun from "assets/icons/svg/light-icon.svg";
 import Moon from "assets/icons/svg/dark-icon.svg";
@@ -56,7 +55,6 @@ export default function Header({ className }: PropType) {
         onPress={logoOnClick}
       />
       <div className="flex items-center justify-between">
-        <Indicator/>
         <div
           className="w-10 m-10 p-1 rounded-lg
           hover:bg-ndex-light-background-2

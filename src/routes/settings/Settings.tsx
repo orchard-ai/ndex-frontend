@@ -4,6 +4,7 @@ import AccountTab from "components/settings/options/account/Tab";
 
 import LinkButton from "components/common/LinkButton";
 import { Loading } from "components/common/LoadingIcon";
+import Indicator from "components/common/indicator/Indicator";
 
 import MenuIcon from "assets/icons/tsx/MenuIcon";
 import CloseIcon from "assets/icons/tsx/CloseIcon";
@@ -126,6 +127,7 @@ export default function Settings() {
         <DisplayedTab category={currentTab} />
 
         {isLoading && <Loading />}
+        <Indicator/>
       </div>
     </div>
   );

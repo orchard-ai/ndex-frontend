@@ -1,6 +1,7 @@
 import { connectSearchBox, InstantSearch } from "react-instantsearch-dom";
 import { Combobox } from "@headlessui/react";
 
+import Indicator from "components/common/indicator/Indicator";
 import Header from "components/search/Header";
 import SearchBox from "components/search/SearchBox";
 import SearchResults from "components/search/SearchResults";
@@ -47,6 +48,7 @@ function InstantCustomSearch({
         />
         <SearchResults currentRefinement={currentRefinement} />
       </Combobox>
+      <Indicator/>
     </div>
   );
 }
