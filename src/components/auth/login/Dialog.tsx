@@ -29,9 +29,9 @@ export default function Login({ className }: PropType) {
 
     const form: UserAuthRequest = {
       email: ticket.email,
-      oauth_provider_id: credentialRes.clientId,
-      oauth_access_token: credentialRes.clientId,
-      password: undefined,
+      oauth_provider_id: credentialRes.clientId ?? null,
+      oauth_access_token: credentialRes.clientId ?? null,
+      password: null,
       account_type: AccountType.Google,
     };
 
