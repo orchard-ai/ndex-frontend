@@ -94,7 +94,6 @@ const Form = () => {
       if (isFetchStateFailed(userFetchState)) {
         setAuthenticating(false);
         // TODO: GET REASON FOR FAILURE
-        console.log("Signup failed");
         setShowFailureMessage(
           "Signup failed please contact contact@ndex.gg for support"
         );
@@ -123,7 +122,6 @@ const Form = () => {
       await dispatch(loginUser(form));
 
       if (isFetchStateFailed(userFetchState)) {
-        console.log("ERROR");
         // TODO: BETTER ERROR SHOWING
         setAuthenticating(false);
         setShowFailureMessage("Incorrect username or password.");

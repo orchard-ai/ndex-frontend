@@ -32,7 +32,6 @@ const SearchToolbar = () => {
   ] = useState(defaultConnectionFilter);
 
   const updateFilter = (connection: string) => {
-    console.log(connectionFilters);
     setConnectionFilter(
       connectionFilters.map((connectionFilter, index) => {
         return connectionFilter.id == index ||

@@ -23,12 +23,10 @@ export default function Logout({ className }: PropType) {
 
   const onSuccess = () => {
     navigate(ROUTES.AUTHENTICATE, { replace: true });
-    console.log("Logged out successfully");
   };
 
   const onFailure = (error: Error) => {
     alert(`Logged out failed. Check logs for failure`);
-    console.log(`Logged out failed with error: ${error.message}`);
   };
 
   return (

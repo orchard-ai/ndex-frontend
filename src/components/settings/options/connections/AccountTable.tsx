@@ -25,10 +25,6 @@ type PropType = {
 const AccountTable = ({ accounts, connection, className }: PropType) => {
   const dispatch = useAppDispatch();
 
-  const handleEdit = () => {
-    console.log("EDIT");
-  };
-
   const handleDelete = () => {
     console.log("DELETE");
   };

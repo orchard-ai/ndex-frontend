@@ -159,7 +159,9 @@ const addIntegrationForUser = async (
     body: JSON.stringify(request),
   })
     .then((response) => response.json())
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      throw new Error("Error adding integration for user.");
+    });
 
   return response;
 };

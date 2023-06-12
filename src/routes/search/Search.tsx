@@ -33,7 +33,6 @@ function InstantCustomSearch({
         onChange={(hit: Hit) => {
           // Pressing enter on result row opens new tab
           if (hit?.url === undefined || hit?.url === null || hit?.url === "") {
-            console.log("URL is undefined, null or empty.");
             return;
           }
           window.open(hit?.url, "_blank", "noreferrer");
