@@ -177,8 +177,8 @@ const AccountTable = ({ accounts, connection, className }: PropType) => {
                 rounded-lg w-full p-4 text-sm 
                 font-bold
                 stroke-ndex-light-text-primary dark:stroke-ndex-text-white
-                text-ndex-light-text-primary dark:text-ndex-dark-text-default hover:text-ndex-dark-text-default
-                bg-transparent hover:bg-ndex-button-bordered-green
+                text-ndex-dark-text-default
+                bg-ndex-button-bordered-green
                 hover:border-1 hover:shadow-md 
                 transition duration-250 ease-in-out
                 `}

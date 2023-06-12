@@ -53,8 +53,8 @@ const Form = () => {
       return (
         <div
           className="
-                    flex text-ndex-button-text-filled-light border-2 rounded-lg w-40 h-8 shadow-md bg-ndex-button-filled-light
-                    active:bg-ndex-button-active-light justify-center items-center"
+            flex text-ndex-button-text-filled-light border-2 rounded-lg w-40 h-8 shadow-md bg-ndex-button-filled-light
+            active:bg-ndex-button-active-light justify-center items-center"
         >
           <div className="animate-spin border-b-2 border-gray-400 h-4 w-4 rounded-full items-center" />
         </div>
@@ -65,9 +65,9 @@ const Form = () => {
           type="submit"
           disabled={authenticating}
           className={`
-                    flex text-ndex-button-text-filled-light border-2  rounded-lg w-40 h-8 shadow-md bg-ndex-button-filled-light
-                    active:bg-ndex-button-active-light justify-center items-center}
-                `}
+            flex text-ndex-button-text-filled-light border-2 rounded-lg w-40 h-8 shadow-md bg-ndex-button-filled-light
+            active:bg-ndex-button-active-light justify-center items-center}
+          `}
           onClick={onClickFunc}
           value={buttonText}
         />

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import { signupUser, signinUser } from "api";
+import { signupUser, signinUser, userDelete } from "api";
 import { FetchState, UserAuthRequest } from "api/models";
 import { RootState } from "store";
 
@@ -21,11 +21,27 @@ export const loginUser = createAsyncThunk(
   async (form: UserAuthRequest, { rejectWithValue }) => {
     try {
       const response = await signinUser(form);
-      console.log(response);
       return response;
     } catch (error: any) {
       return rejectWithValue(error.message);
     }
+  }
+);
+
+export const deleteUser = createAsyncThunk(
+  "user/deleteUser",
+  async (_, { getState, rejectWithValue }) => {
+    const { token } = (getState() as RootState).userAuth;
+
+    if (token) {
+      try {
+        await userDelete(token);
+      } catch (error: any) {
+        return rejectWithValue(error.message);
+      }
+    }
+
+    return null;
   }
 );
 
@@ -75,12 +91,26 @@ export const userAuthSlice = createSlice({
       state.error = null;
       state.fetchStatus = FetchState.Complete;
     }),
-      builder.addCase(loginUser.pending, (state) => {
-        state.error = null;
-        state.fetchStatus = FetchState.Pending;
-      });
+    builder.addCase(loginUser.pending, (state) => {
+      state.error = null;
+      state.fetchStatus = FetchState.Pending;
+    });
     builder.addCase(loginUser.rejected, (state, action) => {
       state.token = null;
+      state.error = action.error.message ?? "Unknown error";
+      state.fetchStatus = FetchState.Failed;
+    });
+    builder.addCase(deleteUser.fulfilled, (state) => {
+      state.userId = null;
+      state.token = null;
+      state.error = null;
+      state.fetchStatus = FetchState.Complete;
+    });
+    builder.addCase(deleteUser.pending, (state) => {
+      state.error = null;
+      state.fetchStatus = FetchState.Pending;
+    });
+    builder.addCase(deleteUser.rejected, (state, action) => {
       state.error = action.error.message ?? "Unknown error";
       state.fetchStatus = FetchState.Failed;
     });

@@ -14,6 +14,7 @@ const baseUrl = "http://localhost:3001";
 enum apiRoutes {
   userSignup = "/user/signup",
   userLogin = "/user/login",
+  userDelete = "/user/delete",
   notionAccessToken = "/notion/obtain_access_token",
   googleAccessToken = "/google/obtain_access_token",
   userIntegrations = "/user/integrations",
@@ -29,6 +30,7 @@ const method = {
   POST: "POST",
   GET: "GET",
   PUT: "PUT",
+  DELETE: "DELETE",
 };
 
 const getRoute = (api: apiRoutes) => {
@@ -236,6 +238,28 @@ const indexAccount = async (ndexToken: string, request: IndexRequest) => {
   }
 };
 
+
+// DELETE USER
+const userDelete = async (ndexToken: string) => {
+  try {
+    const response = await fetch(getRoute(apiRoutes.userDelete), {
+      method: method.DELETE,
+      headers: {
+        Authorization: `Bearer ${ndexToken}`,
+      },
+    });
+
+    if (!isStatusOk(response.status)) {
+      throw new Error("Trouble deleting user.");
+    }
+
+    const data = await response.json();
+    return data;
+  } catch {
+    throw new Error("Something went wrong while deleting user.");
+  }
+}
+
 export {
   signupUser,
   signinUser,
@@ -245,4 +269,5 @@ export {
   getUserEmail,
   addIntegrationForUser,
   indexAccount,
+  userDelete
 };

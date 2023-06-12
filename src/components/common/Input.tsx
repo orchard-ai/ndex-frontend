@@ -59,13 +59,13 @@ const Input = ({
         {type === "password" && !showPassword && (
           <PasswordHideIcon
             onClick={() => setShowPassword(true)}
-            className="py-auto w-4 h-4"
+            className="py-auto w-4 h-4 hover:cursor-pointer"
           />
         )}
         {type === "password" && showPassword && (
           <PasswordShowIcon
             onClick={() => setShowPassword(false)}
-            className="py-auto w-4 h-4"
+            className="py-auto w-4 h-4 hover:cursor-pointer"
           />
         )}
       </div>

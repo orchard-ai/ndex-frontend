@@ -8,8 +8,8 @@ type PropType = {
 const Hits = ({ hits }: PropType) => {
   return (
     <ol className="w-full">
-      {hits.map((hit) => (
-        <SearchResultRow hit={hit as Hit} />
+      {hits.map((hit, i) => (
+        <SearchResultRow hit={hit as Hit} key={i} />
       ))}
     </ol>
   );

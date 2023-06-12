@@ -191,8 +191,6 @@ export const indexData = createAsyncThunk(
     if (token) {
       const res = await indexAccount(token, request);
 
-      console.log("indexData", res);
-
       // ASSERT OK
       // maybe better handling here
       return res;

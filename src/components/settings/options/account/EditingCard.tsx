@@ -1,6 +1,7 @@
 import { useState } from "react";
-import Logout from "components/auth/Logout";
 import Input from "components/common/Input";
+import { useAppDispatch } from "store";
+import { deleteUser } from "store/user/userAuthSlice";
 
 type PropType = {
   email: string;
@@ -9,11 +10,24 @@ type PropType = {
 
 const EditingCard = ({ email, setEditing }: PropType) => {
   const [dummyEmail, setEmail] = useState(email);
+  const [deleteInput, setDeleteInput] = useState('');
+
+  const dispatch = useAppDispatch();
 
   const updateUser = () => {
     // UPDATE EMAIL HERE
     setEditing(false);
   };
+
+  const onClickDelete = async () => {
+    if(deleteInput === "delete") {
+      await dispatch(deleteUser());
+    }
+  }
+
+  const isDeleteDisabled = () => {
+    return deleteInput !== "delete";
+  }
 
   return (
     <div
@@ -43,9 +57,32 @@ const EditingCard = ({ email, setEditing }: PropType) => {
         />
       </div>
       <div className="space-y-4">
-        <div className="text-ndex-text-grey  font-bold text-sm">PASSWORD</div>
+        <div className="text-ndex-text-grey  font-bold text-sm">
+          PASSWORD
+        </div>
         <button className="py-2 px-4 font-bold text-sm rounded-lg text-ndex-dark-text-default bg-ndex-button-bordered-red hover:opacity-80">
           Change Password
+        </button>
+      </div>
+
+      <div className="space-y-4">
+        <div className="text-ndex-text-grey  font-bold text-sm">
+          DELETE ACCOUNT
+        </div>
+        <div className="text-sm font-semibold text-ndex-text-grey">
+          Type "delete" to permanently delete your account
+        </div>
+        <Input
+          value={deleteInput}
+          onChange={setDeleteInput}
+          showLabel={false}
+          placeholder="type here"
+        />
+        <button
+          className="py-2 px-4 font-bold text-sm rounded-lg text-ndex-dark-text-default bg-ndex-button-bordered-red hover:opacity-80 disabled:opacity-50"
+          disabled={isDeleteDisabled()}
+          onClick={onClickDelete}>
+          Delete
         </button>
       </div>
     </div>
