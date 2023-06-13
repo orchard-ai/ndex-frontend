@@ -25,9 +25,9 @@ type PropType = {
 const AccountTable = ({ accounts, connection, className }: PropType) => {
   const dispatch = useAppDispatch();
 
-  const handleEdit = () => {
-    return;
-  }
+  // const handleEdit = () => {
+  //   return;
+  // }
 
   const handleDelete = () => {
     console.log("DELETE");
@@ -75,9 +75,9 @@ const AccountTable = ({ accounts, connection, className }: PropType) => {
               >
                 <Table.Cell
                   className="
-                        p-4 overflow-auto
-                        rounded-tl-md rounded-bl-md
-                        text-ndex-light-text-primary dark:text-ndex-dark-text-default"
+                    p-4 overflow-auto
+                    rounded-tl-md rounded-bl-md
+                    text-ndex-light-text-primary dark:text-ndex-dark-text-default"
                 >
                   {account.email}
                 </Table.Cell>
@@ -92,9 +92,9 @@ const AccountTable = ({ accounts, connection, className }: PropType) => {
                       <Menu.Button className="flex w-full hover:opacity-50 active:opacity-30">
                         <KebabIcon
                           className="w-8 h-8
-                                            stroke-ndex-light-text-primary
-                                            rounded-lg
-                                            dark:stroke-ndex-text-white"
+                            stroke-ndex-light-text-primary
+                            rounded-lg
+                            dark:stroke-ndex-text-white"
                         />
                       </Menu.Button>
                     </div>
@@ -127,24 +127,25 @@ const AccountTable = ({ accounts, connection, className }: PropType) => {
                             )}
                           </Menu.Item>
                         </div>
-                        <div className="px-1 py-1">
+                        {/* <div className="px-1 py-1">
                           <Menu.Item>
                             {({ active }) => (
                               <button
                                 onClick={handleEdit}
                                 className={`
-                                                    bg-ndex-light-background-1 dark:bg-ndex-dark-background-default 
-                                                    text-ndex-light-text-primary dark:text-white
-                                                    ${
-                                                      active &&
-                                                      "hover:bg-ndex-light-background-2 hover:dark:bg-ndex-dark-background-default-selected"
-                                                    } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                                  bg-ndex-light-background-1 dark:bg-ndex-dark-background-default
+                                  text-ndex-light-text-primary dark:text-white
+                                  ${
+                                    active &&
+                                    "hover:bg-ndex-light-background-2 hover:dark:bg-ndex-dark-background-default-selected"
+                                  } group flex w-full items-center rounded-md px-2 py-2 text-sm
+                                `}
                               >
                                 Edit
                               </button>
                             )}
                           </Menu.Item>
-                        </div>
+                        </div> */}
                         <div className="px-1 py-1">
                           <Menu.Item>
                             {({ active }) => (
@@ -176,14 +177,14 @@ const AccountTable = ({ accounts, connection, className }: PropType) => {
       <AddAccountDialog
         buttonContent={connectButton()}
         buttonClassName={`
-                rounded-lg w-full p-4 text-sm 
-                font-bold
-                stroke-ndex-light-text-primary dark:stroke-ndex-text-white
-                text-ndex-dark-text-default
-                bg-ndex-button-bordered-green
-                hover:border-1 hover:shadow-md 
-                transition duration-250 ease-in-out
-                `}
+          rounded-lg w-full p-4 text-sm 
+          font-bold
+          stroke-ndex-light-text-primary dark:stroke-ndex-text-white
+          text-ndex-dark-text-default
+          bg-ndex-button-bordered-green
+          hover:border-1 hover:shadow-md 
+          transition duration-250 ease-in-out
+          `}
         buttonContainerClassName={`flex w-full`}
         connection={connection}
       />
