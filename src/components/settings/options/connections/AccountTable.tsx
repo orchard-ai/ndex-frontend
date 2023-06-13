@@ -25,6 +25,10 @@ type PropType = {
 const AccountTable = ({ accounts, connection, className }: PropType) => {
   const dispatch = useAppDispatch();
 
+  const handleEdit = () => {
+    return;
+  }
+
   const handleDelete = () => {
     console.log("DELETE");
   };
@@ -110,19 +114,20 @@ const AccountTable = ({ accounts, connection, className }: PropType) => {
                               <button
                                 onClick={() => handleIndex(account)}
                                 className={`
-                                                    bg-ndex-light-background-1 dark:bg-ndex-dark-background-default 
-                                                    text-ndex-light-text-primary dark:text-white
-                                                    ${
-                                                      active &&
-                                                      "hover:bg-ndex-light-background-2 hover:dark:bg-ndex-dark-background-default-selected"
-                                                    } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                                  bg-ndex-light-background-1 dark:bg-ndex-dark-background-default 
+                                  text-ndex-light-text-primary dark:text-white
+                                  ${
+                                    active &&
+                                    "hover:bg-ndex-light-background-2 hover:dark:bg-ndex-dark-background-default-selected"
+                                  } group flex w-full items-center rounded-md px-2 py-2 text-sm
+                                `}
                               >
                                 Index
                               </button>
                             )}
                           </Menu.Item>
                         </div>
-                        <div className="px-1 py-1 ">
+                        <div className="px-1 py-1">
                           <Menu.Item>
                             {({ active }) => (
                               <button
@@ -146,12 +151,13 @@ const AccountTable = ({ accounts, connection, className }: PropType) => {
                               <button
                                 onClick={handleDelete}
                                 className={`
-                                                    bg-ndex-light-background-1 dark:bg-ndex-dark-background-default 
-                                                    text-ndex-light-text-primary dark:text-white
-                                                    ${
-                                                      active &&
-                                                      "hover:bg-ndex-light-background-2 hover:dark:bg-ndex-dark-background-default-selected"
-                                                    } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                                  bg-ndex-light-background-1 dark:bg-ndex-dark-background-default 
+                                  text-ndex-light-text-primary dark:text-white
+                                  ${
+                                    active &&
+                                    "hover:bg-ndex-light-background-2 hover:dark:bg-ndex-dark-background-default-selected"
+                                  } group flex w-full items-center rounded-md px-2 py-2 text-sm
+                                `}
                               >
                                 Delete
                               </button>
